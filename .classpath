@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="mason"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/Users/pascal/Documents/HAW/Master/TeamSim/libraries/itextpdf-5.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/pascal/Documents/HAW/Master/TeamSim/libraries/jfreechart-1.0.14.jar"/>
+	<classpathentry kind="output" path="mason"/>
+</classpath>
