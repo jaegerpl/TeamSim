@@ -1,4 +1,9 @@
+*.com
 *.class
+*.dll
+*.exe
+*.o
+*.so
 
 # Package Files #
 *.jar
