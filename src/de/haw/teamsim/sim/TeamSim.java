@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;
 import de.haw.teamsim.agent.Agent;
+import de.haw.teamsim.agent.Agent.AgentRole;
 
 public class TeamSim extends SimState {
 
@@ -36,9 +37,9 @@ public class TeamSim extends SimState {
 		Agent agent2;
 		Agent agent3;
 
-		agent1 = new Agent("Paul", team);
-		agent2 = new Agent("Lucy", team);
-		agent3 = new Agent("Charlie", team);
+		agent1 = new Agent("Paul", AgentRole.Manager, team);
+		agent2 = new Agent("Lucy", AgentRole.FireDepartement, team);
+		agent3 = new Agent("Charlie", AgentRole.PolicyDepartement, team);
 
 //		world.setObjectLocation(agent, new Double2D(source.getX(), source.getY()));
 		schedule.scheduleRepeating(agent1);
