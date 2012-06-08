@@ -6,7 +6,15 @@ package de.haw.teamsim.semweb;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.haw.teamsim.semweb.SemanticGoalWeb.Predicate;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.util.FileManager;
 
 /**
  * 
@@ -52,6 +60,39 @@ public class SemanticGoalWeb {
 		// TODO Auto-generated method stub
 		
 		
+	}
+	
+	public void buildGoalOntology(){
+		OntModel m = ModelFactory.createOntologyModel();
+		m.read("http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology");
+		System.out.println(m.toString());
+		FileManager fm = new FileManager();
+		fm.readModel(m, "file:data/TeamSimGoalOntolofy.owl");
+		sampleQuery(m);
+	}
+	
+	public void sampleQuery(Model model){
+		// list the statements in the Model
+		StmtIterator iter = model.listStatements();
+
+		// print out the predicate, subject and object of each statement
+		while (iter.hasNext()) {
+		    Statement stmt      = iter.nextStatement();  // get next statement
+		    Resource  subject   = stmt.getSubject();     // get the subject
+		    Property  predicate = stmt.getPredicate();   // get the predicate
+		    RDFNode   object    = stmt.getObject();      // get the object
+
+		    System.out.print(subject.toString());
+		    System.out.print(" " + predicate.toString() + " ");
+		    if (object instanceof Resource) {
+		       System.out.print(object.toString());
+		    } else {
+		        // object is a literal
+		        System.out.print(" \"" + object.toString() + "\"");
+		    }
+
+		    System.out.println(" .");
+		} 
 	}
 
 }

@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl">
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Action"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Agent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Area"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Goal"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Resource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Role"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Skill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Subgoal"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Task"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#belongs_to"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#consists_of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#performed_by"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#plays"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requires"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#responsible_for"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#subtask"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#use"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#used_by"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Agent"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#plays"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Agent"/>
+        <ObjectMinCardinality cardinality="1">
+            <ObjectProperty IRI="#has"/>
+            <Class IRI="#Skill"/>
+        </ObjectMinCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Area"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#requires"/>
+            <Class IRI="#Skill"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Goal"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#consists_of"/>
+            <Class IRI="#Subgoal"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Goal"/>
+        <ObjectMinCardinality cardinality="1">
+            <ObjectProperty IRI="#belongs_to"/>
+            <Class IRI="#Area"/>
+        </ObjectMinCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Resource"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#used_by"/>
+            <Class IRI="#Task"/>
+        </ObjectAllValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Role"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#requires"/>
+            <Class IRI="#Skill"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Role"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#responsible_for"/>
+            <Class IRI="#Goal"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Role"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#responsible_for"/>
+            <Class IRI="#Task"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Subgoal"/>
+        <ObjectMinCardinality cardinality="1">
+            <ObjectProperty IRI="#belongs_to"/>
+            <Class IRI="#Goal"/>
+        </ObjectMinCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Task"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#performed_by"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Task"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#use"/>
+            <Class IRI="#Resource"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Task"/>
+        <ObjectMinCardinality cardinality="1">
+            <ObjectProperty IRI="#consists_of"/>
+            <Class IRI="#Action"/>
+        </ObjectMinCardinality>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Action"/>
+        <Class abbreviatedIRI=":Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Goal"/>
+        <Class abbreviatedIRI=":Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Resource"/>
+        <Class abbreviatedIRI=":Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Role"/>
+        <Class abbreviatedIRI=":Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Skill"/>
+        <Class abbreviatedIRI=":Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Subgoal"/>
+        <Class IRI="#Goal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Task"/>
+        <Class abbreviatedIRI=":Thing"/>
+    </SubClassOf>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.22702) http://owlapi.sourceforge.net -->
+

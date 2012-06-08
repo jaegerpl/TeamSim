@@ -4,6 +4,7 @@
 *.exe
 *.o
 *.so
+*.DS_Store
 
 # Package Files #
 *.war

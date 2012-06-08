@@ -10,6 +10,7 @@ import sim.engine.SimState;
 import sim.engine.Steppable;
 import de.haw.teamsim.semweb.Node;
 import de.haw.teamsim.semweb.SemanticGoalWeb;
+import de.haw.teamsim.semweb.SemanticGoalWeb.Predicate;
 import de.haw.teamsim.sim.Team;
 import de.haw.teamsim.sim.Team.Status;
 import de.haw.teamsim.sim.TeamStatusUpdate;
@@ -52,6 +53,7 @@ public class Agent implements Steppable, Observer {
 		team.sendInfo2Team(new Belief(name, "Hi, ich bin "+name));
 		Node myNode = new Node(this, ID);
 		goalWeb.add(myNode);
+		goalWeb.getObjects(Predicate.responsibleRole);
 	}
 
 	@Override
