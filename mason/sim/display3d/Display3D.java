@@ -6,33 +6,103 @@
 
 package sim.display3d;
 
-import sim.engine.*;
-import sim.portrayal3d.*;
-import sim.portrayal3d.simple.*;
-import sim.util.*;
-import sim.util.gui.*;
-import sim.util.media.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Iterator;
+import java.util.prefs.Preferences;
+
+import javax.media.j3d.Alpha;
+import javax.media.j3d.AmbientLight;
+import javax.media.j3d.Appearance;
+import javax.media.j3d.Background;
+import javax.media.j3d.BoundingSphere;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.GeometryArray;
+import javax.media.j3d.Group;
+import javax.media.j3d.ImageComponent2D;
+import javax.media.j3d.PointArray;
+import javax.media.j3d.PointLight;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.RotationInterpolator;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Switch;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.ToolTipManager;
+import javax.swing.UIManager;
+import javax.vecmath.Color3f;
+import javax.vecmath.Point3d;
+import javax.vecmath.Point3f;
+import javax.vecmath.Vector3d;
+
 import sim.display.Console;
-import sim.display.*;
-import sim.portrayal.*;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.display.Prefs;
+import sim.display.SimApplet;
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.Portrayal3D;
+import sim.portrayal3d.simple.AxesPortrayal3D;
+import sim.util.Bag;
+import sim.util.gui.LabelledList;
+import sim.util.gui.MovieMaker;
+import sim.util.gui.NumberTextField;
+import sim.util.gui.Utilities;
+import sim.util.media.PNGEncoder;
 
-import java.io.*;
-import java.util.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.event.*;
-import java.awt.image.*;
-
-import javax.swing.*;
-import javax.vecmath.*;
-import javax.media.j3d.*;
-
-import com.sun.j3d.utils.universe.*;
-import com.sun.j3d.utils.behaviors.vp.*;
-import com.sun.j3d.utils.image.*;
+import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.geometry.Sphere;
-
-import java.util.prefs.*;
+import com.sun.j3d.utils.image.TextureLoader;
+import com.sun.j3d.utils.universe.SimpleUniverse;
 
 
 /**

@@ -5,8 +5,13 @@
 */
 
 package sim.field.grid;
-import sim.field.*;
-import sim.util.*;
+import sim.field.SparseField;
+import sim.field.SparseField2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Int2D;
+import sim.util.IntBag;
+import sim.util.MutableInt2D;
 
 /**
    A storage facility for sparse objects in discrete 2D space, using HashMaps.  SparseGrid2D differs from ObjectGrid2D

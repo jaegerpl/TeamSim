@@ -5,9 +5,18 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
+import java.awt.geom.GeneralPath;
+
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
 
 /**
    A simple portrayal for 2D visualization of java.awt.Shapes and java.awt.Polygons. It extends the SimplePortrayal2D and

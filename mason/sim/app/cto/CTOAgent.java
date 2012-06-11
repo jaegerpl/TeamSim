@@ -6,9 +6,11 @@
 
 package sim.app.cto;
 
-import sim.util.*;
-import sim.engine.*;
-import java.awt.*;
+import java.awt.Color;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Double2D;
 
 public /*strictfp*/ class CTOAgent extends sim.portrayal.simple.OvalPortrayal2D implements Steppable
     {

@@ -5,14 +5,33 @@
 */
 
 package sim.portrayal.inspector;
-import java.awt.*;
-import java.awt.event.*;
-import sim.util.*;
-import java.io.*;
-import sim.display.*;
-import sim.engine.*;
-import javax.swing.*;
-import sim.util.gui.*;
+import java.awt.BorderLayout;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import sim.display.GUIState;
+import sim.engine.Schedule;
+import sim.engine.Stoppable;
+import sim.util.Properties;
+import sim.util.gui.NumberTextField;
+import sim.util.gui.Utilities;
 
 /** A PropertyInspector which streams its result out to a file, window, or stream. */
 

@@ -5,14 +5,25 @@
 */
 
 package sim.app.hexabugs;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.grid.*;
-import sim.portrayal.simple.*;
-import java.awt.*;
-import javax.swing.*;
-import sim.util.gui.*;
-import sim.portrayal.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Insets;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.Inspector;
+import sim.portrayal.SimpleInspector;
+import sim.portrayal.grid.FastHexaValueGridPortrayal2D;
+import sim.portrayal.grid.HexaSparseGridPortrayal2D;
+import sim.portrayal.grid.HexaValueGridPortrayal2D;
+import sim.portrayal.simple.MovablePortrayal2D;
+import sim.util.gui.ColorMap;
 
 public class HexaBugsWithUI extends GUIState
     {

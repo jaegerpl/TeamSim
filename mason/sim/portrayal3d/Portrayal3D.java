@@ -6,10 +6,12 @@
 
 package sim.portrayal3d;
 
-import sim.portrayal.*;
-import javax.media.j3d.*;
-import sim.display3d.*;
-import sim.display.*;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.TransformGroup;
+
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.portrayal.Portrayal;
 
 /**
  * The top-level definition of Portrayals which portray underlying models using, er,

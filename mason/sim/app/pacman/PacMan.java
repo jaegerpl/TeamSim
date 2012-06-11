@@ -5,10 +5,10 @@
 */
 
 package sim.app.pacman;
-import sim.engine.*;
-import sim.util.*;
-import sim.field.continuous.*;
-import java.io.*;
+import sim.engine.SimState;
+import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** PacMan is the model for the game.  The model contains three fields: a Continuous2D for the
     agents, a Continuous2D for the dots, and an IntGrid2D holding the maze (1 is wall, 0 is open space).

@@ -6,13 +6,14 @@
 
 package sim.app.woims3d;
 
-import sim.portrayal3d.continuous.*;
-import sim.portrayal3d.simple.*;
-import sim.engine.*;
-import sim.display.*;
-import sim.display3d.*;
+import javax.swing.JFrame;
 
-import javax.swing.*;
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.continuous.ContinuousPortrayal3D;
+import sim.portrayal3d.simple.WireFrameBoxPortrayal3D;
 
 public class WoimsDemo3DWithUI extends GUIState
     {

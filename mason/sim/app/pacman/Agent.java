@@ -6,11 +6,9 @@
 
 package sim.app.pacman;
 
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
-import sim.portrayal.*;
+import sim.portrayal.Oriented2D;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** An agent is either a Pac or a Ghost -- something which is capable of moving about.
     Agents have a previous action they've done which determines their "orientation".

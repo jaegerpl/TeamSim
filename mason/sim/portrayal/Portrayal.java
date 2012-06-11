@@ -5,7 +5,7 @@
 */
 
 package sim.portrayal;
-import sim.display.*;
+import sim.display.GUIState;
 
 /**
    A common interface for portrayal classes.

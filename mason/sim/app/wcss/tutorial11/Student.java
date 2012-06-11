@@ -5,10 +5,13 @@
 */
 
 package sim.app.wcss.tutorial11;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import sim.field.network.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous2D;
+import sim.field.network.Edge;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 public class Student implements Steppable
     {

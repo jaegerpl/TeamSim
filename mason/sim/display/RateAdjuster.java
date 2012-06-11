@@ -5,7 +5,8 @@
 */
 
 package sim.display;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
 
 /** A simple class which maintains a frame rate fixed to no more than a given number of ticks per second.
     Typically this is used in games or visual demonstrations, where it is best to add it not to the Schedule

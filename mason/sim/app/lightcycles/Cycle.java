@@ -5,8 +5,10 @@
 */
 
 package sim.app.lightcycles;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.util.Int2D;
 
 // The cycle itself...  A steppable which either proceeds while being manipulated by 
 // user input or directed by a very minimal AI.

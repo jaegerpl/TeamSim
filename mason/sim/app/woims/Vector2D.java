@@ -6,6 +6,7 @@
 
 package sim.app.woims;
 import java.io.Serializable;
+
 import sim.util.Double2D;
 
 public /*strictfp*/ class Vector2D implements Serializable

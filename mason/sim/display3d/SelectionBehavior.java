@@ -9,22 +9,24 @@
 
 package sim.display3d;
 
-import javax.media.j3d.*;
-import com.sun.j3d.utils.picking.*;
-import com.sun.j3d.utils.picking.behaviors.*;
-import com.sun.j3d.utils.behaviors.mouse.*;
+import java.util.Enumeration;
 
+import javax.media.j3d.Bounds;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Canvas3D;
+import javax.media.j3d.Shape3D;
 import javax.swing.SwingUtilities;
-import javax.vecmath.*;
+import javax.vecmath.Point3d;
 
-import java.awt.event.*;
-import java.awt.*;
-import java.util.*;
+import sim.display.GUIState;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.util.Bag;
 
-import sim.util.*;
-import sim.display.*;
-import sim.portrayal.*;
-import sim.portrayal3d.*;
+import com.sun.j3d.utils.behaviors.mouse.MouseBehavior;
+import com.sun.j3d.utils.picking.PickCanvas;
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 /**
  * A behavior added to Display3Ds which enables Portrayal3Ds to be selected (via Java3D picking).

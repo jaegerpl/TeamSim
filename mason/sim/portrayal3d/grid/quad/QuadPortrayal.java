@@ -6,13 +6,21 @@
 
 package sim.portrayal3d.grid.quad;
 
-import sim.display.*;
-import sim.portrayal.*;
-import sim.util.gui.*;
-import sim.portrayal3d.grid.*;
-import sim.field.grid.*;
-import sim.util.*;
-import com.sun.j3d.utils.picking.*;
+import sim.display.GUIState;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.Grid2D;
+import sim.field.grid.IntGrid2D;
+import sim.field.grid.ObjectGrid2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal.SimpleInspector;
+import sim.portrayal3d.grid.ValueGrid2DPortrayal3D;
+import sim.util.Int2D;
+import sim.util.MutableDouble;
+import sim.util.gui.ColorMap;
+
+import com.sun.j3d.utils.picking.PickIntersection;
 
 /**
  * A QuadPortrayal is the abstract superclass of objects which describe how rectangles in a

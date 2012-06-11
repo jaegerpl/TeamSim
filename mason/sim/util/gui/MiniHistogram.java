@@ -5,9 +5,16 @@
 */
 
 package sim.util.gui;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.ToolTipManager;
 
 /** <p>A very simple histogram class.  Displays values as different colors left to right.
     Tooltips pop up describing the actual buckets and their densities.

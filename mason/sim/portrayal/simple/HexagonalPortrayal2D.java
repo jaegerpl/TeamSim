@@ -5,9 +5,8 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Paint;
 
 /**
    A simple portrayal for 2D visualization of hexagons. It extends the SimplePortrayal2D and

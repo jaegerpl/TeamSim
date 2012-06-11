@@ -6,7 +6,8 @@
 
 package sim.field.grid;
 
-import sim.util.*;
+import sim.util.DoubleBag;
+import sim.util.IntBag;
 
 /**
    A wrapper for 3D arrays of doubles.

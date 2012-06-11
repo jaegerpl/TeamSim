@@ -5,15 +5,29 @@
 */
 
 package sim.app.pacman;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.continuous.*;
-import javax.swing.*;
-import java.awt.*;
-import sim.portrayal.simple.*;
-import sim.portrayal.*;
-import sim.portrayal.grid.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.display.RateAdjuster;
+import sim.display.SimpleController;
+import sim.engine.SimState;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.grid.ValueGridPortrayal2D;
+import sim.portrayal.simple.FacetedPortrayal2D;
+import sim.portrayal.simple.ImagePortrayal2D;
+import sim.portrayal.simple.OvalPortrayal2D;
+import sim.portrayal.simple.RectanglePortrayal2D;
 
 
 /** Creates the UI for the PacMan game.  */

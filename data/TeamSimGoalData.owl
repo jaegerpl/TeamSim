@@ -1,0 +1,494 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY TeamSimGoalOntology "http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:TeamSimGoalOntology="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Ontology rdf:about="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#belongs_to -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;belongs_to"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#consists_of -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;consists_of"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#has -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;has"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#performed_by -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;performed_by"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#plays -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;plays"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#requires -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;requires"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#responsible_for -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;responsible_for"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#subtask -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;subtask"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#use -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;use"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#used_by -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;used_by"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Action -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Action">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Agent -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Agent">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;has"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Skill"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;plays"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Role"/>
+            </Restriction>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Area -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Area">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;requires"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Skill"/>
+            </Restriction>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Goal -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Goal">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;consists_of"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Subgoal"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;belongs_to"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Area"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Resource -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Resource">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;used_by"/>
+                <allValuesFrom rdf:resource="&TeamSimGoalOntology;Task"/>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Role -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Role">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;responsible_for"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Goal"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;requires"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Skill"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;responsible_for"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Task"/>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Skill -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Skill">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Subgoal -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Subgoal">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;belongs_to"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Goal"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="&TeamSimGoalOntology;Goal"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Task -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Task">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;use"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Resource"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;consists_of"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Action"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;performed_by"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Role"/>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Azure -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Azure">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Skill"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#AzureConsultant -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;AzureConsultant">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Role"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#BusinessAdministration -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;BusinessAdministration">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Skill"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Consulting -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Consulting">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Area"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#CustomerExperience -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;CustomerExperience">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Skill"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Delivery -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Delivery">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Area"/>
+        <TeamSimGoalOntology:requires rdf:resource="&TeamSimGoalOntology;ProjectManagementProfessional"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#DeliveryManager -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;DeliveryManager">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Role"/>
+        <TeamSimGoalOntology:responsible_for rdf:resource="&TeamSimGoalOntology;getWorkbreakdownStructure"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Laptop1 -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Laptop1">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Resource"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Laptop2 -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Laptop2">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Resource"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Lisa -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Lisa">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Agent"/>
+        <TeamSimGoalOntology:belongs_to rdf:resource="&TeamSimGoalOntology;SalesManager"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Paul -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Paul">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Agent"/>
+        <TeamSimGoalOntology:belongs_to rdf:resource="&TeamSimGoalOntology;SharePointConsultant"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#ProjectManagementProfessional -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;ProjectManagementProfessional">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Skill"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Sales -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Sales">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Area"/>
+        <TeamSimGoalOntology:requires rdf:resource="&TeamSimGoalOntology;CustomerExperience"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#SalesManager -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;SalesManager">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Role"/>
+        <TeamSimGoalOntology:responsible_for rdf:resource="&TeamSimGoalOntology;getProjectFromCustomer"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Server1 -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Server1">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Resource"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#SharePoint -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;SharePoint">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Skill"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#SharePointConsultant -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;SharePointConsultant">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Role"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Simon -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;Simon">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Agent"/>
+        <TeamSimGoalOntology:belongs_to rdf:resource="&TeamSimGoalOntology;DeliveryManager"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#deliverProject -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;deliverProject">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Goal"/>
+        <TeamSimGoalOntology:belongs_to rdf:resource="&TeamSimGoalOntology;Delivery"/>
+        <TeamSimGoalOntology:belongs_to rdf:resource="&TeamSimGoalOntology;Sales"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#getConsultants -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;getConsultants">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Subgoal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#getProjectFromCustomer -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;getProjectFromCustomer">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Subgoal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#getWorkbreakdownStructure -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;getWorkbreakdownStructure">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Subgoal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#holdCustomerMeeting -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;holdCustomerMeeting">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Action"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#holdKickOffMeeting -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;holdKickOffMeeting">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Action"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#makeRequirementsAnalysis -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;makeRequirementsAnalysis">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Action"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#negotiatePrice -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;negotiatePrice">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Action"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#writeSpecification -->
+
+    <NamedIndividual rdf:about="&TeamSimGoalOntology;writeSpecification">
+        <rdf:type rdf:resource="&TeamSimGoalOntology;Action"/>
+    </NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.22702) http://owlapi.sourceforge.net -->
+

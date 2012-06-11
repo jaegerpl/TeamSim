@@ -1,7 +1,6 @@
 package de.haw.teamsim.agent;
 
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * A believe is a guess about a property of the world.

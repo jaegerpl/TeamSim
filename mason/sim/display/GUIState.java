@@ -5,12 +5,19 @@
 */
 
 package sim.display;
-import sim.engine.*;
-import sim.portrayal.*;
-import java.io.*;
-import sim.util.*;
-import ec.util.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OptionalDataException;
+import java.util.HashMap;
+
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.portrayal.Inspector;
+import sim.portrayal.SimpleInspector;
+import ec.util.MersenneTwisterFast;
 
 /** A wrapper for SimState and Schedule which provides additional functionality for
     GUI objects. This wrapper extends the functionality of SimState and

@@ -6,7 +6,7 @@
 
 package sim.field.grid;
 
-import sim.util.*;
+import sim.util.IntBag;
 
 /**
    A concrete implementation of the Grid2D methods; used by several subclasses.

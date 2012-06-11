@@ -5,8 +5,8 @@
 */
 
 package sim.app.lsystem;
-import sim.engine.*;
-import sim.field.continuous.*;
+import sim.engine.SimState;
+import sim.field.continuous.Continuous2D;
 
 public  class LSystem extends SimState
     {

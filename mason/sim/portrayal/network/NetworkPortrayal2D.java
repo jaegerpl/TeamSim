@@ -5,14 +5,20 @@
 */
 
 package sim.portrayal.network;
-import sim.portrayal.*;
-import sim.field.continuous.*;
-import sim.field.network.*;
-import sim.field.*;
-import sim.util.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+
+import sim.field.SparseField2D;
+import sim.field.continuous.Continuous2D;
+import sim.field.network.Edge;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 /**
    Portrays network fields.   Only draws the edges.  To draw the nodes, use a 

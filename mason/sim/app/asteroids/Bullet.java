@@ -5,13 +5,14 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
-import java.awt.geom.*;
-import java.awt.*;
-import sim.portrayal.*;
+import java.awt.Color;
+import java.awt.geom.Ellipse2D;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** A Bullet is an element representing a bullet shot from a Ship.   Bullets have a finite lifetime
     which is set up when they are constructed, after which they end themselves automatically.

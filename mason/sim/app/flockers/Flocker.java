@@ -5,10 +5,12 @@
 */
 
 package sim.app.flockers;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import ec.util.MersenneTwisterFast;
 
 public class Flocker implements Steppable, sim.portrayal.Orientable2D
     {

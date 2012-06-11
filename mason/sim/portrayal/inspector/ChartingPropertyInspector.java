@@ -5,16 +5,29 @@
 */
 
 package sim.portrayal.inspector;
-import java.awt.*;
-import java.awt.event.*;
-import sim.util.*;
-import sim.display.*;
-import sim.engine.*;
-import javax.swing.*;
-import sim.util.gui.*;
-import sim.util.media.chart.*;
-import org.jfree.data.xy.*;
-import org.jfree.data.general.*;
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import sim.display.GUIState;
+import sim.engine.Schedule;
+import sim.engine.Stoppable;
+import sim.util.Bag;
+import sim.util.Properties;
+import sim.util.gui.DisclosurePanel;
+import sim.util.gui.LabelledList;
+import sim.util.gui.NumberTextField;
+import sim.util.media.chart.ChartGenerator;
+import sim.util.media.chart.SeriesAttributes;
 
 /** An abstract superclass for property inspectors which use sim.util.ChartGenerator to produce charts.
     Contains a number of utility methods that these property inspector often have in commmon.  Each ChartingPropertyInspector

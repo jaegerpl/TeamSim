@@ -5,13 +5,22 @@
 */
 
 package sim.util.gui;
-import java.awt.*;
-import javax.swing.*;
-import java.io.*;
-import javax.swing.event.*;
-import java.awt.event.*;
-import java.net.*;
-import javax.swing.text.*;
+import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.text.Document;
 
 /**
    HTMLBrowser is a simple web browser which lets the user click on links and which provides

@@ -5,7 +5,7 @@
 */
 
 package sim.util.gui;
-import java.awt.*;
+import java.awt.Color;
 /**
  * ColorMap is a interface for mapping numerical values to colors.
  * The easiest way to implement getRGB(level) is simply with getColor(level).getRGB().

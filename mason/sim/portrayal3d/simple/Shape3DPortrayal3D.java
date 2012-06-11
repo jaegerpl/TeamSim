@@ -6,10 +6,15 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal3d.*;
-import javax.media.j3d.*;
-import sim.portrayal.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Image;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.CompressedGeometry;
+import javax.media.j3d.Geometry;
+import javax.media.j3d.Node;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.TransformGroup;
 
 /**
    A simple portrayal for displaying Shape3D objects.  You can find Shape3D objects,

@@ -7,8 +7,9 @@
 package sim.engine;
 import java.io.Serializable;
 
-import sim.util.*;
-import ec.util.*;
+import sim.util.Bag;
+import sim.util.Heap;
+import ec.util.MersenneTwisterFast;
 
 /**
    Schedule defines a threadsafe scheduling queue in which events can be scheduled to occur

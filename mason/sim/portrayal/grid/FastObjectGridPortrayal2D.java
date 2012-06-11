@@ -5,11 +5,13 @@
 */
 
 package sim.portrayal.grid;
-import sim.portrayal.*;
-import sim.field.grid.*;
-import java.awt.*;
-import sim.util.gui.*;
-import sim.util.*;
+import java.awt.Graphics2D;
+
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.ObjectGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.util.Valuable;
+import sim.util.gui.ColorMap;
 
 /** A "Fast" version of ObjectGridPortrayal2D, which draws objects as rectangles of specified colors,
     rather than using the provided SimplePortrayal2Ds.  FastObjectGridPortrayal2D contains an underlying

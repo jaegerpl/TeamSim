@@ -5,12 +5,17 @@
 */
 
 package sim.app.pacman;
-import java.awt.*;
-import sim.field.grid.*;
-import sim.portrayal.*;
-import sim.portrayal.grid.*;
-import java.awt.geom.*;
-import sim.util.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.QuadCurve2D;
+
+import sim.field.grid.IntGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
+import sim.util.MutableDouble;
+import sim.util.MutableInt2D;
 
 /** 
     A special portrayal for drawing part of the maze.  The way this portion

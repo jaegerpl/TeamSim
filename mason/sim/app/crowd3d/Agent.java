@@ -5,8 +5,12 @@
 */
 
 package sim.app.crowd3d;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.util.Bag;
+import sim.util.Double3D;
+import sim.util.MutableDouble3D;
 
 public class Agent implements Steppable, Stoppable
     {

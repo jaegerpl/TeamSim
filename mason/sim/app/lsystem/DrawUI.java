@@ -6,10 +6,18 @@
 
 // Class DrawUI
 package sim.app.lsystem;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import sim.util.gui.*;
+import java.awt.BorderLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import sim.util.gui.LabelledList;
 
 // This file contains the "Draw" pane of the Console
 public class DrawUI extends JPanel

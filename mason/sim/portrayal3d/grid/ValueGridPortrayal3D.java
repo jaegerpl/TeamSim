@@ -6,16 +6,36 @@
 
 package sim.portrayal3d.grid;
 
-import sim.field.grid.*;
-import sim.portrayal.*;
-import sim.portrayal3d.*;
-import sim.portrayal3d.simple.*; 
-import sim.util.*;
-import sim.util.gui.*;
-import javax.vecmath.*;
-import javax.media.j3d.*;
-import com.sun.j3d.utils.picking.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.media.j3d.Group;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Switch;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Vector3f;
+
+import sim.field.grid.AbstractGrid2D;
+import sim.field.grid.AbstractGrid3D;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.DoubleGrid3D;
+import sim.field.grid.IntGrid2D;
+import sim.field.grid.IntGrid3D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.Portrayal3D;
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.portrayal3d.simple.ValuePortrayal3D;
+import sim.util.Int2D;
+import sim.util.Int3D;
+import sim.util.MutableDouble;
+import sim.util.gui.ColorMap;
+import sim.util.gui.SimpleColorMap;
+
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 
 public class ValueGridPortrayal3D extends FieldPortrayal3D

@@ -5,12 +5,16 @@
 */
 
 package sim.app.mousetraps;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.grid.*;
-import sim.util.gui.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.grid.FastValueGridPortrayal2D;
+import sim.util.gui.SimpleColorMap;
 
 public class MouseTrapsWithUI extends GUIState
     {

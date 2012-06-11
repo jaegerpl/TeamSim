@@ -5,10 +5,14 @@
 */
 
 package sim.util.media;
-import java.awt.*;
-import java.awt.image.*;
-import java.util.zip.*;
-import java.io.*;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.zip.CRC32;
+import java.util.zip.Deflater;
+import java.util.zip.DeflaterOutputStream;
 
 /** PNGEncoder takes a Java Image object and creates a byte string which can be saved as a PNG file.
  * The Image is presumed to use the DirectColorModel.

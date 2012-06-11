@@ -20,10 +20,12 @@ import de.haw.teamsim.agent.Belief;
 public class Team extends Observable {
 	public enum Status {active, suspended}
 
-	List<Agent> teammembers;
+	private List<Agent> teammembers;
+	private String name;
 	
-	public Team(){
+	public Team(String name){
 		teammembers = new LinkedList<Agent>();
+		this.name = name;
 	}
 	
 	public void sendInfo2Team(Belief b){
@@ -60,6 +62,10 @@ public class Team extends Observable {
 	}
 	
 	public String toString(){
-		return "Projektteam";
+		return name;
+	}
+	
+	public String getName(){
+		return name;
 	}
 }

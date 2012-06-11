@@ -6,17 +6,25 @@
 
 package sim.app.crowd3d;
 
-import sim.engine.*;
-import sim.display.*;
-import sim.display3d.*;
-import sim.portrayal3d.*;
-import sim.portrayal3d.simple.*;
-import sim.portrayal3d.continuous.*;
-import sim.util.*;
-import java.awt.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import javax.swing.*;
+import java.awt.Color;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.ColoringAttributes;
+import javax.media.j3d.Material;
+import javax.swing.JFrame;
+import javax.vecmath.Color3f;
+
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.Portrayal3D;
+import sim.portrayal3d.continuous.ContinuousPortrayal3D;
+import sim.portrayal3d.simple.LightPortrayal3D;
+import sim.portrayal3d.simple.Shape3DPortrayal3D;
+import sim.portrayal3d.simple.WireFrameBoxPortrayal3D;
+import sim.util.Double3D;
 
 public class Crowd3DWithUI extends GUIState
     {

@@ -6,11 +6,13 @@
 
 package sim.portrayal3d.simple;
 
-import com.sun.j3d.utils.geometry.*;
-import sim.portrayal3d.*;
-import sim.portrayal.*;
-import javax.media.j3d.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Image;
+
+import javax.media.j3d.Appearance;
+
+import com.sun.j3d.utils.geometry.Cylinder;
+import com.sun.j3d.utils.geometry.Primitive;
 
 /**
  * Portrays objects as a cylinder of the specified color or appearance (flat opaque white by default)

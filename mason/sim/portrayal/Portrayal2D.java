@@ -5,7 +5,7 @@
 */
 
 package sim.portrayal;
-import java.awt.*;
+import java.awt.Graphics2D;
 
 /**
    The basic 2D portrayal interface.  It adds the draw method in the 2D context.

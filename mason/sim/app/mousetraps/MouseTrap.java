@@ -5,7 +5,8 @@
 */
 
 package sim.app.mousetraps;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
 
 public class MouseTrap implements Steppable
     {

@@ -5,8 +5,8 @@
 */
 
 package sim.app.tutorial4;
-import sim.engine.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.util.Proxiable;
 
 /** A bouncing particle that cannot be randomized */
 

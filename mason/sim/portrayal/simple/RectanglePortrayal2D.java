@@ -5,9 +5,13 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.geom.Rectangle2D;
+
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
 
 /**
    A simple portrayal for 2D visualization of rectangles. It extends the SimplePortrayal2D and

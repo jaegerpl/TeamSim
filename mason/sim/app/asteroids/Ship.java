@@ -5,13 +5,16 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
-import java.awt.geom.*;
-import java.awt.*;
-import sim.portrayal.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.GeneralPath;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.portrayal.DrawInfo2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** A Ship is an element representing the user's space ship.   Ships have tags indicating
     the array slot they should consult in the Asteroids.actions array -- this makes it possible to

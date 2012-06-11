@@ -5,16 +5,19 @@
 */
 
 package sim.portrayal.inspector;
-import java.awt.*;
-import java.awt.event.*;
-import sim.util.*;
-import sim.display.*;
-import sim.engine.*;
-import javax.swing.*;
-import sim.util.gui.*;
-import sim.util.media.chart.*;
-import org.jfree.data.xy.*;
-import org.jfree.data.general.*;
+import java.awt.Frame;
+
+import org.jfree.data.general.SeriesChangeEvent;
+import org.jfree.data.general.SeriesChangeListener;
+
+import sim.display.GUIState;
+import sim.engine.Stoppable;
+import sim.util.DoubleBag;
+import sim.util.IntBag;
+import sim.util.Properties;
+import sim.util.Valuable;
+import sim.util.media.chart.ChartGenerator;
+import sim.util.media.chart.HistogramGenerator;
 
 /** A property inspector which generates histograms of data.  The histograms update in real-time as
     requested by the user.  Data properties for which

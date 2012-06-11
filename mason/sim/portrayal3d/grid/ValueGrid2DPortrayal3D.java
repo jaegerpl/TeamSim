@@ -6,16 +6,41 @@
 
 package sim.portrayal3d.grid;
 
-import sim.field.grid.*;
-import sim.portrayal.*;
-import sim.portrayal3d.*;
-import sim.portrayal3d.grid.quad.*;
-import sim.util.*;
+import java.awt.Image;
 
-import java.awt.*;
-import javax.vecmath.*;
-import javax.media.j3d.*;
-import com.sun.j3d.utils.picking.*;
+import javax.media.j3d.Appearance;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.ColoringAttributes;
+import javax.media.j3d.GeometryArray;
+import javax.media.j3d.Node;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.QuadArray;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.TexCoordGeneration;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.media.j3d.TransparencyAttributes;
+import javax.media.j3d.TriangleFanArray;
+import javax.vecmath.Vector3d;
+import javax.vecmath.Vector4f;
+
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.Grid2D;
+import sim.field.grid.IntGrid2D;
+import sim.field.grid.ObjectGrid2D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.portrayal3d.grid.quad.QuadPortrayal;
+import sim.portrayal3d.grid.quad.TilePortrayal;
+import sim.portrayal3d.grid.quad.ValueGridCellInfo;
+import sim.util.Int2D;
+import sim.util.MutableDouble;
+import sim.util.Valuable;
+
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 /**
  * Displays ValueGrid2Ds values along the XY grid using a surface.  The kind of surface is defined by

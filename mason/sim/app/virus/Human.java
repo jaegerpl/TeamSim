@@ -6,10 +6,12 @@
 
 package sim.app.virus;
 
-import sim.util.*;
-import sim.engine.*;
-import java.awt.*;
-import sim.portrayal.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import sim.engine.SimState;
+import sim.portrayal.DrawInfo2D;
+import sim.util.Double2D;
 
 public /*strictfp*/ class Human extends Agent
     {

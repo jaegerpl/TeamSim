@@ -6,9 +6,13 @@
 
 // Class Ball
 package sim.app.keepaway;
-import java.awt.*;
-import sim.util.*;
-import sim.engine.*;
+import java.awt.Color;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 public /*strictfp*/ class Ball extends Entity implements Steppable
     {

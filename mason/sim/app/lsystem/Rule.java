@@ -5,7 +5,7 @@
 */
 
 package sim.app.lsystem;
-import java.io.*;
+import java.io.Serializable;
 
 // This keeps track of each rule... 
 

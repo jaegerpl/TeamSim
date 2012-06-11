@@ -5,13 +5,18 @@
 */
  
 package sim.app.particles3d;
-import sim.engine.*;
-import sim.display3d.*;
-import sim.display.*;
-import sim.portrayal3d.grid.*;
-import sim.portrayal3d.simple.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.grid.SparseGridPortrayal3D;
+import sim.portrayal3d.grid.ValueGridPortrayal3D;
+import sim.portrayal3d.simple.SpherePortrayal3D;
+import sim.portrayal3d.simple.WireFrameBoxPortrayal3D;
 
 public class Particles3DWithUI extends GUIState
     {

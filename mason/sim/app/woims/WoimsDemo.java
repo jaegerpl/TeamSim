@@ -6,9 +6,9 @@
 
 package sim.app.woims;
 
-import sim.engine.*;
-import sim.util.*;
-import sim.field.continuous.*;
+import sim.engine.SimState;
+import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
 
 public /*strictfp*/ class WoimsDemo extends SimState
     {

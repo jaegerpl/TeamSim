@@ -6,7 +6,7 @@
 
 // Class LSystemData
 package sim.app.lsystem;
-import java.util.*;
+import java.util.ArrayList;
 
 // This class holds the L-system data.
 // It is set in RuleUI's calculation thread, and

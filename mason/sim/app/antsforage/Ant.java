@@ -6,12 +6,14 @@
 
 package sim.app.antsforage;
 
-import sim.field.grid.*;
-import sim.portrayal.*;
-import sim.portrayal.simple.*;
-import sim.util.*;
-import sim.engine.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.simple.OvalPortrayal2D;
+import sim.util.Int2D;
 
 public class Ant extends OvalPortrayal2D implements Steppable
     {

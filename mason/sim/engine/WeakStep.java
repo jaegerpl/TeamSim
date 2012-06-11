@@ -5,7 +5,7 @@
 */
 
 package sim.engine;
-import java.lang.ref.*;
+import java.lang.ref.WeakReference;
 
 /**
    WeakStep is a wrapper for steppable objects in the situation where we only want

@@ -5,14 +5,31 @@
 */
 
 package sim.portrayal;
-import sim.portrayal.inspector.*;
-import java.awt.*;
-import sim.engine.*;
-import sim.util.gui.*;
-import sim.util.*;
-import sim.display.*;
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+
+import sim.display.GUIState;
+import sim.engine.Stoppable;
+import sim.portrayal.inspector.PropertyInspector;
+import sim.util.Interval;
+import sim.util.Properties;
+import sim.util.gui.LabelledList;
+import sim.util.gui.NumberTextField;
+import sim.util.gui.PropertyField;
 
 /**
    A simple inspector class that looks at the "getX" and "setX" method of the object to be investigates

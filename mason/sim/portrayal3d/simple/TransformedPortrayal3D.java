@@ -6,12 +6,17 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal.*;
-import sim.portrayal3d.*;
-import sim.display.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import sim.display3d.*;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Vector3d;
+
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.SimplePortrayal3D;
 
 /**
    A wrapper for other Portrayal3Ds which transforms them with an underlying Transform3D: meaning

@@ -1,203 +1,256 @@
 <?xml version="1.0"?>
 
 
-<!DOCTYPE Ontology [
+<!DOCTYPE rdf:RDF [
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY TeamSimGoalOntology "http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#" >
 ]>
 
 
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl"
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:TeamSimGoalOntology="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     ontologyIRI="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl">
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Declaration>
-        <Class IRI="#Action"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Agent"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Area"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Goal"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Resource"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Role"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Skill"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Subgoal"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Task"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#belongs_to"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#consists_of"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#has"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#performed_by"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#plays"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#requires"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#responsible_for"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#subtask"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#use"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#used_by"/>
-    </Declaration>
-    <EquivalentClasses>
-        <Class IRI="#Agent"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#plays"/>
-            <Class IRI="#Role"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Agent"/>
-        <ObjectMinCardinality cardinality="1">
-            <ObjectProperty IRI="#has"/>
-            <Class IRI="#Skill"/>
-        </ObjectMinCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Area"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#requires"/>
-            <Class IRI="#Skill"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Goal"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#consists_of"/>
-            <Class IRI="#Subgoal"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Goal"/>
-        <ObjectMinCardinality cardinality="1">
-            <ObjectProperty IRI="#belongs_to"/>
-            <Class IRI="#Area"/>
-        </ObjectMinCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Resource"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="#used_by"/>
-            <Class IRI="#Task"/>
-        </ObjectAllValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Role"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#requires"/>
-            <Class IRI="#Skill"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Role"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#responsible_for"/>
-            <Class IRI="#Goal"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Role"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#responsible_for"/>
-            <Class IRI="#Task"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Subgoal"/>
-        <ObjectMinCardinality cardinality="1">
-            <ObjectProperty IRI="#belongs_to"/>
-            <Class IRI="#Goal"/>
-        </ObjectMinCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Task"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#performed_by"/>
-            <Class IRI="#Role"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Task"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#use"/>
-            <Class IRI="#Resource"/>
-        </ObjectSomeValuesFrom>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#Task"/>
-        <ObjectMinCardinality cardinality="1">
-            <ObjectProperty IRI="#consists_of"/>
-            <Class IRI="#Action"/>
-        </ObjectMinCardinality>
-    </EquivalentClasses>
-    <SubClassOf>
-        <Class IRI="#Action"/>
-        <Class abbreviatedIRI=":Thing"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Goal"/>
-        <Class abbreviatedIRI=":Thing"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Resource"/>
-        <Class abbreviatedIRI=":Thing"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Role"/>
-        <Class abbreviatedIRI=":Thing"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Skill"/>
-        <Class abbreviatedIRI=":Thing"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Subgoal"/>
-        <Class IRI="#Goal"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Task"/>
-        <Class abbreviatedIRI=":Thing"/>
-    </SubClassOf>
-</Ontology>
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Ontology rdf:about="http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#belongs_to -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;belongs_to"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#consists_of -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;consists_of"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#has -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;has"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#performed_by -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;performed_by"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#plays -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;plays"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#requires -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;requires"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#responsible_for -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;responsible_for"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#subtask -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;subtask"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#use -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;use"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#used_by -->
+
+    <ObjectProperty rdf:about="&TeamSimGoalOntology;used_by"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Action -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Action">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Agent -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Agent">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;has"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Skill"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;plays"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Role"/>
+            </Restriction>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Area -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Area">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;requires"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Skill"/>
+            </Restriction>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Goal -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Goal">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;consists_of"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Subgoal"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;belongs_to"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Area"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Resource -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Resource">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;used_by"/>
+                <allValuesFrom rdf:resource="&TeamSimGoalOntology;Task"/>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Role -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Role">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;responsible_for"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Goal"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;requires"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Skill"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;responsible_for"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Task"/>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Skill -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Skill">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Subgoal -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Subgoal">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;belongs_to"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Goal"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="&TeamSimGoalOntology;Goal"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl#Task -->
+
+    <Class rdf:about="&TeamSimGoalOntology;Task">
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;use"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Resource"/>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;consists_of"/>
+                <onClass rdf:resource="&TeamSimGoalOntology;Action"/>
+                <minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</minQualifiedCardinality>
+            </Restriction>
+        </equivalentClass>
+        <equivalentClass>
+            <Restriction>
+                <onProperty rdf:resource="&TeamSimGoalOntology;performed_by"/>
+                <someValuesFrom rdf:resource="&TeamSimGoalOntology;Role"/>
+            </Restriction>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </Class>
+</rdf:RDF>
 
 
 

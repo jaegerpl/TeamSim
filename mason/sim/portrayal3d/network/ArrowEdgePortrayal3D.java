@@ -5,12 +5,22 @@
 */
 package sim.portrayal3d.network;
 
-import java.awt.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import sim.util.*;
-import com.sun.j3d.utils.geometry.*;
-import sim.portrayal3d.simple.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.Group;
+import javax.media.j3d.Node;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.TransformGroup;
+
+import sim.portrayal3d.simple.Arrow;
+import sim.portrayal3d.simple.PrimitivePortrayal3D;
+import sim.util.Double3D;
+
+import com.sun.j3d.utils.geometry.Cone;
+import com.sun.j3d.utils.geometry.Cylinder;
 
 /**
  * This implementation of GenericEdgePortrayal3D uses Arrow, 

@@ -5,10 +5,14 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import sim.display.*;
-import sim.util.*;
+import java.awt.Graphics2D;
+
+import sim.display.GUIState;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.SimplePortrayal2D;
+import sim.util.Valuable;
 
 /**
    A wrapper for multiple Portrayal2Ds which calls on one or the other one according to the

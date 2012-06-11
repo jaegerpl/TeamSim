@@ -5,8 +5,9 @@
 */
 
 package sim.app.mousetraps;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Double3D;
 
 public class Ball implements Steppable
     {

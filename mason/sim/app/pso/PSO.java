@@ -6,7 +6,6 @@
 
 package sim.app.pso;
 
-import ec.util.MersenneTwisterFast;
 import sim.engine.Schedule;
 import sim.engine.SimState;
 import sim.engine.Steppable;

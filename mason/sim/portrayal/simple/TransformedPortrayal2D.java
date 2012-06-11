@@ -5,10 +5,15 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.display.*;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+
+import sim.display.GUIState;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Oriented2D;
+import sim.portrayal.SimplePortrayal2D;
 
 /**
    A wrapper for other Portrayal2Ds which transforms the graphics space before drawing them. */

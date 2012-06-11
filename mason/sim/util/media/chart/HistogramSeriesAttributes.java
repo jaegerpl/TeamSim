@@ -6,22 +6,14 @@
 
 package sim.util.media.chart;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import java.awt.geom.*;
-import java.util.*;
-import sim.util.gui.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
 
-// From JFreeChart (jfreechart.org)
-import org.jfree.data.xy.*;
-import org.jfree.chart.*;
-import org.jfree.chart.event.*;
-import org.jfree.chart.plot.*;
-import org.jfree.data.general.*;
-import org.jfree.chart.renderer.xy.*;
-import org.jfree.data.general.*;
+import org.jfree.chart.renderer.xy.XYBarRenderer;
+import org.jfree.data.general.SeriesChangeListener;
+
+import sim.util.gui.ColorWell;
+import sim.util.gui.NumberTextField;
 
 /** A SeriesAttributes used for user control of histogram series created with HistogramGenerator.
     Unfortunately JFreeChart doesn't have nearly

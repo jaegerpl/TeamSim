@@ -5,8 +5,7 @@
 */
 
 package sim.portrayal3d.grid.quad;
-import sim.util.gui.*;
-import sim.portrayal3d.grid.*;
+import sim.util.gui.ColorMap;
 
 /**
  * A QuadPortrayal which describes locations as the center of a square in a grid (like tiles on the floor,

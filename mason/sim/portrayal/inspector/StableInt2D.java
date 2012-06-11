@@ -5,10 +5,8 @@
 */
 
 package sim.portrayal.inspector;
-import sim.util.*;
-import sim.field.*;
-import sim.field.grid.*;
-import sim.field.continuous.*;
+import sim.field.grid.SparseGrid2D;
+import sim.util.Int2D;
 
 /**
    StableInt2D is a StableLocation for Int2D.  See StableLocation for more information.

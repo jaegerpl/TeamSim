@@ -6,9 +6,12 @@
 
 package sim.app.particles3d;
 
-import sim.engine.*;
-import sim.field.grid.*;
-import sim.util.*;
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid3D;
+import sim.field.grid.SparseGrid3D;
+import sim.util.Int3D;
 
 public class Particles3D extends SimState
     {

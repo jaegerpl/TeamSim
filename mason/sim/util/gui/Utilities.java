@@ -5,9 +5,19 @@
 */
 
 package sim.util.gui;
-import java.awt.*;
-import javax.swing.*;
-import java.io.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 /** Various static utility methods. */
 

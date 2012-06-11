@@ -5,9 +5,11 @@
 */
 
 package sim.app.heatbugs;
-import sim.field.grid.*;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid2D;
+import sim.util.Int2D;
+import sim.util.Interval;
 
 public /*strictfp*/ class HeatBug implements Steppable
     {

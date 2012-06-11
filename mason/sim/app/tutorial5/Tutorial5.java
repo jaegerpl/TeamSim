@@ -5,10 +5,14 @@
 */
 
 package sim.app.tutorial5;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.field.network.*;
-import sim.util.*;
+import sim.engine.Schedule;
+import sim.engine.Sequence;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous2D;
+import sim.field.network.Network;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 public class Tutorial5 extends SimState
     {

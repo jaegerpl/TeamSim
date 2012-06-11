@@ -5,10 +5,14 @@
 */
 
 package sim.util.gui;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JColorChooser;
+import javax.swing.JPanel;
 
 public class ColorWell extends JPanel
     {

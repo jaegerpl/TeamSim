@@ -5,11 +5,25 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.display.*;
-import java.awt.event.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Stroke;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
+
+import sim.display.GUIState;
+import sim.display.Manipulating2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Orientable2D;
+import sim.portrayal.Oriented2D;
+import sim.portrayal.Scalable2D;
+import sim.portrayal.SimplePortrayal2D;
 
 /**
    A wrapper for other Portrayal2Ds which makes it possible to do any or all of the following with the mouse:

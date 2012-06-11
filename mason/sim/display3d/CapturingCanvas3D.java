@@ -6,12 +6,18 @@
 
 package sim.display3d;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import javax.vecmath.*;
-import javax.media.j3d.*;
+import javax.media.j3d.Canvas3D;
+import javax.media.j3d.GraphicsContext3D;
+import javax.media.j3d.ImageComponent;
+import javax.media.j3d.ImageComponent2D;
+import javax.media.j3d.Raster;
+import javax.vecmath.Point3f;
 
 /** 
  * Canvas3D that is synchronized with Display3D and 

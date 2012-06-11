@@ -8,14 +8,14 @@
 */
 
 package sim.util.media;
-import javax.media.*;
-import javax.media.util.*;
-import javax.media.protocol.*;
-import javax.media.datasink.*;
-import javax.media.control.*;
-import java.io.*;
-import java.awt.image.*;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.Buffer;
+import java.sql.Time;
+import java.text.Format;
 
 /*
  * MovieEncoder

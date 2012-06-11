@@ -5,12 +5,19 @@
 */
 
 package sim.portrayal.simple;
-import sim.display.*;
-import sim.field.grid.*;
-import sim.portrayal.*;
-import sim.portrayal.grid.*;
-import java.awt.*;
-import sim.util.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import sim.display.GUIState;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.IntGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.SimpleInspector;
+import sim.portrayal.grid.ValueGridPortrayal2D;
+import sim.util.Int2D;
+import sim.util.MutableDouble;
 
 /** 
     The ValuePortrayal2D is the default portrayal for ValueGridPortrayal2Ds.

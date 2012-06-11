@@ -5,15 +5,20 @@
 */
 
 package sim.app.tutorial7;
-import sim.portrayal3d.grid.*;
-import sim.portrayal3d.grid.quad.*;
-import sim.portrayal3d.simple.*;
-import sim.engine.*;
-import sim.display.*;
-import sim.display3d.*;
-import sim.util.gui.*;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.grid.SparseGridPortrayal3D;
+import sim.portrayal3d.grid.ValueGrid2DPortrayal3D;
+import sim.portrayal3d.grid.quad.MeshPortrayal;
+import sim.portrayal3d.grid.quad.TilePortrayal;
+import sim.portrayal3d.simple.SpherePortrayal3D;
+import sim.util.gui.SimpleColorMap;
 
 public class Tutorial7WithUI extends GUIState
     {

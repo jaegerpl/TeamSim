@@ -6,10 +6,12 @@
 
 package sim.portrayal3d.simple;
 
-import javax.vecmath.*;
-import javax.media.j3d.*;
-import sim.portrayal3d.*;
-import sim.util.*;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Group;
+import javax.media.j3d.TransformGroup;
+
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.util.Double3D;
 
 
 /**

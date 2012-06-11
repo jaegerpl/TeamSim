@@ -6,9 +6,13 @@
 
 package sim.app.antsforage;
 
-import sim.engine.*;
-import sim.field.grid.*;
-import sim.util.*;
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.IntGrid2D;
+import sim.field.grid.SparseGrid2D;
+import sim.util.Interval;
 
 
 public /*strictfp*/ class AntsForage extends SimState

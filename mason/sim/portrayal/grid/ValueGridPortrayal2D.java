@@ -5,13 +5,26 @@
 */
 
 package sim.portrayal.grid;
-import sim.portrayal.*;
-import sim.portrayal.simple.*;
-import sim.field.grid.*;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.util.*;
-import sim.util.gui.*;
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.Grid2D;
+import sim.field.grid.IntGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal.SimplePortrayal2D;
+import sim.portrayal.simple.ValuePortrayal2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Int2D;
+import sim.util.MutableDouble;
+import sim.util.MutableInt2D;
+import sim.util.gui.ColorMap;
+import sim.util.gui.SimpleColorMap;
 
 /**
    This class is capable of portraying the DoubleGrid2D and IntGrid2D fields (and <b>only</b> those two fields -- or subclasses).

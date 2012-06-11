@@ -5,7 +5,7 @@
 */
 
 package sim.portrayal.grid;
-import sim.util.*;
+import sim.util.Bag;
 
 /** Called by Sparse2DPortrayal to determine if all objects
     should be drawn or only one.  The Bags provided contain objects all sitting in

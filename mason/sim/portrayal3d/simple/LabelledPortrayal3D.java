@@ -6,15 +6,30 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal.*;
-import sim.portrayal3d.*;
-import sim.display.*;
-import javax.media.j3d.*;
-import com.sun.j3d.utils.geometry.*;
-import javax.vecmath.*;
-import java.awt.*;
-import java.util.*;
-import sim.display3d.*;
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.media.j3d.Font3D;
+import javax.media.j3d.FontExtrusion;
+import javax.media.j3d.OrderedGroup;
+import javax.media.j3d.OrientedShape3D;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Switch;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Color3f;
+import javax.vecmath.Point3f;
+import javax.vecmath.Vector3f;
+
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.SimplePortrayal3D;
+
+import com.sun.j3d.utils.geometry.Text2D;
 
 /**
    A wrapper for other Portrayal3Ds which also draws a textual label.  When you create this

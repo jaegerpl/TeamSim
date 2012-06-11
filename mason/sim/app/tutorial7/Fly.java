@@ -5,9 +5,10 @@
 */
 
 package sim.app.tutorial7;
-import sim.engine.*;
-import sim.util.*;
-import sim.field.grid.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.SparseGrid3D;
+import sim.util.Int3D;
 
 public class Fly implements Steppable
     {

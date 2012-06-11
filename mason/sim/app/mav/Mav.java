@@ -6,9 +6,11 @@
 
 package sim.app.mav;
 
-import sim.portrayal.*;
-import sim.engine.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.portrayal.Oriented2D;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 // we extend OvalPortrayal2D to steal its hitObjects() code -- but 
 // we override the draw(...) code to draw our own oval with a little line...

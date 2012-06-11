@@ -5,8 +5,11 @@
 */
 
 package sim.app.particles3d;
-import sim.engine.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Bag;
+import sim.util.Int3D;
+import sim.util.IntBag;
 
 /** A bouncing particle. */
 

@@ -6,10 +6,17 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal3d.*;
-import javax.media.j3d.*;
-import sim.portrayal.*;
-import com.sun.j3d.utils.geometry.*;
+import javax.media.j3d.Appearance;
+import javax.media.j3d.Group;
+import javax.media.j3d.Node;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.SimplePortrayal3D;
+
+import com.sun.j3d.utils.geometry.Primitive;
 
 /**
  * An abstract superclass for portrayals involving Shape3D or various Primitive (sphere, cone, etc.) objects.

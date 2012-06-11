@@ -6,11 +6,12 @@
 
 package sim.portrayal3d.network;
 
-import sim.field.*;
-import sim.field.grid.*;
-import sim.field.continuous.*;
-import sim.field.network.*;
-import sim.util.*;
+import sim.field.SparseField2D;
+import sim.field.SparseField3D;
+import sim.field.continuous.Continuous3D;
+import sim.field.grid.SparseGrid3D;
+import sim.field.network.Network;
+import sim.util.Double3D;
 
 /** A wrapper used by NetworkPortrayal3D to hold a Network and EITHER a Continuous3D OR a SparseGrid3D.
     The Continuous3D/SparseGrid3D specifies the spatial location of the nodes; the Network specifies the

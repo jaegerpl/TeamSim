@@ -5,10 +5,10 @@
 */
 
 package sim.app.celegans;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.field.network.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous3D;
+import sim.field.network.Network;
 
 
 public class Celegans extends SimState

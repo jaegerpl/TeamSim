@@ -5,7 +5,7 @@
 */
 
 package sim.field.network;
-import sim.util.*;
+import sim.util.Valuable;
 
 /**
    An Edge stores a relationship between two objects in a Network.  Edges are directed: one

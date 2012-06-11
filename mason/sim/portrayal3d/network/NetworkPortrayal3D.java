@@ -8,12 +8,20 @@ package sim.portrayal3d.network;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import sim.portrayal3d.*;
-import sim.portrayal.*;
-import sim.field.network.*;
-import sim.util.*;
-import javax.media.j3d.*;
-import com.sun.j3d.utils.picking.*;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Group;
+import javax.media.j3d.TransformGroup;
+
+import sim.field.network.Edge;
+import sim.field.network.Network;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.util.Bag;
+
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 /**
    Portrays network fields.   Only draws the edges.  To draw the nodes, use a 

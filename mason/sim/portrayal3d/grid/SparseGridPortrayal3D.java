@@ -6,14 +6,20 @@
 
 package sim.portrayal3d.grid;
 
-import javax.vecmath.*;
-import com.sun.j3d.utils.picking.*;
-import sim.portrayal.*;
-import sim.field.grid.*;
-import sim.portrayal3d.*;
-import sim.util.*;
-import sim.portrayal3d.inspector.*;
-import sim.portrayal.inspector.*;
+import javax.vecmath.Vector3d;
+
+import sim.field.grid.SparseGrid2D;
+import sim.field.grid.SparseGrid3D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.inspector.StableInt2D;
+import sim.portrayal.inspector.StableLocation;
+import sim.portrayal3d.SparseFieldPortrayal3D;
+import sim.portrayal3d.inspector.StableInt3D;
+import sim.util.Int2D;
+import sim.util.Int3D;
+
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 /**
  * Portrays both SparseGrid2D and SparseGrid3D fields.  A (0,0) or (0,0,0) object is centered

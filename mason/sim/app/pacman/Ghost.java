@@ -5,10 +5,12 @@
 */
 
 package sim.app.pacman;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
+import sim.util.Valuable;
 
 /** A ghost is an agent.  There are four ghosts, of course: Blinky, Pinky, Inky, and Clyde.  Each has his
     own special behavior.  

@@ -6,10 +6,12 @@
 
 package sim.app.virus;
 
-import sim.engine.*;
+import java.awt.geom.Ellipse2D;
+
+import sim.engine.Steppable;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
 import sim.util.Double2D;
-import sim.portrayal.*;
-import java.awt.geom.*;
 
 public abstract /*strictfp*/ class Agent extends SimplePortrayal2D implements Steppable
     {

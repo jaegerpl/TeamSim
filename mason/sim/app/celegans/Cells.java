@@ -6,10 +6,14 @@
 
 package sim.app.celegans;
 
-import java.util.*;
-import java.io.*;
-import java.util.zip.*;
-import sim.util.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.zip.GZIPInputStream;
 
 /** Cells is the database of cell information in the program.  It loads and parses
     cells from the data file, creating five database items: a cell dictionary (looked

@@ -5,8 +5,10 @@
 */
 
 package sim.app.hexabugs;
-import sim.engine.*;
-import sim.field.grid.*;
+import sim.engine.ParallelSequence;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid2D;
 
 /** A dual-threaded version of Diffuser for use on machines with two processors.
     Holds a ParallelSequence which in turn holds two dummy Steppables which each

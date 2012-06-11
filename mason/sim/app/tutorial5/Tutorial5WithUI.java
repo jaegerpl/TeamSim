@@ -5,12 +5,17 @@
 */
 
 package sim.app.tutorial5;
-import sim.portrayal.network.*;
-import sim.portrayal.continuous.*;
-import sim.engine.*;
-import sim.display.*;
-import javax.swing.*;
 import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.network.NetworkPortrayal2D;
+import sim.portrayal.network.SpatialNetwork2D;
 
 
 public class Tutorial5WithUI extends GUIState

@@ -6,14 +6,31 @@
 
 package sim.portrayal3d;
 
-import sim.portrayal.*;
-import sim.display.*;
-import javax.media.j3d.*;
-import com.sun.j3d.utils.image.*;
-import java.awt.*;
-import javax.vecmath.*;
-import java.util.*;
-import sim.display3d.*;
+import java.awt.Color;
+import java.awt.Image;
+import java.util.HashMap;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.ColoringAttributes;
+import javax.media.j3d.Geometry;
+import javax.media.j3d.GeometryArray;
+import javax.media.j3d.Group;
+import javax.media.j3d.Material;
+import javax.media.j3d.Node;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.TextureAttributes;
+import javax.media.j3d.TransformGroup;
+import javax.media.j3d.TransparencyAttributes;
+import javax.vecmath.Color3f;
+
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.SimpleInspector;
+
+import com.sun.j3d.utils.image.TextureLoader;
 
 /** The superclass of all 3D Simple Portrayals which by default adds nothing to the 3D
     scene.  Since nothing is added to the scene, nothing is shown and you cannot

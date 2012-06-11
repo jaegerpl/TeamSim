@@ -5,13 +5,8 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
-import java.awt.geom.*;
-import java.awt.*;
-import sim.portrayal.*;
+import java.awt.Color;
+import java.awt.geom.GeneralPath;
 
 /** Fire is a simple Element which draws thrusting fire.  Used by Ship only.  */
 public class Fire extends Element

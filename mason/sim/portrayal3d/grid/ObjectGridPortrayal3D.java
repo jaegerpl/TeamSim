@@ -5,15 +5,30 @@
 */
 
 package sim.portrayal3d.grid;
-import sim.portrayal3d.*;
-import sim.portrayal.*;
-import sim.portrayal.grid.*;
-import sim.field.grid.*;
-import sim.util.*;
-import java.util.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import com.sun.j3d.utils.picking.*;
+import java.util.HashMap;
+
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Group;
+import javax.media.j3d.Node;
+import javax.media.j3d.SceneGraphPath;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Vector3d;
+
+import sim.field.grid.ObjectGrid2D;
+import sim.field.grid.ObjectGrid3D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal.grid.ObjectGridPortrayal2D;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.util.Bag;
+import sim.util.Int2D;
+import sim.util.Int3D;
+import sim.util.IntBag;
+
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 /** Portrays ObjectGrid2D and ObjectGrid3D in 3D space. A (0,0) or (0,0,0) object is centered
  * on the origin.  2D fields are spread through the XY plane and are presumed to have Z=0. 

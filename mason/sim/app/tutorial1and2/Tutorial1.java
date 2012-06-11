@@ -6,8 +6,8 @@
 
 package sim.app.tutorial1and2;
 
-import sim.engine.*;
-import sim.field.grid.*;
+import sim.engine.SimState;
+import sim.field.grid.IntGrid2D;
 
 public class Tutorial1 extends SimState
     {

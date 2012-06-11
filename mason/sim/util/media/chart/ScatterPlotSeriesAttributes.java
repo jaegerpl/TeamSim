@@ -6,23 +6,24 @@
 
 package sim.util.media.chart;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.geom.*;
-import java.awt.event.*;
-import java.util.*;
-import sim.util.gui.*;
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 
-// From JFreeChart (jfreechart.org)
-import org.jfree.data.xy.*;
-import org.jfree.chart.*;
-import org.jfree.chart.event.*;
-import org.jfree.chart.plot.*;
-import org.jfree.data.general.*;
-import org.jfree.chart.renderer.xy.*;
-import org.jfree.data.general.*;
-import org.jfree.data.xy.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.general.SeriesChangeListener;
+
+import sim.util.gui.ColorWell;
+import sim.util.gui.NumberTextField;
 
 public class ScatterPlotSeriesAttributes extends SeriesAttributes
     {

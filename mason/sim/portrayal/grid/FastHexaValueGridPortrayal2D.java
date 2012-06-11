@@ -5,13 +5,24 @@
 */
 
 package sim.portrayal.grid;
-import sim.portrayal.*;
-import sim.field.grid.*;
-import java.awt.*;
-import java.awt.image.*;
-import java.awt.geom.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+import java.awt.image.SinglePixelPackedSampleModel;
+import java.awt.image.WritableRaster;
+
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.Grid2D;
+import sim.field.grid.IntGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.util.Bag;
+import sim.util.Int2D;
+import sim.util.MutableDouble;
 import sim.util.gui.ColorMap;
-import sim.util.*;
 
 // we don't benefit from being a subclass of HexaValueGridPortrayal2D, but
 // it makes us easily swappable in (see HexaBugs for example).  And also

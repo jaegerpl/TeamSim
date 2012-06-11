@@ -5,8 +5,8 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.display.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
 
 
 /** A simple class which maintains a frame rate fixed to no more than a given number of ticks per second.

@@ -6,35 +6,55 @@
 
 package sim.util.media.chart;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FileDialog;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
-import java.awt.image.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-// From MASON (cs.gmu.edu/~eclab/projects/mason/)
-import sim.util.gui.*;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.LogarithmicAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.event.AxisChangeEvent;
+import org.jfree.chart.event.TitleChangeEvent;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.data.general.DatasetChangeEvent;
+import org.jfree.data.general.SeriesChangeEvent;
+import org.jfree.data.general.SeriesChangeListener;
+import org.jfree.data.xy.XYDataset;
+
+import sim.display.SimApplet;
+import sim.util.gui.DisclosurePanel;
+import sim.util.gui.LabelledList;
+import sim.util.gui.MovieMaker;
+import sim.util.gui.PropertyField;
 import sim.util.gui.Utilities;
-import sim.util.*;
-import sim.display.*;
-import sim.util.media.*;
-
-// From JFreeChart (jfreechart.org)
-import org.jfree.chart.*;
-import org.jfree.chart.axis.*;
-import org.jfree.chart.event.*;
-import org.jfree.chart.plot.*;
-import org.jfree.data.general.*;
-import org.jfree.chart.title.*;
-import org.jfree.data.xy.*;
-
-// from iText (www.lowagie.com/iText/)
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.*;
+import sim.util.media.PDFEncoder;
 
 /*  // looks like we'll have to move to these soon
     import com.itextpdf.text.*;

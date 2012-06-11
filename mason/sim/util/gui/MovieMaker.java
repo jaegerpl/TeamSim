@@ -5,10 +5,17 @@
 */
 
 package sim.util.gui;
-import java.awt.*;
-import javax.swing.*;
-import java.io.*;
-import java.awt.image.*;
+import java.awt.BorderLayout;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 /**

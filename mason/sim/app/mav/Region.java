@@ -6,11 +6,20 @@
 
 package sim.app.mav;
 
-import sim.portrayal.*;
-import java.awt.geom.*;
-import java.awt.*;
-import java.io.*;
-import java.awt.font.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
+
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
 
 public /*strictfp*/ class Region extends SimplePortrayal2D
     {

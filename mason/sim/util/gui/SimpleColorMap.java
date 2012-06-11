@@ -6,7 +6,8 @@
 
 package sim.util.gui;
 import java.awt.Color;
-import sim.util.*;
+
+import sim.util.Bag;
 
 /**
  * Maps numerical levels to colors using either a lookup table, color interpolation, or both.

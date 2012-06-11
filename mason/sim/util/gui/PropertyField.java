@@ -5,14 +5,35 @@
 */
 
 package sim.util.gui;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.border.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
-import java.util.*;
-import sim.util.*;
+import java.util.Arrays;
+import java.util.Vector;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import sim.util.Interval;
 
 /**
    A simple class designed to allow the user to modify a property in the form of a string, number, boolean value, or option.    PropertyField lets you control the values which the user sets by subclassing the class and overriding the newValue(val) method filters all newly user-set values and "corrects" them.  Programmatically set values (by calling setValue(...)) are not filtered through newValue by default.  If you need to filter, you should do setValue(newValue(val));

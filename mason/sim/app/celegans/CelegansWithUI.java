@@ -5,14 +5,19 @@
 */
 
 package sim.app.celegans;
-import sim.portrayal3d.network.*;
-import sim.portrayal3d.continuous.*;
-import sim.display3d.*;
-import sim.engine.*;
-import sim.display.*;
-import javax.swing.*;
-import sim.portrayal3d.simple.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.continuous.ContinuousPortrayal3D;
+import sim.portrayal3d.network.NetworkPortrayal3D;
+import sim.portrayal3d.network.SimpleEdgePortrayal3D;
+import sim.portrayal3d.network.SpatialNetwork3D;
+import sim.portrayal3d.simple.SpherePortrayal3D;
 
 public class CelegansWithUI extends GUIState
     {

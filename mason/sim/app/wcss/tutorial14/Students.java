@@ -5,10 +5,14 @@
 */
 
 package sim.app.wcss.tutorial14;
-import sim.engine.*;
-import sim.util.*;
-import sim.field.continuous.*;
-import sim.field.network.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous2D;
+import sim.field.continuous.Continuous3D;
+import sim.field.network.Network;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Double3D;
 
 public class Students extends SimState
     {

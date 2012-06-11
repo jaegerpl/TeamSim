@@ -5,8 +5,11 @@
 */
 
 package sim.util.gui;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+
+import javax.swing.JPanel;
+import javax.swing.Scrollable;
 
 /** AbstractScrollable is a JPanel with basic implementation of the Scrollable interface,
     making possible simple anonymous subclasses. */

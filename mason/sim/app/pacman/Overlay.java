@@ -5,11 +5,15 @@
 */
 
 package sim.app.pacman;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.font.*;
-import sim.display.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.font.TextLayout;
+import java.awt.geom.Rectangle2D;
+
+import sim.display.SimpleController;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
 
 /** A FieldPortrayal2D which has no field, but rather draws some text on the screen.  We use
     this to draw score information etc. */

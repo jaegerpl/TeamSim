@@ -5,8 +5,8 @@
 */
 
 package sim.util.gui;
-import java.util.*;
-import java.awt.*;
+import java.awt.FontMetrics;
+import java.util.StringTokenizer;
 
 interface WordWrapScanner
     {

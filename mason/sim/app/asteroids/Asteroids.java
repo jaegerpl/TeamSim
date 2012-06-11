@@ -5,10 +5,10 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.util.*;
-import sim.field.continuous.*;
-import java.awt.geom.*;
+import sim.engine.SimState;
+import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 
 /** Asteroids is the SimState of the game.  It contains a single field, which holds all the

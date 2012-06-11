@@ -5,8 +5,9 @@
 */
 
 package sim.app.heatbugs;
-import sim.engine.*;
-import sim.field.grid.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid2D;
 
 /** This agent decreases evaporates and diffuses all the heat at each time step.   See the comments in Diffuser.java for a tutorial on how to speed up Java many-fold in classes such as Diffuser. */
 

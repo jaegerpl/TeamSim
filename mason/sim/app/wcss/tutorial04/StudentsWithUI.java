@@ -5,9 +5,9 @@
 */
 
 package sim.app.wcss.tutorial04;
-import sim.engine.*;
-import sim.display.*;
-import javax.swing.*;
+import sim.display.Console;
+import sim.display.GUIState;
+import sim.engine.SimState;
 
 public class StudentsWithUI extends GUIState
     {

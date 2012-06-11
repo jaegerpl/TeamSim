@@ -5,8 +5,10 @@
 */
 
 package sim.app.schelling;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Int2D;
+import sim.util.IntBag;
 
 public /*strictfp*/ class Agent implements Steppable
     {

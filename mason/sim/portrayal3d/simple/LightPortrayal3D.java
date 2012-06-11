@@ -6,11 +6,21 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal3d.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import sim.util.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.media.j3d.AmbientLight;
+import javax.media.j3d.BoundingSphere;
+import javax.media.j3d.DirectionalLight;
+import javax.media.j3d.Group;
+import javax.media.j3d.Light;
+import javax.media.j3d.PointLight;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Color3f;
+import javax.vecmath.Point3d;
+import javax.vecmath.Vector3f;
+
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.util.Double3D;
 
 /** A simple Portrayal3D which provides ambient, directional, or point light to the scene.  While this could be used
     in a FieldPortrayal to represent its objects, it's more likely to be dropped directly into the Display3D itself.  Your

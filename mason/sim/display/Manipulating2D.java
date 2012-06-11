@@ -5,7 +5,7 @@
 */
 
 package sim.display;
-import sim.portrayal.*;
+import sim.portrayal.LocationWrapper;
 
 /**
    Manipulating2D is a simple interface for user interface objects which can manipulate

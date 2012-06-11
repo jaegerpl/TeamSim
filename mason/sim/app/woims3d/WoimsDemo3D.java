@@ -6,11 +6,12 @@
 
 package sim.app.woims3d;
 
-import sim.field.continuous.*;
-import sim.engine.*;
-import sim.display3d.*;
-import sim.util.*;
-import javax.swing.*;
+import javax.swing.JFrame;
+
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.field.continuous.Continuous3D;
+import sim.util.Double3D;
 
 public class WoimsDemo3D extends SimState
     {

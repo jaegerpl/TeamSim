@@ -5,9 +5,10 @@
 */
 
 package sim.portrayal;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.display.*;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RectangularShape;
+
+import sim.display.GUIState;
 
 /**
    The DrawInfo2D class provides two Rectangles which define a simple drawing situation.

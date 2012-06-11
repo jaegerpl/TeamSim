@@ -5,12 +5,19 @@
 */
 
 package sim.portrayal.grid;
-import sim.field.grid.*;
-import sim.portrayal.*;
-import sim.portrayal.simple.*;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.util.*;
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import sim.field.grid.Grid2D;
+import sim.field.grid.ObjectGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.Portrayal;
+import sim.portrayal.SimplePortrayal2D;
+import sim.portrayal.simple.HexagonalPortrayal2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Int2D;
 
 /**
    Portrayal for hexagonal grids (each cell has six equally-distanced neighbors) containing objects.

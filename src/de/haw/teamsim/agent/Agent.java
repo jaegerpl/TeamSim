@@ -6,11 +6,11 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
 import sim.engine.SimState;
 import sim.engine.Steppable;
-import de.haw.teamsim.semweb.Node;
 import de.haw.teamsim.semweb.SemanticGoalWeb;
-import de.haw.teamsim.semweb.SemanticGoalWeb.Predicate;
 import de.haw.teamsim.sim.Team;
 import de.haw.teamsim.sim.Team.Status;
 import de.haw.teamsim.sim.TeamStatusUpdate;
@@ -19,22 +19,36 @@ public class Agent implements Steppable, Observer {
 	
 	public enum AgentRole {Manager, FireDepartement, PolicyDepartement}
 	
-	String name;
-	Integer ID;
-	Team team;
-	Status myTeamStatus;
-	List<Agent> communicationPartners;
-	SemanticGoalWeb goalWeb = Node.theWeb;
+	private String name;
+	private Integer ID;
+	private Team team;
+	private Status myTeamStatus;
+	private List<Agent> communicationPartners;
+	private String role;
+	private List<String> skills;
 	
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public static Logger log = Logger.getLogger(Agent.class);
 	
-	public Agent(String name, AgentRole r, Team t){
-		
-		log.debug("Starting Agent "+name);
+	
+	public Agent(int id){
+		ID = id;
+		skills = new LinkedList<String>();
+	}
+	
+	public void setName(String name) {
 		this.name = name;
-		communicationPartners = new LinkedList<Agent>();
-		team = t;
-		ID = new Random().nextInt();
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 	
 	public void step(SimState state) {
@@ -45,15 +59,13 @@ public class Agent implements Steppable, Observer {
 	 * Initial doings to put agent into team context
 	 */
 	public void init(){
+		System.out.println("AGENT INIT STUFF");
 		log.debug("Agent "+name+" im Team registieren");
 		team.addObserver(this);
 		log.debug("Agent "+name+" lädt Teammitglieder-Liste");
 		communicationPartners.addAll(team.getTeamMembers());
 		log.debug(name+" kennt jetzt "+communicationPartners.toString());
 		team.sendInfo2Team(new Belief(name, "Hi, ich bin "+name));
-		Node myNode = new Node(this, ID);
-		goalWeb.add(myNode);
-		goalWeb.getObjects(Predicate.responsibleRole);
 	}
 
 	@Override
@@ -77,6 +89,14 @@ public class Agent implements Steppable, Observer {
 	}
 	
 	public String toString(){
-		return name;
+		StringBuffer skill = new StringBuffer();
+		for(String str : skills){
+			skill.append(str+", ");
+		}
+		return "Agent(ID: "+ID+", Name: "+name+", Role: "+role+", Team: "+team+", Skills: "+skill+")";
+	}
+	
+	public void addSkill(String skill) {
+		skills.add(skill);	
 	}
 }

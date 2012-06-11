@@ -5,10 +5,13 @@
 */
 
 package sim.app.tutorial5;
-import sim.field.network.*;
-import sim.portrayal.network.*;
-import sim.portrayal.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import sim.field.network.Edge;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.network.EdgeDrawInfo2D;
+import sim.portrayal.network.SimpleEdgePortrayal2D;
 
 public class BandPortrayal2D extends SimpleEdgePortrayal2D
     {

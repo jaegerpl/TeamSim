@@ -5,13 +5,20 @@
 */
 
 package sim.app.flockers;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.continuous.*;
-import javax.swing.*;
-import java.awt.*;
-import sim.portrayal.simple.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
 import sim.portrayal.SimplePortrayal2D;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.simple.AdjustablePortrayal2D;
+import sim.portrayal.simple.MovablePortrayal2D;
+import sim.portrayal.simple.OrientedPortrayal2D;
+import sim.portrayal.simple.TrailedPortrayal2D;
 
 public class FlockersWithUI extends GUIState
     {

@@ -5,14 +5,19 @@
 */
 
 package sim.app.tutorial6;
-import sim.portrayal3d.continuous.*;
-import sim.portrayal3d.simple.*;
-import sim.engine.*;
-import sim.display.*;
-import sim.display3d.*;
-import javax.swing.*;
-import java.awt.*;
-import sim.util.*;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.continuous.ContinuousPortrayal3D;
+import sim.portrayal3d.simple.SpherePortrayal3D;
+import sim.portrayal3d.simple.TransformedPortrayal3D;
+import sim.util.Bag;
 
 public class Tutorial6WithUI extends GUIState
     {

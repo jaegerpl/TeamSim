@@ -6,7 +6,8 @@
 
 package sim.display;
 
-import java.util.prefs.*;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 
 /** A simple cover class for Java's preferences system.  MASON has both global and application-specific
     preferences.  Each Preferences object is associated with a unique namespace hung under the global

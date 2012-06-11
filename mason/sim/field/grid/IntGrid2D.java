@@ -5,7 +5,7 @@
 */
 
 package sim.field.grid;
-import sim.util.*;
+import sim.util.IntBag;
 
 /**
    A wrapper for 2D arrays of ints.

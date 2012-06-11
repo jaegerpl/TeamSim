@@ -5,14 +5,27 @@
 */
 
 package sim.portrayal3d.simple; 
-import sim.display.*;
-import sim.field.grid.*;
-import sim.portrayal3d.*;
-import sim.portrayal3d.grid.*;
-import javax.media.j3d.*;
-import sim.portrayal.*;
-import sim.util.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.GeometryArray;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.QuadArray;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+
+import sim.display.GUIState;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.DoubleGrid3D;
+import sim.field.grid.Grid3D;
+import sim.field.grid.IntGrid2D;
+import sim.field.grid.IntGrid3D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.SimpleInspector;
+import sim.portrayal3d.grid.ValueGridPortrayal3D;
+import sim.util.Int3D;
 
 /** ValuePortrayal3D defines a cube or square whose color and transparency can be changed, 
     and is really intended solely for use in ValueGridPortrayal3D.  Note that although

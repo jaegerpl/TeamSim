@@ -6,8 +6,10 @@
 
 package sim.app.woims;
 
-import java.awt.*;
-import sim.portrayal.simple.*;
+import java.awt.Color;
+import java.awt.Paint;
+
+import sim.portrayal.simple.OvalPortrayal2D;
 
 public class Obstacle extends OvalPortrayal2D
     {

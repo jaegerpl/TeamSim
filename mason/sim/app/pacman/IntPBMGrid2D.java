@@ -6,8 +6,15 @@
 
 package sim.app.pacman;
 
-import java.io.*;
-import sim.field.grid.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
+import sim.field.grid.IntGrid2D;
 
 /** A quick and dirty variation of IntGrid2D which reads black-and-white PBM files as
     1's and 0's in a 2D grid.  */

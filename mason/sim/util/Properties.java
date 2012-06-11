@@ -5,7 +5,8 @@
 */
 
 package sim.util;
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
 
 /**
    The abstract superclass of Property inspectors.  Such a beast inspects an object and returns a list of variables for which there are get and possibly set methods.

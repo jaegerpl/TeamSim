@@ -6,22 +6,26 @@
 
 package sim.util.media.chart;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import java.util.*;
-import sim.util.gui.*;
-import sim.util.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Paint;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Iterator;
 
-// From JFreeChart (jfreechart.org)
-import org.jfree.data.xy.*;
-import org.jfree.chart.*;
-import org.jfree.chart.event.*;
-import org.jfree.chart.plot.*;
-import org.jfree.data.general.*;
-import org.jfree.chart.renderer.xy.*;
-import org.jfree.data.general.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+
+import org.jfree.chart.renderer.xy.XYItemRenderer;
+import org.jfree.data.general.SeriesChangeListener;
+import org.jfree.data.xy.XYDataItem;
+import org.jfree.data.xy.XYSeries;
+
+import sim.util.Bag;
+import sim.util.IntBag;
+import sim.util.gui.ColorWell;
+import sim.util.gui.NumberTextField;
 
 /** A SeriesAttributes used for user control pf time series created with TimeSeriesCharGenerator.
     This is done largely through the

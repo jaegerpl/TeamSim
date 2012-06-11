@@ -5,14 +5,24 @@
 */
 package sim.portrayal3d.network;
 
-import java.awt.*;
-import javax.vecmath.*;
-import javax.media.j3d.*;
-import sim.portrayal.*;
-import com.sun.j3d.utils.geometry.*;
-import sim.portrayal3d.simple.*;
-import sim.util.*;
-import sim.field.network.*;
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Node;
+import javax.media.j3d.OrientedShape3D;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Color3f;
+import javax.vecmath.Point3f;
+
+import sim.field.network.Edge;
+import sim.portrayal.LocationWrapper;
+import sim.util.Double3D;
+
+import com.sun.j3d.utils.geometry.Primitive;
 
 
 /**

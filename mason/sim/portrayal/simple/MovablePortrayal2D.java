@@ -5,12 +5,18 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.display.*;
-import java.awt.event.*;
-import sim.util.*;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+
+import sim.display.GUIState;
+import sim.display.Manipulating2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.SimplePortrayal2D;
+import sim.util.Double2D;
 
 /**
    A wrapper for other Portrayal2Ds which makes it possible to drag and move objects with the mouse.

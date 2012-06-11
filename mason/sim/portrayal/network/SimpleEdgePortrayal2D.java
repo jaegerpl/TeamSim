@@ -6,11 +6,21 @@
 
 package sim.portrayal.network;
 
-import sim.portrayal.*;
-import java.awt.*;
-import sim.field.network.*;
-import java.awt.geom.*;
-import sim.util.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Polygon;
+import java.awt.Stroke;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
+
+import sim.field.network.Edge;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.SimplePortrayal2D;
+import sim.util.Valuable;
 
 /*
   A simple portrayal for directed and undirected edges in a network field.  The portrayal can draw edges as lines or as thin triangles with their points

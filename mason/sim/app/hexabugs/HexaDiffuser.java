@@ -6,8 +6,9 @@
 
 package sim.app.hexabugs;
 
-import sim.engine.*;
-import sim.field.grid.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid2D;
 
 /**
    Hexa Non-toroidal Diffuser

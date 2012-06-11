@@ -5,7 +5,7 @@
 */
 
 package sim.field;
-import sim.util.*;
+import sim.util.Double2D;
 
 public interface SparseField2D
     {

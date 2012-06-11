@@ -5,11 +5,11 @@
 */
 
 package sim.app.mousetraps;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.Schedule;
+import sim.engine.SimState;
 import sim.field.continuous.Continuous3D;
-import sim.field.grid.*;
-import ec.util.*;
+import sim.field.grid.IntGrid2D;
+import sim.util.Double3D;
 
 
 public class MouseTraps extends SimState

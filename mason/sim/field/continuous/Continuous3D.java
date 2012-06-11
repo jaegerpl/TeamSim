@@ -5,9 +5,14 @@
 */
 
 package sim.field.continuous;
-import sim.field.*;
-import sim.util.*;
-import java.util.*;
+import java.util.HashMap;
+
+import sim.field.SparseField;
+import sim.field.SparseField3D;
+import sim.util.Bag;
+import sim.util.Double3D;
+import sim.util.Int3D;
+import sim.util.MutableInt3D;
 
 /**
    A storage facility for objects located in a continuous 3D environment.  This facility relates

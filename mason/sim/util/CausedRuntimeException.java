@@ -5,7 +5,8 @@
 */
 
 package sim.util;
-import java.io.*;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 
 /**
    A simple RuntimeException which wraps a deeper exception inside of it and

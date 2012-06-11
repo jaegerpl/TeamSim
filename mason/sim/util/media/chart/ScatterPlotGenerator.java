@@ -6,26 +6,14 @@
 
 package sim.util.media.chart;
 
-import java.awt.*;
-import java.util.*;
-import java.awt.event.*;
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 
-// From MASON (cs.gmu.edu/~eclab/projects/mason/)
-import sim.util.gui.*;
-
-// From JFreeChart (jfreechart.org)
-import org.jfree.chart.*;
-import org.jfree.chart.plot.*;
-import org.jfree.data.general.*;
-import org.jfree.data.statistics.*;
-import org.jfree.data.xy.*;
-import org.jfree.chart.renderer.xy.*;
-import org.jfree.util.*;
-
-// from iText (www.lowagie.com/iText/)
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.DefaultXYDataset;
 
 /*  // looks like we'll have to move to these soon
     import com.itextpdf.text.*;

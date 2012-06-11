@@ -5,10 +5,15 @@
 */
 
 package sim.display;
-import java.applet.*;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /** A simple class for creating Applets out of your simulations.  Due to security restrictions,
     certain things will not work, such as reading files (loading models) or writing files

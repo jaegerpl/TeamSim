@@ -5,9 +5,13 @@
 */
 
 package sim.app.lightcycles;
-import java.awt.*;
-import java.awt.event.*;
-import sim.display.*;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import sim.display.Console;
 
 // This class is accurately named ControlUI instead of controlGUI because instead of allowing
 // a user to interact with the simulation through graphical widgets, it simply adds keyboard 

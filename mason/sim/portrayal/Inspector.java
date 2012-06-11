@@ -5,11 +5,26 @@
 */
 
 package sim.portrayal;
-import sim.engine.*;
-import sim.display.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
 
 /** An Inspector is a JPanel containing information about some object,
     and updates its displayed information when updateInspector() is called.

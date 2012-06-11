@@ -5,8 +5,11 @@
 */
 
 package sim.field.grid;
-import sim.util.*;
-import java.util.*;
+import java.util.Collection;
+
+import sim.util.Bag;
+import sim.util.Int2D;
+import sim.util.IntBag;
 
 /**
    A wrapper for 2D arrays of Objects.

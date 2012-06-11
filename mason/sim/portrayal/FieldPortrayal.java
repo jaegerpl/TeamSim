@@ -5,12 +5,15 @@
 */
 
 package sim.portrayal;
-import java.util.*;
-import javax.swing.*;
-import java.awt.*;
-import sim.util.gui.*;
-import sim.display.*;
-import sim.util.*;
+import java.awt.BorderLayout;
+import java.util.WeakHashMap;
+
+import javax.swing.JLabel;
+
+import sim.display.GUIState;
+import sim.util.Bag;
+import sim.util.gui.DisclosurePanel;
+import sim.util.gui.LabelledList;
 
 /**
    A FieldPortrayal is an object which knows how to portray some kind of Field.

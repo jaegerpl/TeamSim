@@ -5,11 +5,20 @@
 */
 
 package sim.portrayal.grid;
-import sim.portrayal.*;
-import sim.field.grid.*;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.util.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Area;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.Grid2D;
+import sim.field.grid.IntGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Int2D;
 
 /**
    Portrayal for hexagonal grids (each cell has six equally-distanced neighbors) with double-precision real values.

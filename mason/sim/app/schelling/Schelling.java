@@ -5,9 +5,11 @@
 */
 
 package sim.app.schelling;
-import sim.engine.*;
-import sim.field.grid.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.field.grid.IntGrid2D;
+import sim.util.Bag;
+import sim.util.Int2D;
+import sim.util.Interval;
 
 public /*strictfp*/ class Schelling extends SimState
     {

@@ -5,9 +5,12 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
+import sim.portrayal.DrawInfo2D;
 
 /**
    A simple portrayal for 2D visualization of images. It extends the SimplePortrayal2D and

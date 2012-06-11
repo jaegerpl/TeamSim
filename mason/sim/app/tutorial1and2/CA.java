@@ -6,8 +6,9 @@
 
 package sim.app.tutorial1and2;
 
-import sim.engine.*;
-import sim.field.grid.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.IntGrid2D;
 
 public class CA implements Steppable
     {

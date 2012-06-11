@@ -5,10 +5,9 @@
 */
 
 package sim.app.pacman;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
+import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** Inky is the cyan ghost.  He starts in the box and initially waiting.
     His target (see Ghost.java) is complex: it's on the opposite side 

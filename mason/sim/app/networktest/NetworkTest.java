@@ -6,10 +6,10 @@
 
 package sim.app.networktest;
 
-import sim.field.continuous.*;
-import sim.field.network.*;
-import sim.engine.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.field.continuous.Continuous2D;
+import sim.field.network.Network;
+import sim.util.Double2D;
 
 public /*strictfp*/ class NetworkTest extends SimState
     {

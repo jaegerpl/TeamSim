@@ -5,9 +5,11 @@
 */
 
 package sim.app.crowd3d;
-import sim.engine.*;
-import sim.util.*;
-import sim.field.continuous.*;
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous3D;
+import sim.util.Double3D;
 
 
 public class CrowdSim extends SimState

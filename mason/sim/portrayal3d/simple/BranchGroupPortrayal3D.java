@@ -6,17 +6,25 @@
 
 package sim.portrayal3d.simple;
 
-import com.sun.j3d.utils.geometry.*;
-import sim.portrayal3d.*;
-import sim.portrayal.*;
-import javax.media.j3d.*;
+import java.io.FileNotFoundException;
+import java.net.URL;
 
-import java.net.*;
-import java.io.*;
-import com.sun.j3d.loaders.*;
-import com.sun.j3d.loaders.lw3d.*;
-import com.sun.j3d.loaders.objectfile.*;
-import com.sun.j3d.utils.picking.*;
+import javax.media.j3d.Appearance;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.CompressedGeometry;
+import javax.media.j3d.Geometry;
+import javax.media.j3d.GeometryArray;
+import javax.media.j3d.Group;
+import javax.media.j3d.Node;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+
+import sim.portrayal.LocationWrapper;
+
+import com.sun.j3d.loaders.lw3d.Lw3dLoader;
+import com.sun.j3d.loaders.objectfile.ObjectFile;
+import com.sun.j3d.utils.picking.PickTool;
 
 /**
  * Loads a Lightwave 3D scene file (.lwo or .lws extension) or a Wavefront object file (.obj extension) into a BranchGroup, 

@@ -5,8 +5,13 @@
 */
 
 package sim.util;
-import java.util.*;
-import java.lang.reflect.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Random;
 
 /** Maintains a simple array (objs) of Objects and the number of objects (numObjs) in the array
     (the array can be bigger than this number).  Unlike Vector or ArrayList, Bag is designed

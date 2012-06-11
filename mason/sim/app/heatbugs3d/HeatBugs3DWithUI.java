@@ -6,17 +6,26 @@
 
 package sim.app.heatbugs3d;
 
-import sim.engine.*;
-import sim.display.*;
-import sim.display3d.*;
-import sim.portrayal3d.*;
-import sim.portrayal3d.simple.*;
-import sim.portrayal3d.grid.*;
-import sim.portrayal3d.grid.quad.*;
-import sim.app.heatbugs.*;
-import sim.util.gui.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.app.heatbugs.HeatBugs;
+import sim.display.Console;
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.grid.SparseGrid2DPortrayal3D;
+import sim.portrayal3d.grid.SparseGridPortrayal3D;
+import sim.portrayal3d.grid.ValueGrid2DPortrayal3D;
+import sim.portrayal3d.grid.quad.MeshPortrayal;
+import sim.portrayal3d.grid.quad.QuadPortrayal;
+import sim.portrayal3d.grid.quad.TilePortrayal;
+import sim.portrayal3d.simple.ConePortrayal3D;
+import sim.portrayal3d.simple.TransformedPortrayal3D;
+import sim.util.gui.SimpleColorMap;
 
 /**
  * @author Gabriel Catalin Balan

@@ -5,13 +5,20 @@
 */
 
 package sim.portrayal3d;
-import sim.portrayal.*;
-import sim.portrayal3d.simple.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import com.sun.j3d.utils.picking.*;
-import sim.display3d.*;
-import sim.display.*;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Vector3d;
+
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.portrayal.FieldPortrayal;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal3d.simple.SpherePortrayal3D;
+
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 /** 
  * Superclass of all Field Portrayals in J3D.

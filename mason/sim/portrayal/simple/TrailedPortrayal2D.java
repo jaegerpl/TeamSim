@@ -5,18 +5,31 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.display.*;
-import java.util.*;
-import sim.util.gui.*;
-import sim.util.*;
-import sim.field.continuous.*;
-import sim.field.grid.*;
-import sim.engine.*;
-import sim.portrayal.network.*;
-import java.awt.event.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RectangularShape;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+import sim.display.GUIState;
+import sim.display.Manipulating2D;
+import sim.engine.Schedule;
+import sim.field.continuous.Continuous2D;
+import sim.field.grid.Grid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.SimplePortrayal2D;
+import sim.portrayal.network.EdgeDrawInfo2D;
+import sim.portrayal.network.SimpleEdgePortrayal2D;
+import sim.util.Double2D;
+import sim.util.Int2D;
+import sim.util.gui.SimpleColorMap;
 
 /**
    <p>TrailedPortrayal2D is a special SimplePortrayal wrapper which enables you to draw "trails" or

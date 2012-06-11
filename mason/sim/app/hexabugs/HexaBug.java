@@ -5,9 +5,12 @@
 */
 
 package sim.app.hexabugs;
-import sim.field.grid.*;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid2D;
+import sim.util.DoubleBag;
+import sim.util.Int2D;
+import sim.util.IntBag;
 
 public /*strictfp*/ class HexaBug implements Steppable
     {

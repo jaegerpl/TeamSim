@@ -5,10 +5,7 @@
 */
 
 package sim.app.pacman;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
+import sim.util.Double2D;
 
 /** Clyde is the orange ghost.  He starts in the box and initially waiting.
     His target (see Ghost.java) is the Pac himself, just like Blinky.  However

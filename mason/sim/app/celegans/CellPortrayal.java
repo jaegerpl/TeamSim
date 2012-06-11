@@ -6,10 +6,11 @@
 
 package sim.app.celegans;
  
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import sim.portrayal3d.simple.*;
 import java.awt.Color;
+
+import javax.media.j3d.TransformGroup;
+
+import sim.portrayal3d.simple.SpherePortrayal3D;
  
 public class CellPortrayal extends SpherePortrayal3D
     {

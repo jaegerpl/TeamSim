@@ -5,13 +5,20 @@
 */
 
 package sim.app.wcss.tutorial08;
-import sim.portrayal.network.*;
-import sim.portrayal.continuous.*;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.simple.*;
-import javax.swing.*;
 import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Console;
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.network.NetworkPortrayal2D;
+import sim.portrayal.network.SimpleEdgePortrayal2D;
+import sim.portrayal.network.SpatialNetwork2D;
+import sim.portrayal.simple.OvalPortrayal2D;
 
 
 public class StudentsWithUI extends GUIState

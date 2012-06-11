@@ -6,15 +6,27 @@
 
 package sim.portrayal.grid;
 
-import sim.portrayal.*;
-import sim.portrayal.simple.*;
-import sim.field.grid.*;
-import sim.util.*;
-import java.awt.*;
-import java.util.*;
-import java.awt.geom.*;
-import sim.portrayal.inspector.*;
-import sim.display.*;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import sim.display.GUIState;
+import sim.field.grid.Grid2D;
+import sim.field.grid.SparseGrid2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
+import sim.portrayal.Fixed2D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal.SimplePortrayal2D;
+import sim.portrayal.inspector.StableInt2D;
+import sim.portrayal.simple.OvalPortrayal2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Int2D;
 
 /**
    Can be used to draw both continuous and discrete sparse fields.

@@ -6,12 +6,19 @@
 
 package sim.util.media;
 
-import java.awt.*;
-import java.io.*;
-import java.awt.geom.*;
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.*; 
-import org.jfree.chart.*;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.FileOutputStream;
+
+import org.jfree.chart.JFreeChart;
+
+import com.itextpdf.awt.DefaultFontMapper;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public class PDFEncoder
     {

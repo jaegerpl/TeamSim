@@ -5,9 +5,11 @@
 */
 
 package sim.portrayal3d.grid.quad;
-import sim.field.grid.*;
-import sim.portrayal3d.grid.*;
-import sim.util.*;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.Grid2D;
+import sim.field.grid.IntGrid2D;
+import sim.field.grid.ObjectGrid2D;
+import sim.portrayal3d.grid.ValueGrid2DPortrayal3D;
 
 /**
  * Used by ValueGrid2DPortrayal3D to send needed value information to

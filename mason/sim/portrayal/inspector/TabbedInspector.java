@@ -5,11 +5,14 @@
 */
 
 package sim.portrayal.inspector;
-import sim.portrayal.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import java.util.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.util.ArrayList;
+
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import sim.portrayal.Inspector;
 
 /** TabbedInspector is an Inspector which holds multiple subInspectors
     in turn, allowing you to device complex inspector sets to be displayed

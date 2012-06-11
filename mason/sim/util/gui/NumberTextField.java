@@ -5,9 +5,23 @@
 */
 
 package sim.util.gui;
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /** A simple class that lets you specify a label and validate a numerical value.  NumberTextField assumes access
     to several image files for the widgets to the right of the text field: a left-arrow button, a right-arrow button, 

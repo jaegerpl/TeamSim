@@ -5,9 +5,12 @@
 */
 
 package sim.app.tutorial4;
-import sim.engine.*;
-import sim.field.grid.*;
-import sim.util.*;
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.SparseGrid2D;
+import sim.util.Int2D;
 
 public class Tutorial4 extends SimState
     {

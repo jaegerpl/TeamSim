@@ -3,15 +3,9 @@
  */
 package de.haw.teamsim.semweb;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
@@ -25,74 +19,66 @@ import com.hp.hpl.jena.util.FileManager;
  */
 public class SemanticGoalWeb {
 	
-	public enum Predicate{
-		isSubGoal, 				// all conditions are also in the main goal
-		extendsGoal,			// some conditions are in the main goal, others are not
-		isMainGoal, 			// back direction of isSubGoal and extendsGoal
-		isConflictaryWith, 		// means that one or more conditions are conflictary
-		isResponsibleFor, 		// Points to the agent responsible for the goal
-		belongsToArea,			// the area can be used to filter the visibility
-		responsibleRole			// The AgentRole that typically has the needed skills for a goal 
-	}
+	private String uri = "http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl";
+	private Model model;
 	
-	private Map<Integer, Node> web;
+	public Property subtask; 			// all conditions are also in the main goal
+	public Property responsible_for;	// some conditions are in the main goal, others are not
+	public Property requires; 			// back direction of isSubGoal and extendsGoal
+	public Property plays; 			// means that one or more conditions are conflictary
+	public Property performed_by; 		// Points to the agent responsible for the goal
+	public Property belongs_to;		// the area can be used to filter the visibility
+	public Property consists_of;
+	public Property has;				// The AgentRole that typically has the needed skills for a goal 
+	public Property use;				//
+	public Property used_by;		
 	
 	public SemanticGoalWeb(){
-		web = new HashMap<Integer, Node>();
+		model = ModelFactory.createDefaultModel();
+		
+		// all properties of the ontology
+		subtask = model.getProperty(uri+"subtask");
+		responsible_for = model.getProperty(uri+"responsible_for");
+		requires = model.getProperty(uri+"requires");
+		plays = model.getProperty(uri+"plays");
+		performed_by = model.getProperty(uri+"performed_by");
+		belongs_to = model.getProperty(uri+"belongs_to");
+		consists_of = model.getProperty(uri+"consists_of");
+		has = model.getProperty(uri+"has");
+		use = model.getProperty(uri+"use");
+		used_by = model.getProperty(uri+"subtask");	
 	}
 	
-	public boolean contains(Node n){
-		if(web.containsKey(n.getID())){
-			return true;
-		}
-		return false;
-	}
-
-	public void add(Node n) {
-		web.put(n.getID(), n);
-	}
-
 	/**
-	 * Returns all Nodes that fulfill the given predicate
-	 * @param pred
+	 * Read RDF data from file at <code>location</code>
+	 *
+	 * @param location
 	 */
-	public void getObjects(Predicate pred){
-		// TODO Auto-generated method stub
+	public void readRDFData(String location){
 		
+		FileManager fm = FileManager.get();
+		fm.readModel(model, location, "RDF/XML");
+		System.out.println("Triple count after inserts: " + (model.size()));
 		
+//		ResIterator parents = model.listSubjectsWithProperty(responsible_for);
+//		while (parents.hasNext()) {
+//			// ResIterator has a typed nextResource() method
+//			Resource person = parents.nextResource();
+//			// Print the URI of the resource
+//			System.out.println(person.getURI());
+//		}
 	}
 	
-	public void buildGoalOntology(){
-		OntModel m = ModelFactory.createOntologyModel();
-		m.read("http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology");
-		System.out.println(m.toString());
-		FileManager fm = new FileManager();
-		fm.readModel(m, "file:data/TeamSimGoalOntolofy.owl");
-		sampleQuery(m);
-	}
-	
-	public void sampleQuery(Model model){
-		// list the statements in the Model
-		StmtIterator iter = model.listStatements();
-
-		// print out the predicate, subject and object of each statement
-		while (iter.hasNext()) {
-		    Statement stmt      = iter.nextStatement();  // get next statement
-		    Resource  subject   = stmt.getSubject();     // get the subject
-		    Property  predicate = stmt.getPredicate();   // get the predicate
-		    RDFNode   object    = stmt.getObject();      // get the object
-
-		    System.out.print(subject.toString());
-		    System.out.print(" " + predicate.toString() + " ");
-		    if (object instanceof Resource) {
-		       System.out.print(object.toString());
-		    } else {
-		        // object is a literal
-		        System.out.print(" \"" + object.toString() + "\"");
-		    }
-
-		    System.out.println(" .");
-		} 
+	/**
+	 * Prints all statements that are in the <code>model</code>
+	 * @param model
+	 */
+	public void printAllStatements(Model model){
+		StmtIterator result = model.listStatements();
+		while (result.hasNext()) {
+			Statement st = result.next();
+			System.out.println(st+"\n");
+		}
 	}
 
 }

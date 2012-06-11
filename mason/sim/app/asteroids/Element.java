@@ -5,13 +5,20 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
-import java.awt.geom.*;
-import java.awt.*;
-import sim.portrayal.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.PathIterator;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.portrayal.DrawInfo2D;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** Element is the abstract superclass of objects which have shapes and which are displayed
     on-screen.  Shapes have orientations and locations (the locations are stored with them

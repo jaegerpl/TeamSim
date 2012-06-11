@@ -5,10 +5,11 @@
 */
 
 package sim.portrayal;
-import java.awt.*;
-import sim.display.*;
-import java.awt.geom.*;
-import java.awt.event.*;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+
+import sim.display.GUIState;
+import sim.display.Manipulating2D;
 
 /** The superclass of all 2D Simple Portrayals.  Doesn't draw itself at all.
     Responds to hit testing by intersecting the hit testing rect with a width by

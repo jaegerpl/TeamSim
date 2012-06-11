@@ -5,16 +5,22 @@
 */
 
 package sim.app.tutorial4;
-import sim.portrayal.*;
-import sim.portrayal.grid.*;
-import sim.field.grid.*;
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import sim.engine.*;
-import sim.util.*;
-import sim.display.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.field.grid.SparseGrid2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.grid.SparseGridPortrayal2D;
+import sim.util.Int2D;
 
 public class BigParticleInspector extends Inspector
     {

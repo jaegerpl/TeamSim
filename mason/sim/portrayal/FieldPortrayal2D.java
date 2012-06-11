@@ -5,10 +5,13 @@
 */
 
 package sim.portrayal;
-import java.awt.*;
-import java.awt.geom.*;
-import sim.util.*;
-import sim.display.*;
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+
+import sim.display.GUIState;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Int2D;
 
 /** 
     Superclass of all Field Portrayals in 2D.  Implements default versions of the

@@ -5,8 +5,10 @@
 */
 
 package sim.field;
-import sim.util.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import sim.util.Bag;
 
 /** While it has no abstract members, SparseField is explicitly an abstract superclass of various sparse
     field objects.  It specifies a many-to-one relationship between objects and locations.

@@ -5,9 +5,13 @@
 */
 
 package sim.app.hexabugs;
-import sim.engine.*;
-import sim.util.*;
-import sim.field.grid.*;
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.field.grid.DoubleGrid2D;
+import sim.field.grid.SparseGrid2D;
+import sim.util.DoubleBag;
+import sim.util.IntBag;
+import sim.util.Interval;
 
 public /*strictfp*/ class HexaBugs extends SimState
     {

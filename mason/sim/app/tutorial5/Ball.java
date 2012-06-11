@@ -5,13 +5,19 @@
 */
 
 package sim.app.tutorial5;
-import sim.engine.*;
-import sim.portrayal.*;
-import sim.util.*;
-import sim.field.network.*;
-import sim.field.continuous.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.field.continuous.Continuous2D;
+import sim.field.network.Edge;
+import sim.field.network.Network;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 
 public class Ball extends SimplePortrayal2D implements Steppable

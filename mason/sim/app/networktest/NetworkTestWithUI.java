@@ -6,20 +6,19 @@
 
 package sim.app.networktest;
 
-import sim.portrayal.network.*;
-import sim.portrayal.continuous.*;
-import sim.engine.*;
-import sim.display.*;
-import javax.swing.*;
 import java.awt.Color;
-import javax.swing.event.*;
-import java.awt.event.*;
-import sim.portrayal.*;
-import sim.portrayal.simple.*;
-import sim.util.*;
-import java.awt.*;
-import sim.field.continuous.*;
-import java.awt.geom.*;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.network.NetworkPortrayal2D;
+import sim.portrayal.network.SimpleEdgePortrayal2D;
+import sim.portrayal.network.SpatialNetwork2D;
+import sim.portrayal.simple.MovablePortrayal2D;
 
 
 

@@ -6,12 +6,21 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal3d.*;
-import sim.portrayal.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Image;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.Group;
+import javax.media.j3d.OrientedShape3D;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.QuadArray;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.TransformGroup;
+import javax.swing.ImageIcon;
+import javax.vecmath.Point3f;
+import javax.vecmath.TexCoord2f;
+
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.SimplePortrayal3D;
 
 /**
  * Portrays objects as a thin flat rectangle displaying a provided Image.  The rectangle can be

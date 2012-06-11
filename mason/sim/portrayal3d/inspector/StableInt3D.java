@@ -5,11 +5,12 @@
 */
 
 package sim.portrayal3d.inspector;
-import sim.util.*;
-import sim.field.*;
-import sim.field.grid.*;
-import sim.field.continuous.*;
-import sim.portrayal.inspector.*;
+import sim.field.SparseField;
+import sim.field.grid.SparseGrid2D;
+import sim.field.grid.SparseGrid3D;
+import sim.portrayal.inspector.StableLocation;
+import sim.util.Int2D;
+import sim.util.Int3D;
 
 /**
    StableInteD is a StableLocation for InteD, usable for SparseGrid2D and SparseGrid3D.  See StableLocation for more information.

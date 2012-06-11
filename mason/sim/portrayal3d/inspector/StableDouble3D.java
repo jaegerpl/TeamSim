@@ -5,11 +5,12 @@
 */
 
 package sim.portrayal3d.inspector;
-import sim.util.*;
-import sim.field.*;
-import sim.field.grid.*;
-import sim.field.continuous.*;
-import sim.portrayal.inspector.*;
+import sim.field.SparseField;
+import sim.field.continuous.Continuous2D;
+import sim.field.continuous.Continuous3D;
+import sim.portrayal.inspector.StableLocation;
+import sim.util.Double2D;
+import sim.util.Double3D;
 
 /**
    StableDouble3D is a StableLocation for Double3D.  It can be used with either 2D or 3D fields.  See StableLocation for more information.

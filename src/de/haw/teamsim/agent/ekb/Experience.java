@@ -6,7 +6,6 @@ package de.haw.teamsim.agent.ekb;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import de.haw.teamsim.agent.Belief;
 import de.haw.teamsim.agent.Goal;
 import de.haw.teamsim.agent.Plan;

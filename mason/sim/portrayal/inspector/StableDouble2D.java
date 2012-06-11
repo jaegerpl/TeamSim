@@ -5,10 +5,8 @@
 */
 
 package sim.portrayal.inspector;
-import sim.util.*;
-import sim.field.*;
-import sim.field.grid.*;
-import sim.field.continuous.*;
+import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
 
 /**
    StableDouble2D is a StableLocation for Double2D.  See StableLocation for more information.

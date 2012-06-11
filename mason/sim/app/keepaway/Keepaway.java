@@ -5,10 +5,11 @@
 */
 
 package sim.app.keepaway;
-import java.awt.*;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
+import java.awt.Color;
+
+import sim.engine.SimState;
+import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
 
 public /*strictfp*/ class Keepaway extends SimState
     {

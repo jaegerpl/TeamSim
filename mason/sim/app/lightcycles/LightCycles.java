@@ -5,8 +5,9 @@
 */
 
 package sim.app.lightcycles;
-import sim.engine.*;
-import sim.field.grid.*;
+import sim.engine.SimState;
+import sim.field.grid.IntGrid2D;
+import sim.field.grid.SparseGrid2D;
 
 public class LightCycles extends SimState
     {

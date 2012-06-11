@@ -5,8 +5,9 @@
 */
 
 package sim.util;
-import java.util.*;
-import java.lang.reflect.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 
 // stars down the side maintain formatting
 /**

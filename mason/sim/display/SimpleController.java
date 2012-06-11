@@ -5,20 +5,24 @@
 */
 
 package sim.display;
-import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.event.*;
-import sim.engine.*;
-import java.awt.*;
-import java.text.*;
-import java.util.*;
-import ec.util.*;
-import java.io.*;
-import sim.util.*;
-import sim.util.gui.*;
-import sim.portrayal.*;
-import java.lang.ref.*;
-import java.lang.reflect.*;
+import java.awt.Component;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Vector;
+import java.util.WeakHashMap;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.portrayal.Inspector;
+import sim.util.Bag;
 
 /*
   SimpleController is a Controller with no GUI.  It implements all of the Controller interface,

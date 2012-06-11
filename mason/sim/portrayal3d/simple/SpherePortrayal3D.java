@@ -6,11 +6,13 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal3d.*;
-import javax.media.j3d.*;
-import sim.portrayal.*;
-import com.sun.j3d.utils.geometry.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Image;
+
+import javax.media.j3d.Appearance;
+
+import com.sun.j3d.utils.geometry.Primitive;
+import com.sun.j3d.utils.geometry.Sphere;
 
 /**
  * Portrays objects as a sphere of the specified color or appearance (flat opaque white by default)

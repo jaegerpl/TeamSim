@@ -6,15 +6,20 @@
 
 package sim.portrayal3d.continuous;
 
-import javax.vecmath.*;
-import sim.portrayal.*;
-import sim.portrayal3d.*;
-import sim.util.*;
-import sim.field.continuous.*;
-import sim.portrayal3d.inspector.*;
-import sim.portrayal.inspector.*;
+import javax.vecmath.Vector3d;
 
-import com.sun.j3d.utils.picking.*;
+import sim.field.continuous.Continuous2D;
+import sim.field.continuous.Continuous3D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.inspector.StableDouble2D;
+import sim.portrayal.inspector.StableLocation;
+import sim.portrayal3d.SparseFieldPortrayal3D;
+import sim.portrayal3d.inspector.StableDouble3D;
+import sim.util.Double2D;
+import sim.util.Double3D;
+
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
 
 /**
  * Portrays both Continuous2D and Continuous3D fields. 

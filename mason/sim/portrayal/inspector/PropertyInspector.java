@@ -5,15 +5,28 @@
 */
 
 package sim.portrayal.inspector;
-import sim.portrayal.*;
-import java.awt.*;
-import javax.swing.*;
-import sim.display.*;
-import sim.engine.*;
-import sim.util.*;
-import java.io.*;
-import java.awt.event.*;
-import sim.util.gui.*;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JToggleButton;
+
+import sim.display.GUIState;
+import sim.engine.Stoppable;
+import sim.portrayal.Inspector;
+import sim.util.Bag;
+import sim.util.Properties;
+import sim.util.gui.Utilities;
 
 /** PropertyInspector is a subclass of Inspector which is intended for plug-in inspectors of a single property of an object.
     Plug-in inspectors may be associated with a Frame.  To create a PropertyInspector, you need to do several things:

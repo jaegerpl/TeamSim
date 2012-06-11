@@ -5,12 +5,17 @@
 */
 
 package sim.app.swarmgame;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.continuous.*;
-import javax.swing.*;
-import java.awt.*;
-import sim.portrayal.simple.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.simple.OrientedPortrayal2D;
+import sim.portrayal.simple.OvalPortrayal2D;
 
 public class SwarmGameWithUI extends GUIState
     {

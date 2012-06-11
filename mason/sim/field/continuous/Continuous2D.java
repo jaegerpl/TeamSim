@@ -5,9 +5,14 @@
 */
 
 package sim.field.continuous;
-import sim.field.*;
-import sim.util.*;
-import java.util.*;
+import java.util.HashMap;
+
+import sim.field.SparseField;
+import sim.field.SparseField2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Int2D;
+import sim.util.MutableInt2D;
 
 
 /**

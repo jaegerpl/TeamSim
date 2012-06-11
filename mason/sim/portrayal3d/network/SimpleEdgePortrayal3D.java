@@ -6,14 +6,26 @@
 
 package sim.portrayal3d.network;
 
-import sim.portrayal3d.*;
-import sim.portrayal.*;
-import sim.util.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 
-import sim.field.network.*;
-import javax.vecmath.*;
-import javax.media.j3d.*;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Font3D;
+import javax.media.j3d.FontExtrusion;
+import javax.media.j3d.GeometryArray;
+import javax.media.j3d.LineArray;
+import javax.media.j3d.OrientedShape3D;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Color3f;
+import javax.vecmath.Point3f;
+import javax.vecmath.Vector3d;
+
+import sim.field.network.Edge;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.util.Double3D;
 
 /*
  * A simple portrayal for edges in a network field.

@@ -10,9 +10,15 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal3d.*;
-import javax.media.j3d.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.LineStripArray;
+import javax.media.j3d.QuadArray;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.TransformGroup;
+
+import sim.portrayal3d.SimplePortrayal3D;
 
 /**
  * A SimplePortrayal3D which draws an arbitrary wireframe box.  Unlike most other

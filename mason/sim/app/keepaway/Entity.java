@@ -6,9 +6,12 @@
 
 // Class Entity
 package sim.app.keepaway;
-import sim.util.*;
-import sim.portrayal.simple.*;
-import java.awt.*;
+import java.awt.Color;
+
+import sim.portrayal.simple.OvalPortrayal2D;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 public abstract /*strictfp*/ class Entity extends OvalPortrayal2D
     {

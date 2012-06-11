@@ -7,16 +7,20 @@
 package sim.app.pso3d;
 
 import java.awt.Color;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.TransformGroup;
 import javax.swing.JFrame;
-import sim.display.Console;
+
 import sim.display.Controller;
 import sim.display.GUIState;
+import sim.display3d.Display3D;
 import sim.engine.SimState;
+import sim.portrayal3d.continuous.ContinuousPortrayal3D;
+import sim.portrayal3d.simple.CubePortrayal3D;
+import sim.portrayal3d.simple.WireFrameBoxPortrayal3D;
 import sim.util.gui.SimpleColorMap;
-import sim.display3d.*;
-import sim.portrayal3d.simple.*;
-import sim.portrayal3d.continuous.*;
-import javax.media.j3d.*;
 
 /**
    @author Ankur Desai and Joey Harrison

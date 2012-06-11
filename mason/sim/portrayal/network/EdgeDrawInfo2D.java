@@ -5,10 +5,12 @@
 */
 
 package sim.portrayal.network;
-import sim.portrayal.*;
-import java.awt.geom.*;
-import java.awt.*;
-import sim.display.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.RectangularShape;
+
+import sim.display.GUIState;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
 
 /**
    An extension of DrawInfo2D for dealing with edges in visualizing network fields.

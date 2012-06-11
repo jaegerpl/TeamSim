@@ -7,7 +7,6 @@
   It is provided "as is" without expressed or implied warranty.
 */
 package sim.util.distribution;
-import ec.util.MersenneTwisterFast;
 
 /**
  * Custom tailored numerical integration of certain probability distributions.

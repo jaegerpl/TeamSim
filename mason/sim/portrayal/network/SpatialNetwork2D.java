@@ -6,11 +6,9 @@
 
 package sim.portrayal.network;
 
-import sim.field.*;
-import sim.field.grid.*;
-import sim.field.continuous.*;
-import sim.field.network.*;
-import sim.util.*;
+import sim.field.SparseField2D;
+import sim.field.network.Network;
+import sim.util.Double2D;
 
 /** A wrapper used by NetworkPortrayal2D to hold a Network and EITHER a Continuous2D OR a SparseGrid2D (or some other SparseField2D).
     The Continuous2D/SparseGrid2D specifies the spatial location of the nodes; the Network specifies the

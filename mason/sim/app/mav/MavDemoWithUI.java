@@ -6,12 +6,19 @@
 
 package sim.app.mav;
 
-import sim.portrayal.continuous.*;
-import sim.portrayal.simple.*;
-import sim.engine.*;
-import sim.display.*;
-import javax.swing.*;
 import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.simple.CircledPortrayal2D;
+import sim.portrayal.simple.LabelledPortrayal2D;
+import sim.portrayal.simple.OrientedPortrayal2D;
+import sim.portrayal.simple.OvalPortrayal2D;
 
 public class MavDemoWithUI extends GUIState
     {

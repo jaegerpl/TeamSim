@@ -5,12 +5,12 @@
 */
 
 package sim.app.pacman;
-import java.awt.*;
-import sim.field.grid.*;
-import sim.portrayal.*;
-import sim.portrayal.grid.*;
-import java.awt.geom.*;
-import sim.util.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Arc2D;
+
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
 
 /**
    PacPortrayal draws the PacMan as an Arc2D which changes its angle

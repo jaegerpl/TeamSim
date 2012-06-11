@@ -5,8 +5,12 @@
 */
 
 package sim.app.lsystem;
-import sim.util.*;
-import sim.engine.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.util.Bag;
+import sim.util.Double2D;
+import sim.util.Double3D;
 
 // This is the steppable that interprets the fully expanded l-system
 

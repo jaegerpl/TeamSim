@@ -5,22 +5,35 @@
 */
 
 package sim.app.wcss.tutorial14;
-import sim.portrayal.network.*;
-import sim.portrayal.continuous.*;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.simple.*;
-import sim.portrayal.*;
-import javax.swing.*;
 import java.awt.Color;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.text.DecimalFormat;
 
-import sim.display3d.*;
-import sim.portrayal3d.continuous.*;
-import sim.portrayal3d.network.*;
-import sim.portrayal3d.simple.*;
-import java.text.*;
-import sim.field.network.*;
+import javax.swing.JFrame;
+
+import sim.display.Console;
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.field.network.Edge;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
+import sim.portrayal.network.NetworkPortrayal2D;
+import sim.portrayal.network.SimpleEdgePortrayal2D;
+import sim.portrayal.network.SpatialNetwork2D;
+import sim.portrayal.simple.CircledPortrayal2D;
+import sim.portrayal.simple.LabelledPortrayal2D;
+import sim.portrayal.simple.MovablePortrayal2D;
+import sim.portrayal.simple.OvalPortrayal2D;
+import sim.portrayal3d.continuous.ContinuousPortrayal3D;
+import sim.portrayal3d.network.CylinderEdgePortrayal3D;
+import sim.portrayal3d.network.NetworkPortrayal3D;
+import sim.portrayal3d.network.SimpleEdgePortrayal3D;
+import sim.portrayal3d.network.SpatialNetwork3D;
+import sim.portrayal3d.simple.ConePortrayal3D;
 
 public class StudentsWithUI extends GUIState
     {

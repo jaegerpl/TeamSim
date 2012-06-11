@@ -5,8 +5,13 @@
 */
 
 package sim.field.grid;
-import sim.field.*;
-import sim.util.*;
+import sim.field.SparseField;
+import sim.field.SparseField3D;
+import sim.util.Bag;
+import sim.util.Double3D;
+import sim.util.Int3D;
+import sim.util.IntBag;
+import sim.util.MutableInt3D;
 
 /**
    A storage facility for sparse objects in discrete 3D space, using HashMaps.  SparseGrid3D differs from ObjectGrid3D

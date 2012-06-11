@@ -6,13 +6,20 @@
 
 package sim.portrayal3d.grid;
 
-import sim.util.*;
-import sim.portrayal.*;
-import sim.portrayal3d.*;
-import sim.field.grid.*;
-import java.util.*;
-import javax.vecmath.*;
-import javax.media.j3d.*;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Vector3d;
+
+import sim.field.grid.SparseGrid2D;
+import sim.portrayal.Portrayal;
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.util.Bag;
+import sim.util.Int2D;
+import sim.util.MutableDouble;
 
 /**
  * Displays objects in a SparseGrid2D along the XY grid in a special way.  When multiple objects are 

@@ -5,21 +5,25 @@
 */
 package sim.util.media.chart;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import java.util.*;
-import sim.util.gui.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-// From JFreeChart (jfreechart.org)
-import org.jfree.data.xy.*;
-import org.jfree.chart.*;
-import org.jfree.chart.event.*;
-import org.jfree.chart.plot.*;
-import org.jfree.data.general.*;
-import org.jfree.chart.renderer.xy.*;
-import org.jfree.data.general.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
+import org.jfree.data.general.SeriesChangeListener;
+
+import sim.util.gui.LabelledList;
+import sim.util.gui.PropertyField;
 
 /** The superclass for the series-attributes widgets used by subclasses of ChartGenerator to let the user
     control individual series' features.  SeriesAttributes will be placed in the list at the bottom-left of

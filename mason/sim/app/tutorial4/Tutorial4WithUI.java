@@ -5,12 +5,18 @@
 */
 
 package sim.app.tutorial4;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.grid.*;
-import sim.portrayal.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.engine.SimState;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.grid.FastValueGridPortrayal2D;
+import sim.portrayal.grid.SparseGridPortrayal2D;
 
 public class Tutorial4WithUI extends GUIState
     {

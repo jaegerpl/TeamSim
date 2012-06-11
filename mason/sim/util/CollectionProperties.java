@@ -5,8 +5,12 @@
 */
 
 package sim.util;
-import java.util.*;
-import java.lang.reflect.*;
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
    A simple class for examining the slots of Maps, Collections, Indexed, and arrays as if the slots were Java Bean Properties.  Beware that Maps and non-List Collections perform O(n) scans just to give you the property you were looking for.  Lists, Indexed, and arrays are always O(1).  

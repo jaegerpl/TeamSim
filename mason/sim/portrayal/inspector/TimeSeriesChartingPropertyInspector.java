@@ -5,16 +5,20 @@
 */
 
 package sim.portrayal.inspector;
-import java.awt.*;
-import java.util.Iterator;
-import sim.util.*;
-import sim.display.*;
-import sim.engine.*;
-import sim.util.media.chart.*;
-import org.jfree.data.xy.*;
-import org.jfree.data.general.*;
-import org.jfree.chart.plot.*;
-import org.jfree.chart.*;
+import java.awt.Frame;
+
+import org.jfree.data.general.SeriesChangeEvent;
+import org.jfree.data.general.SeriesChangeListener;
+import org.jfree.data.xy.XYDataItem;
+import org.jfree.data.xy.XYSeries;
+
+import sim.display.GUIState;
+import sim.engine.Stoppable;
+import sim.util.Properties;
+import sim.util.Valuable;
+import sim.util.media.chart.ChartGenerator;
+import sim.util.media.chart.TimeSeriesAttributes;
+import sim.util.media.chart.TimeSeriesChartGenerator;
 
 /** A property inspector which generates time series of data.  Time series are extended in real-time
     as requested by the user.  Data properties for which

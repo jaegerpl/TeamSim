@@ -5,15 +5,24 @@
 */
 
 package sim.portrayal.continuous;
-import sim.portrayal.*;
-import sim.portrayal.simple.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
-import sim.portrayal.inspector.*;
-import sim.display.*;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+
+import sim.display.GUIState;
+import sim.field.continuous.Continuous2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.FieldPortrayal2D;
+import sim.portrayal.Fixed2D;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Portrayal;
+import sim.portrayal.SimplePortrayal2D;
+import sim.portrayal.inspector.StableDouble2D;
+import sim.portrayal.simple.OvalPortrayal2D;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 /**
    Portrays Continuous2D fields.  When asked to portray objects, this field computes the buckets

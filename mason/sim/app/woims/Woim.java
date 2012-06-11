@@ -6,11 +6,16 @@
 
 package sim.app.woims;
 
-import sim.util.*;
-import sim.engine.*;
-import java.awt.*;
-import sim.portrayal.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 public /*strictfp*/ class Woim extends SimplePortrayal2D implements Steppable
     {

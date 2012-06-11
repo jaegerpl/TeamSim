@@ -5,13 +5,13 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
-import java.awt.geom.*;
-import java.awt.*;
-import sim.portrayal.*;
+import java.awt.Rectangle;
+import java.awt.Shape;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** An Asteroid is an element representing, well, an Asteroid.   Asteroids may have a variety of shapes to choose
     from, and also various sizes.  Asteroids have random initial orientations and rotational velocity,

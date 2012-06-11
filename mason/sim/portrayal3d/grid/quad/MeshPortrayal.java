@@ -5,11 +5,11 @@
 */
 
 package sim.portrayal3d.grid.quad;
-import sim.util.*;
-import sim.util.gui.*;
-import sim.field.grid.*;
-import sim.portrayal3d.grid.*;
-import com.sun.j3d.utils.picking.*;
+import sim.field.grid.Grid2D;
+import sim.util.Int2D;
+import sim.util.gui.ColorMap;
+
+import com.sun.j3d.utils.picking.PickIntersection;
 
 /**
  * A QuadPortrayal which relates grid locations with <i>intersections</i> on a mesh (like positions on

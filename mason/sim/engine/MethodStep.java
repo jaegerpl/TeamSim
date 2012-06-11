@@ -5,8 +5,8 @@
 */
 
 package sim.engine;
-import java.lang.reflect.*;
-import sim.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /** 
     A Steppable which calls an underlying method using Java's reflection system.  The underlying method can either have no arguments

@@ -5,11 +5,13 @@
 */
 
 package sim.display;
-import javax.swing.*;
-import sim.portrayal.*;
-import sim.engine.*;
-import sim.util.*;
-import java.util.*;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+import sim.engine.Stoppable;
+import sim.portrayal.Inspector;
+import sim.util.Bag;
 
 /** A Controller is the top-level object responsible for setting up and running the GUIState.
     More or less, the Controller calls the init, start, step, finish, and quit methods on the GUIState.

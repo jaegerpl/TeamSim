@@ -5,8 +5,10 @@
 */
 
 package sim.field.network;
-import sim.util.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import sim.util.Bag;
 
 /** The Network is a field which stores binary graph and multigraph structures of all kinds, using hash tables to allow
     reasonably rapid dynamic modification.

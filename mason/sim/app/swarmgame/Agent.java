@@ -5,8 +5,10 @@
 */
 
 package sim.app.swarmgame;
-import sim.engine.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 public class Agent implements Steppable, sim.portrayal.Oriented2D
     {

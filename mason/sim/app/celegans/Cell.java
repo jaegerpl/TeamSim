@@ -8,10 +8,12 @@ package sim.app.celegans;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.lang.System;
-import sim.util.*;
-import sim.engine.*;
-import sim.field.continuous.*;
+
+import sim.engine.Schedule;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.util.Double3D;
 
 /*
   Cell.java

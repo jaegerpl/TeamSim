@@ -6,12 +6,16 @@
 
 package sim.app.woims3d;
 
-import sim.util.*;
-import sim.engine.*;
-import sim.portrayal3d.*;
-import sim.portrayal3d.simple.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Vector3d;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.portrayal3d.SimplePortrayal3D;
+import sim.portrayal3d.simple.SpherePortrayal3D;
+import sim.util.Bag;
+import sim.util.Double3D;
 
 /** 
     This class demonstrates that it is perfectly POSSIBLE to create a SimplePortrayal3D

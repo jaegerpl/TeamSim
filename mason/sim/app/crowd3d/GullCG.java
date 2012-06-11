@@ -2,7 +2,8 @@
     under the license given at the end of this file. */
         
 package sim.app.crowd3d;
-import javax.media.j3d.*;
+import javax.media.j3d.CompressedGeometry;
+import javax.media.j3d.CompressedGeometryHeader;
 
 public class GullCG extends CompressedGeometry 
     {

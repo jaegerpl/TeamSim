@@ -6,9 +6,12 @@
 
 // Class Segment
 package sim.app.lsystem;
-import java.awt.*;
-import sim.portrayal.*;
-import sim.util.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.SimplePortrayal2D;
+import sim.util.Bag;
 
 public  class Segment extends SimplePortrayal2D
     {

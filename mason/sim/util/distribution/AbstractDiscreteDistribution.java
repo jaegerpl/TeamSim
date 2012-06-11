@@ -7,7 +7,6 @@
   It is provided "as is" without expressed or implied warranty.
 */
 package sim.util.distribution;
-import ec.util.MersenneTwisterFast;
 
 /**
  * Abstract base class for all discrete distributions.

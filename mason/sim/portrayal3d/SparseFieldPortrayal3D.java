@@ -6,14 +6,18 @@
 
 package sim.portrayal3d;
 
-import sim.util.*;
-import sim.field.*;
-import sim.portrayal.*;
+import java.util.HashMap;
+import java.util.Iterator;
 
-import java.util.*;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Node;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.vecmath.Vector3d;
 
-import javax.media.j3d.*;
-import javax.vecmath.*;
+import sim.field.SparseField;
+import sim.portrayal.Portrayal;
+import sim.util.Bag;
 
 /**
  * An abstract superclass for all FieldPortrayal3Ds which display SparseFields.

@@ -5,8 +5,14 @@
 */
 
 package sim.util.gui;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /** LabelledList is a JPanel which makes it easy to set up two columns of
     Components, with the right column taking up the extra space if there is any.  

@@ -6,8 +6,6 @@ package de.haw.teamsim.agent.blackboard;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observer;
-
 
 import de.haw.teamsim.agent.Belief;
 import de.haw.teamsim.agent.Goal;

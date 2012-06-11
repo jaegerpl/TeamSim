@@ -5,14 +5,20 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.display.*;
-import sim.portrayal.continuous.*;
-import javax.swing.*;
-import java.awt.*;
-import sim.portrayal.simple.*;
-import sim.portrayal.SimplePortrayal2D;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
+
+import sim.display.Controller;
+import sim.display.Display2D;
+import sim.display.GUIState;
+import sim.display.SimpleController;
+import sim.engine.SimState;
+import sim.portrayal.continuous.ContinuousPortrayal2D;
 
 /** AsteroidsWithUI is the GUIState of the game.  It holds a single display and its frame; and the
     Controller of the game is set to be a SimpleController rather than a SimpleController.  AsteroidsWithUI

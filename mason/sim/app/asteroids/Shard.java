@@ -5,13 +5,13 @@
 */
 
 package sim.app.asteroids;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.util.*;
-import ec.util.*;
-import java.awt.geom.*;
-import java.awt.*;
-import sim.portrayal.*;
+import java.awt.Color;
+import java.awt.Shape;
+
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 /** Shard is an Element representing a broken-apart piece of something dying.    Shards vary
     in color and are provided their color during construction.  Shards don't

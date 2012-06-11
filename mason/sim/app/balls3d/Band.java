@@ -6,7 +6,6 @@
 
 package sim.app.balls3d;
 
-import sim.util.*;
 
 public class Band implements java.io.Serializable, sim.util.Valuable
     {

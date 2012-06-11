@@ -6,10 +6,16 @@
 
 package sim.portrayal3d.network;
 
-import java.awt.*;
-import javax.media.j3d.*;
-import sim.portrayal3d.simple.*;
-import com.sun.j3d.utils.geometry.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.media.j3d.Appearance;
+import javax.media.j3d.Node;
+
+import sim.portrayal3d.simple.PrimitivePortrayal3D;
+
+import com.sun.j3d.utils.geometry.Cylinder;
 
 /**
  * @author Gabriel Balan

@@ -5,8 +5,9 @@
 */
 
 package sim.app.tutorial6;
-import sim.engine.*;
-import sim.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.util.Double2D;
 
 public class Body implements Steppable
     {

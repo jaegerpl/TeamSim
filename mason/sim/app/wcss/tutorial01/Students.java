@@ -5,7 +5,7 @@
 */
 
 package sim.app.wcss.tutorial01;
-import sim.engine.*;
+import sim.engine.SimState;
 
 public class Students extends SimState
     {

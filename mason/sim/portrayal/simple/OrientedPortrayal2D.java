@@ -5,11 +5,24 @@
 */
 
 package sim.portrayal.simple;
-import sim.portrayal.*;
-import java.awt.*;
-import sim.display.*;
-import java.awt.geom.*;
-import java.awt.event.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
+
+import sim.display.GUIState;
+import sim.display.Manipulating2D;
+import sim.portrayal.DrawInfo2D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal.Oriented2D;
+import sim.portrayal.SimplePortrayal2D;
 
 /**
    A wrapper for other Portrayal2Ds which provides some kind of pointing object (typically a line)

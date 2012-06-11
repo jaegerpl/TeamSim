@@ -10,23 +10,38 @@
 
 package sim.display3d;
 
-import javax.media.j3d.*;
-import com.sun.j3d.utils.picking.*;
-import com.sun.j3d.utils.picking.behaviors.*;
+import java.awt.AWTEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.util.Enumeration;
 
-import javax.swing.*;
-import javax.vecmath.*;
+import javax.media.j3d.Bounds;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Canvas3D;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.WakeupCondition;
+import javax.media.j3d.WakeupCriterion;
+import javax.media.j3d.WakeupOnAWTEvent;
+import javax.media.j3d.WakeupOr;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.ToolTipManager;
+import javax.swing.border.EmptyBorder;
+import javax.vecmath.Point3d;
 
-import java.awt.event.*;
-import java.awt.*;
-import java.util.*;
+import sim.display.GUIState;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.util.gui.WordWrap;
 
-import sim.display.*;
-import sim.portrayal.*;
-import sim.portrayal3d.*;
-import sim.util.gui.*;
-
-import javax.swing.border.*;
+import com.sun.j3d.utils.picking.PickCanvas;
+import com.sun.j3d.utils.picking.PickIntersection;
+import com.sun.j3d.utils.picking.PickResult;
+import com.sun.j3d.utils.picking.behaviors.PickMouseBehavior;
 
 /**
  * A behavior similar to SelectionBehavior, except you don't have to

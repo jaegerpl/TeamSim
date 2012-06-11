@@ -6,17 +6,21 @@
 
 package sim.app.mousetraps3d;
 
-import sim.engine.*;
-import sim.display.*;
-import sim.display3d.*;
-import sim.app.mousetraps.*;
-import sim.util.gui.*;
-import sim.portrayal3d.grid.*;
-import sim.portrayal3d.simple.*;
-import sim.portrayal3d.continuous.*;
-import sim.portrayal3d.grid.quad.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import sim.app.mousetraps.MouseTraps;
+import sim.display.Controller;
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.engine.SimState;
+import sim.portrayal3d.continuous.ContinuousPortrayal3D;
+import sim.portrayal3d.grid.ValueGrid2DPortrayal3D;
+import sim.portrayal3d.grid.quad.TilePortrayal;
+import sim.portrayal3d.simple.SpherePortrayal3D;
+import sim.portrayal3d.simple.WireFrameBoxPortrayal3D;
+import sim.util.gui.SimpleColorMap;
 
 public class MouseTraps3DWithUI extends GUIState
     {

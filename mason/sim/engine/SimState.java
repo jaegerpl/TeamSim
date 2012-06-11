@@ -5,11 +5,24 @@
 */
 
 package sim.engine;
-import ec.util.*;
-import java.util.*;
-import java.io.*;
-import java.util.zip.*;
-import java.text.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
+import java.io.OutputStream;
+import java.text.NumberFormat;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
+
+import ec.util.MersenneTwisterFast;
 
 /** SimState represents the simulation proper.  Your simulations generally will contain one top-level object which subclasses from SimState.
 

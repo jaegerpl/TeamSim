@@ -9,7 +9,7 @@ package sim.app.pso3d;
 /**
    @author Ankur Desai and Joey Harrison
 */
-import sim.util.*;
+import sim.util.MutableDouble3D;
 
 public class Neighborhood3D
     {

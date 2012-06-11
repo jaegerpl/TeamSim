@@ -6,11 +6,18 @@
 
 package sim.portrayal3d.simple;
 
-import sim.portrayal3d.*;
-import sim.portrayal.*;
-import javax.media.j3d.*;
-import sim.display3d.*;
-import sim.display.*;
+import javax.media.j3d.Group;
+import javax.media.j3d.Link;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.SharedGroup;
+import javax.media.j3d.TransformGroup;
+
+import sim.display.GUIState;
+import sim.display3d.Display3D;
+import sim.portrayal.Inspector;
+import sim.portrayal.LocationWrapper;
+import sim.portrayal3d.FieldPortrayal3D;
+import sim.portrayal3d.SimplePortrayal3D;
  
 public class SharedPortrayal3D extends SimplePortrayal3D 
     {

@@ -5,11 +5,11 @@
 */
 
 package sim.app.pacman;
-import sim.engine.*;
-import sim.field.continuous.*;
-import sim.portrayal.Oriented2D;
-import sim.util.*;
-import ec.util.*;
+import sim.engine.SimState;
+import sim.engine.Steppable;
+import sim.engine.Stoppable;
+import sim.util.Bag;
+import sim.util.Double2D;
 
 /* The Pac is the Pac Man in the game.  Pac is an Agent and is also Steppable.  The Pac moves first, then the ghosts. */
 
