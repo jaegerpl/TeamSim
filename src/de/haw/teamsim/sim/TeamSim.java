@@ -16,6 +16,9 @@ import org.apache.log4j.Logger;
 
 import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;
+
+import com.hp.hpl.jena.rdf.model.Model;
+
 import de.haw.teamsim.agent.Agent;
 import de.haw.teamsim.semweb.SemanticGoalWeb;
 
@@ -23,6 +26,7 @@ public class TeamSim extends SimState {
 
 	private static final long serialVersionUID = 1L;
 	private String rdfLocation = "file:data/TeamSimGoalOntology.owl";
+	private static String uri = "http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl";
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 	
 	private Map<String, Team> teams; // the list of teams
@@ -30,6 +34,8 @@ public class TeamSim extends SimState {
 	private List<Agent> agents;		 // the agents of the simulation
 
 	public static Logger log = Logger.getLogger(TeamSim.class);
+	private SemanticGoalWeb goalWeb;
+	private static Model model;
 
 	public TeamSim(long seed) {
 		super(seed);
@@ -48,8 +54,9 @@ public class TeamSim extends SimState {
 		initAgents("data/AgentDefinition.txt");
 		
 		log.info("Reading ontology file");
-		SemanticGoalWeb goalWeb = new SemanticGoalWeb();
+		goalWeb = new SemanticGoalWeb(uri);
 		goalWeb.readRDFData(rdfLocation);
+		model = goalWeb.getModel();
 		
 		for(Agent a : agents){
 			schedule.scheduleRepeating(a);
@@ -113,6 +120,16 @@ public class TeamSim extends SimState {
 		}catch (Exception e){//Catch exception if any
 			System.err.println("Error: " + e.getMessage());
 		}
+	}
+	
+	public static Model getModel(){
+		if(model != null){
+			return model;
+		} else throw new UnsupportedOperationException("Model not initialized.");
+	}
+	
+	public static String getURI(){
+		return uri;
 	}
 
 	public static void main(String[] args) {

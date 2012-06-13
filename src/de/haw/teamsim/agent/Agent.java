@@ -1,18 +1,22 @@
 package de.haw.teamsim.agent;
 
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 
 import org.apache.log4j.Logger;
 
 import sim.engine.SimState;
 import sim.engine.Steppable;
-import de.haw.teamsim.semweb.SemanticGoalWeb;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Resource;
+
 import de.haw.teamsim.sim.Team;
 import de.haw.teamsim.sim.Team.Status;
+import de.haw.teamsim.sim.TeamSim;
 import de.haw.teamsim.sim.TeamStatusUpdate;
 
 public class Agent implements Steppable, Observer {
@@ -26,6 +30,8 @@ public class Agent implements Steppable, Observer {
 	private List<Agent> communicationPartners;
 	private String role;
 	private List<String> skills;
+	private Model goalModel;
+	private String uri;
 	
 	public void setRole(String role) {
 		this.role = role;
@@ -37,6 +43,8 @@ public class Agent implements Steppable, Observer {
 	public Agent(int id){
 		ID = id;
 		skills = new LinkedList<String>();
+		communicationPartners = new LinkedList<Agent>();
+		uri = TeamSim.getURI();
 	}
 	
 	public void setName(String name) {
@@ -59,6 +67,16 @@ public class Agent implements Steppable, Observer {
 	 * Initial doings to put agent into team context
 	 */
 	public void init(){
+		goalModel = TeamSim.getModel();
+		Resource myself = goalModel.createResource(uri+"#"+name)
+				.addProperty(de.haw.teamsim.semweb.vocabulary.Agent.plays, goalModel.createResource(uri+"#"+role));
+		try{
+			goalModel.write(new PrintWriter(System.out));
+        
+		} catch (Exception e) {
+			System.out.println("Failed: " + e);
+		}
+		
 		System.out.println("AGENT INIT STUFF");
 		log.debug("Agent "+name+" im Team registieren");
 		team.addObserver(this);

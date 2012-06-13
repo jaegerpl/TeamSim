@@ -3,12 +3,16 @@
  */
 package de.haw.teamsim.semweb;
 
+import org.apache.log4j.Logger;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
+
+import de.haw.teamsim.agent.Agent;
 
 /**
  * 
@@ -19,8 +23,10 @@ import com.hp.hpl.jena.util.FileManager;
  */
 public class SemanticGoalWeb {
 	
-	private String uri = "http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl";
+	private String uri;
 	private Model model;
+	private boolean modelInitialized = false;
+	public static Logger log = Logger.getLogger(SemanticGoalWeb.class);
 	
 	public Property subtask; 			// all conditions are also in the main goal
 	public Property responsible_for;	// some conditions are in the main goal, others are not
@@ -33,7 +39,8 @@ public class SemanticGoalWeb {
 	public Property use;				//
 	public Property used_by;		
 	
-	public SemanticGoalWeb(){
+	public SemanticGoalWeb(String URI){
+		uri = URI;
 		model = ModelFactory.createDefaultModel();
 		
 		// all properties of the ontology
@@ -58,7 +65,8 @@ public class SemanticGoalWeb {
 		
 		FileManager fm = FileManager.get();
 		fm.readModel(model, location, "RDF/XML");
-		System.out.println("Triple count after inserts: " + (model.size()));
+		log.debug("Triple count after inserts: " + (model.size()));
+		modelInitialized = true;
 		
 //		ResIterator parents = model.listSubjectsWithProperty(responsible_for);
 //		while (parents.hasNext()) {
@@ -78,6 +86,14 @@ public class SemanticGoalWeb {
 		while (result.hasNext()) {
 			Statement st = result.next();
 			System.out.println(st+"\n");
+		}
+	}
+	
+	public Model getModel(){
+		if(!modelInitialized){
+			throw new UnsupportedOperationException();
+		} else {
+			return model;
 		}
 	}
 
