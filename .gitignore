@@ -10,3 +10,5 @@
 # Package Files #
 *.war
 *.ear
+
+.classpath
