@@ -1,3 +1,4 @@
+*.classpath
 *.com
 *.class
 *.dll
@@ -5,10 +6,9 @@
 *.o
 *.so
 *.DS_Store
-*.classpath
 
 # Package Files #
 *.war
 *.ear
 
-.classpath
+

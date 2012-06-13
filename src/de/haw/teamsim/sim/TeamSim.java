@@ -45,7 +45,7 @@ public class TeamSim extends SimState {
 		world.clear();
 
 		log.info("Init Agents");
-		initAgents("/Users/pascal/Documents/TeamSim/data/AgentDefinition.txt");
+		initAgents("data/AgentDefinition.txt");
 		
 		log.info("Reading ontology file");
 		SemanticGoalWeb goalWeb = new SemanticGoalWeb();
