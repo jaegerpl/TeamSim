@@ -5,6 +5,7 @@
 *.o
 *.so
 *.DS_Store
+*.classpath
 
 # Package Files #
 *.war
