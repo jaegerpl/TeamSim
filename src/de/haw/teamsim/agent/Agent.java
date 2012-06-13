@@ -13,6 +13,7 @@ import sim.engine.Steppable;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 import de.haw.teamsim.sim.Team;
 import de.haw.teamsim.sim.Team.Status;
@@ -69,7 +70,8 @@ public class Agent implements Steppable, Observer {
 	public void init(){
 		goalModel = TeamSim.getModel();
 		Resource myself = goalModel.createResource(uri+"#"+name)
-				.addProperty(de.haw.teamsim.semweb.vocabulary.Agent.plays, goalModel.createResource(uri+"#"+role));
+				.addProperty(de.haw.teamsim.semweb.vocabulary.Agent.plays, goalModel.createResource(uri+"#"+role))
+				.addProperty(RDF.type, de.haw.teamsim.semweb.vocabulary.Agent.resource);
 		try{
 			goalModel.write(new PrintWriter(System.out));
         

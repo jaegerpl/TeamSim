@@ -5,10 +5,12 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 
+import de.haw.teamsim.sim.TeamSim;
+
 public class Role {
 
 	// URI for vocabulary elements
-    protected static final String uri = "http://burningbird.net/postcon/elements/1.0/";
+    protected static final String uri = TeamSim.getURI();
     
     // Return URI for vocabulary elements
     public static String getURI(  ){
@@ -24,7 +26,7 @@ public class Role {
     public static       Property requires = null;
 	   static final String   nworks_in = "works_in";
 	public static       Property works_in = null;
-	   	   static final String   nresource = "resource";
+	   	   static final String   nresource = "Role";
 	public static       Resource resource = null;
 	
 	// Instantiate the properties and the resource
@@ -34,7 +36,7 @@ public class Role {
         	plays    = new PropertyImpl(uri, nplays);
         	requires = new PropertyImpl(uri, nrequires);
         	works_in = new PropertyImpl(uri, nworks_in);
-        	resource 		= new ResourceImpl(uri+nresource);
+        	resource 		= new ResourceImpl(uri+"#"+nresource);
     }
     
 }
