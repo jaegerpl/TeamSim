@@ -11,4 +11,6 @@
 *.war
 *.ear
 
+#Folder
+bin/
 
