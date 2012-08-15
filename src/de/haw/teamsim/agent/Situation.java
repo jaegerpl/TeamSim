@@ -1,11 +1,10 @@
 /**
  * 
  */
-package de.haw.teamsim.agent.blackboard;
+package de.haw.teamsim.agent;
 
 import java.util.List;
 
-import de.haw.teamsim.agent.Belief;
 
 /**
  * A situation is a list of believes that describe the situation

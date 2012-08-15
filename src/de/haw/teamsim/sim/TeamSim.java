@@ -65,7 +65,7 @@ public class TeamSim extends SimState {
 	}
 	
 	/**
-	 * Reads the agents form the init file and adds them to the simulation.
+	 * Reads the agents from the init file and adds them to the simulation.
 	 * 
 	 * @param location
 	 */

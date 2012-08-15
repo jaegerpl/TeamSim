@@ -1,13 +1,14 @@
  /**
  * 
  */
-package de.haw.teamsim.agent.ekb;
+package de.haw.teamsim.agent.components;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.haw.teamsim.agent.Belief;
+import de.haw.teamsim.agent.Experience;
 
 /**
  * @author pascal
