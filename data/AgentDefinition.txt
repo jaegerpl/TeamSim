@@ -1,17 +1,17 @@
 Agent
 Name: Paul
-Role: Role1
+Role: ChiefOfStaff
 Team: Team1
 Skill: Skill1, Skill2, Skill3;
 #
 Agent
 Name: Linda
-Role: Role2
+Role: S2
 Team: Team1
 Skill: Skill1, Skill4, Skill5, Skill6;
 #
 Agent
 Name: Simon
-Role: Role3
+Role: S3
 Team: Team1
 Skill: Skill2, Skill5;

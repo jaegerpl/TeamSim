@@ -12,10 +12,23 @@ public class Belief extends Observable{
 	
 	private final String name;
 	private Object fact;
+	private float certainty;	// how certain is the agent about the fact
 	
 	public Belief(String name, Object fact){
 		this.name = name;
 		this.fact = fact;
+		this.certainty = 1;
+	}
+	
+	/**
+	 * Creates a new Belief with a name, the fact, i.e. the belief and a certainty of the agent about the fact
+	 * @param name
+	 * @param fact
+	 * @param certainty - a value between 0 and 1
+	 */
+	public Belief(String name, Object fact, float certainty){
+		this(name, fact);
+		this.certainty = certainty;
 	}
 	
 	/**
@@ -30,8 +43,19 @@ public class Belief extends Observable{
 		return f;
 	}
 	
+	public float updateCertainty(float certainty){
+		float old = certainty;
+		this.certainty = certainty;
+		notifyObservers(name);
+		return old;
+	}
+	
 	public Object getFact(){
 		return fact;
+	}
+	
+	public float getCertainty(){
+		return certainty;
 	}
 	
 	public String getName(){

@@ -10,7 +10,9 @@ import java.util.Observer;
 
 
 /**
- * A Goal is basically a list of conditions (beliefs) that need to be fulfilled for the goal to be reached.
+ * A <code>Goal</code> is basically a list of conditions (<code>Belief</code>s) that need to be 
+ * fulfilled for the goal to be reached. A <code>Goal</code> may have a <code>Plan</code> attached to it,
+ * that describes how to <code>Goal</code> is ought to be reached. 
  * 
  * @author pascal
  *
