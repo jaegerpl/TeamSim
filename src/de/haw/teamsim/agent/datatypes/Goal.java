@@ -17,24 +17,27 @@ import java.util.Observer;
  * @author pascal
  *
  */
-public class Goal implements Observer{
+public class Goal{
 	
 	private static int ID = 0;
 	private Plan plan = null;
-	private List<Belief> conditions;		
+	private List<Condition> conditions;		
 	private Integer id;
 	private float priority;
 	private boolean achieved;	
 	
 	public Goal(){
-		conditions = new LinkedList<Belief>();
+		conditions = new LinkedList<Condition>();
 		this.id = ++ID;	
 		priority = 0;
 	}
 	
 	public void addCondition(Belief b){
-			conditions.add(b);
-			b.addObserver(this);
+		if(!hasCondition(b)){
+			Condition cond = new Condition(b, this);
+			conditions.add(cond);
+			b.addObserver(cond);
+		}		
 	}
 	
 	public Integer getID(){
@@ -48,19 +51,20 @@ public class Goal implements Observer{
 	public float getPriority(){
 		return priority;
 	}
-
-	@Override
-	public void update(Observable obs, Object obj) {
-		Belief b;
-		if(obs instanceof Belief){
-			b = (Belief)obs;
-			for(Belief bel : conditions){
-				if(b.getName().equals(bel.getName())){
-					bel.setFact(b.getFact());
-					return;
-				}
+	
+	/**
+	 * Checks all conditions if the contain the given Belief
+	 * 
+	 * @param b
+	 * @return
+	 */
+	private boolean hasCondition(Belief b){
+		for(Condition c : conditions){
+			if(c.belief.equals(b)){
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public boolean isAchieved(){		
@@ -68,16 +72,30 @@ public class Goal implements Observer{
 	}
 	
 	private void checkGoalAchieved(){
-		
+		boolean temp = true;
+		for(Condition c : conditions){
+			if(c.isAchieved() == false){
+				temp = false;
+			}
+		}
+		achieved = temp;
 	}
 	
-	private class Condition{
+	/**
+	 * A Condition wraps a Belief and adds a status indicating that this condition has been achieved.
+	 * 
+	 * @author pascal
+	 *
+	 */
+	private class Condition implements Observer{
 		
 		private Belief belief;
+		private Goal goal;
 		private boolean achieved;
 		
-		public Condition(Belief b){
+		public Condition(Belief b, Goal g){
 			belief = b;
+			goal = g;
 		}
 		
 		private void setAchieved(boolean b){
@@ -86,6 +104,15 @@ public class Goal implements Observer{
 		
 		private boolean isAchieved(){
 			return achieved;
+		}
+
+		@Override
+		public void update(Observable obs, Object obj) {
+			Belief b = (Belief)obs;
+			if(belief.getFact().equals(b.getFact())){
+				setAchieved(true);
+				goal.checkGoalAchieved();
+			}
 		}
 	}
 
