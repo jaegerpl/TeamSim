@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.agent;
+package de.haw.teamsim.agent.datatypes;
 
 import java.util.List;
 

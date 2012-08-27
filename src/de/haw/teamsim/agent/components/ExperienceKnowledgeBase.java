@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.haw.teamsim.agent.Belief;
-import de.haw.teamsim.agent.Experience;
+import de.haw.teamsim.agent.datatypes.Belief;
+import de.haw.teamsim.agent.datatypes.Experience;
 
 /**
  * @author pascal

@@ -1,4 +1,4 @@
-package de.haw.teamsim.agent;
+package de.haw.teamsim.agent.datatypes;
 
 import java.util.Observable;
 
@@ -36,14 +36,14 @@ public class Belief extends Observable{
 	 * @param fact
 	 * @return the old fact
 	 */
-	public Object updateFact(Object fact){
+	public Object setFact(Object fact){
 		Object f = fact;
 		this.fact = fact;
 		notifyObservers(name);
 		return f;
 	}
 	
-	public float updateCertainty(float certainty){
+	public float setCertainty(float certainty){
 		float old = certainty;
 		this.certainty = certainty;
 		notifyObservers(name);
@@ -81,7 +81,7 @@ public class Belief extends Observable{
 	}
 	
 	public String toString(){
-		return "Belief("+name+", "+fact+")";
+		return "Belief(name: "+name+", fact: "+fact+", certainty: "+certainty+")";
 	}
 
 }

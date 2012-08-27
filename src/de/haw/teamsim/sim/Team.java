@@ -9,7 +9,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import de.haw.teamsim.agent.Agent;
-import de.haw.teamsim.agent.Belief;
+import de.haw.teamsim.agent.datatypes.Belief;
+
 
 /**
  * The Team is the framework for agents to know about other team members availability and to broadcast information to active team members.

@@ -15,6 +15,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
 
+import de.haw.teamsim.agent.datatypes.Belief;
 import de.haw.teamsim.sim.Team;
 import de.haw.teamsim.sim.Team.Status;
 import de.haw.teamsim.sim.TeamSim;

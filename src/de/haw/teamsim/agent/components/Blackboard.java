@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.haw.teamsim.agent.Belief;
-import de.haw.teamsim.agent.Goal;
-import de.haw.teamsim.agent.Plan;
-import de.haw.teamsim.agent.Situation;
-import de.haw.teamsim.agent.Task;
+import de.haw.teamsim.agent.datatypes.Belief;
+import de.haw.teamsim.agent.datatypes.Goal;
+import de.haw.teamsim.agent.datatypes.Plan;
+import de.haw.teamsim.agent.datatypes.Situation;
+import de.haw.teamsim.agent.datatypes.Task;
 
 /**
  * The blackboard stores data that is currently important for the agent. To support situation awareness for other agents the blackboard stores situations.
@@ -44,7 +44,7 @@ public class Blackboard implements Runnable {
 	
 	public void updateBelief(String name, Object fact){
 		if(beliefs.containsKey(name)){
-			beliefs.get(name).updateFact(fact);
+			beliefs.get(name).setFact(fact);
 		} else {
 			beliefs.put(name, new Belief(name, fact));
 		}

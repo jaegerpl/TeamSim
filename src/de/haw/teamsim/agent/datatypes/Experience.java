@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.agent;
+package de.haw.teamsim.agent.datatypes;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 public class Experience {
 	
 	private List<Belief> beliefs;
-	private List<String> expectancies;
+	private List<Expectation> expectations;
 	private List<String> cues;
 	private List<Goal> goals;
 	private List<Plan> plans;
@@ -22,14 +22,14 @@ public class Experience {
 	
 	public Experience(Integer id){
 		this.id = id;
-		expectancies = new LinkedList<String>();
+		expectations = new LinkedList<Expectation>();
 		cues = new LinkedList<String>();
 		goals = new LinkedList<Goal>();
 		plans = new LinkedList<Plan>();
 	}
 
-	public void addExpectancies(String expectancie) {
-		expectancies.add(expectancie);
+	public void addExpectancies(Expectation expectation) {
+		expectations.add(expectation);
 	}
 
 	public void addCues(String cue) {

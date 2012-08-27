@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.agent;
+package de.haw.teamsim.agent.datatypes;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,20 +20,31 @@ import java.util.Observer;
 public class Goal implements Observer{
 	
 	private Plan plan = null;
-	private List<Belief> goalConditions;		
+	private List<Belief> conditions;		
 	private Integer id;
+	private float priority;
 	
 	public Goal(Integer id){
-		goalConditions = new LinkedList<Belief>();
+		conditions = new LinkedList<Belief>();
 		this.id = id;
+		priority = 0;
 	}
 	
 	public void addCondition(Belief b){
-			goalConditions.add(b);
+			conditions.add(b);
+			b.addObserver(this);
 	}
 	
 	public Integer getID(){
 		return id;
+	}
+	
+	public void setPriority(float prio){
+		priority = prio;
+	}
+	
+	public float getPriority(){
+		return priority;
 	}
 
 	@Override
@@ -41,9 +52,9 @@ public class Goal implements Observer{
 		Belief b;
 		if(obs instanceof Belief){
 			b = (Belief)obs;
-			for(Belief bel : goalConditions){
+			for(Belief bel : conditions){
 				if(b.getName().equals(bel.getName())){
-					bel.updateFact(b.getFact());
+					bel.setFact(b.getFact());
 					return;
 				}
 			}
