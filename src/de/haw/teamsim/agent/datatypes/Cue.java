@@ -5,7 +5,7 @@ package de.haw.teamsim.agent.datatypes;
 
 /**
  * A cue is a fact about a world state that, if becoming true, 
- * it immediately alerts the agent monitoring the cue. 
+ * immediately alerts the agent monitoring the cue. 
  * It triggers an action associated with the cue. 
  * This trigger is part of the experience.<br>
  * <br>
