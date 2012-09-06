@@ -3,8 +3,6 @@ package de.haw.teamsim.agent;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
@@ -15,54 +13,46 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
 
-import de.haw.teamsim.agent.datatypes.Belief;
-import de.haw.teamsim.sim.Team;
-import de.haw.teamsim.sim.Team.Status;
+import de.haw.teamsim.agent.components.Communication;
 import de.haw.teamsim.sim.TeamSim;
-import de.haw.teamsim.sim.TeamStatusUpdate;
+import de.haw.teamsim.team.Team;
 
-public class Agent implements Steppable, Observer {
-	
-	public enum AgentRole {Manager, FireDepartement, PolicyDepartement}
+public class Agent implements Steppable {
 	
 	private String name;
 	private Integer ID;
 	private Team team;
-	private Status myTeamStatus;
-	private List<Agent> communicationPartners;
 	private String role;
 	private List<String> skills;
 	private Model goalModel;
 	private String uri;
-	
-	public void setRole(String role) {
-		this.role = role;
-	}
+	private ICommunication communication;
 
 	public static Logger log = Logger.getLogger(Agent.class);
 	
 	
-	public Agent(int id){
+	public Agent(int id, Team team){
 		ID = id;
+		this.team = team;
 		skills = new LinkedList<String>();
-		communicationPartners = new LinkedList<Agent>();
 		uri = TeamSim.getURI();
+		communication = new Communication(team, this); 
 	}
 	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getName(){
+		return name;
+	}
 
 	public void setID(Integer iD) {
 		ID = iD;
 	}
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
 	
 	public void step(SimState state) {
-
+		// TODO implement
 	}
 	
 	/**
@@ -80,33 +70,7 @@ public class Agent implements Steppable, Observer {
 			System.out.println("Failed: " + e);
 		}
 		
-		System.out.println("AGENT INIT STUFF");
-		log.debug("Agent "+name+" im Team registieren");
-		team.addObserver(this);
-		log.debug("Agent "+name+" lädt Teammitglieder-Liste");
-		communicationPartners.addAll(team.getTeamMembers());
-		log.debug(name+" kennt jetzt "+communicationPartners.toString());
-		team.sendInfo2Team(new Belief(name, "Hi, ich bin "+name));
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		log.debug(name+" erhält update information: "+arg+" von "+o);
-		TeamStatusUpdate tsu;
-		if(arg instanceof TeamStatusUpdate){
-			tsu = (TeamStatusUpdate)arg;
-			if(tsu.status == Status.suspended){
-				communicationPartners.remove(tsu.agent);
-				log.debug(name+" weiß, dass "+tsu.agent+" das Team verlassen hat.");
-			} else if(tsu.status == Status.active){
-				communicationPartners.add(tsu.agent);
-				log.debug(name+" kennt jetzt auch "+tsu.agent+".");
-			}
-		} else if(arg instanceof Belief){
-			Belief b;
-			b = (Belief)arg;
-			log.debug(name+" weiß jetzt von "+o+", dass "+b);
-		}
+		team.addTeamMember(this);
 	}
 	
 	public String toString(){
@@ -119,5 +83,26 @@ public class Agent implements Steppable, Observer {
 	
 	public void addSkill(String skill) {
 		skills.add(skill);	
+	}
+
+	/**
+	 * Returns a value that indicates how good the agent can receive, understand and use the information
+	 * in its current situation
+	 */
+	public float getRetentiveness() {
+		// TODO implement
+		return 0;
+	}
+	
+	public void receiveInformation(Agent sender, String topic, int priority, Object info){
+		communication.receiveInformation(sender, topic, priority, info);
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	public String getRole(){
+		return role;
 	}
 }

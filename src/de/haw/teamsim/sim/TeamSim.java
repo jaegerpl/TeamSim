@@ -4,10 +4,8 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.BasicConfigurator;
@@ -21,6 +19,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 
 import de.haw.teamsim.agent.Agent;
 import de.haw.teamsim.semweb.SemanticGoalWeb;
+import de.haw.teamsim.team.Team;
 
 public class TeamSim extends SimState {
 
@@ -29,7 +28,7 @@ public class TeamSim extends SimState {
 	private static String uri = "http://www.semanticweb.org/ontologies/2012/5/TeamSimGoalOntology.owl";
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 	
-	private Map<String, Team> teams; // the list of teams
+	private Team team;
 	private int agentCount = 1;		 // the agent ID 
 	private List<Agent> agents;		 // the agents of the simulation
 
@@ -42,8 +41,9 @@ public class TeamSim extends SimState {
 		BasicConfigurator.configure();
 		log.setLevel(Level.ALL);
 		
-		teams = new HashMap<String, Team>();
 		agents = new LinkedList<Agent>();
+		
+		team = new Team("CrisisTeam");
 	}
 
 	public void start() {
@@ -88,21 +88,14 @@ public class TeamSim extends SimState {
 						if(agent != null){
 							System.out.println(agent);
 						}
-						agent = new Agent(agentCount++);
+						agent = new Agent(agentCount++, team);
 						agents.add(agent);
 					} else if(token.equals("Name:")){
 						agent.setName(strtok.nextToken());
 					} else if(token.equals("Role:")){
 						agent.setRole(strtok.nextToken());
 					} else if(token.equals("Team:")){
-						String teamname = strtok.nextToken();
-						if(teams.containsKey(teamname)){
-							agent.setTeam(teams.get(teamname));
-						} else {
-							Team t =new Team(teamname);
-							teams.put(teamname, t);
-							agent.setTeam(t);
-						}
+						// TODO reimplement logic for TEAMS
 					} else if(token.equals("Skill:")){
 						while(strtok.hasMoreTokens()){
 							String skillstr = strtok.nextToken();

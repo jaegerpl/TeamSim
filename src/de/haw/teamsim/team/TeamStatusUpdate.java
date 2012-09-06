@@ -1,7 +1,7 @@
-package de.haw.teamsim.sim;
+package de.haw.teamsim.team;
 
 import de.haw.teamsim.agent.Agent;
-import de.haw.teamsim.sim.Team.Status;
+import de.haw.teamsim.team.Team.Status;
 
 public class TeamStatusUpdate {
 	
