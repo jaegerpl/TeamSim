@@ -4,7 +4,9 @@
 package de.haw.teamsim.agent.datatypes;
 
 /**
- * A course of action how to reach a defined (sub)state of the world, i.e. a goal.
+ * Plans form an ordered list of actions that describe how the world can be 
+ * transformed from the current state into a state where every goal condition 
+ * is fulfilled.
  * 
  * @author pascal
  *

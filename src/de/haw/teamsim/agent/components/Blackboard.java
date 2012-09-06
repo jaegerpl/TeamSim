@@ -3,9 +3,11 @@
  */
 package de.haw.teamsim.agent.components;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import de.haw.teamsim.agent.datatypes.Belief;
 import de.haw.teamsim.agent.datatypes.Goal;
@@ -22,19 +24,33 @@ import de.haw.teamsim.agent.datatypes.Task;
 
 public class Blackboard implements Runnable {
 	
-	HashMap<String, Belief> beliefs;
-	HashMap<Integer, Goal> suspendedGoals;
-	Goal activeGoal;
-	List<Situation> situations;
-	List<Task> tasks;
-	List<Plan> plans;
+	private HashMap<String, Belief> beliefs;
+//	private HashMap<Integer, Goal> suspendedGoals;
+//	private Goal activeGoal;
+	private List<Situation> situations;
+	private List<Task> tasks;
+	private List<Plan> plans;
+	private PriorityQueue<Goal> goals;
 	
 	public Blackboard(){
 		beliefs = new HashMap<String, Belief>();
-		suspendedGoals = new HashMap<Integer, Goal>();
+//		suspendedGoals = new HashMap<Integer, Goal>();
 		situations = new LinkedList<Situation>();
 		plans = new LinkedList<Plan>();
 		tasks = new LinkedList<Task>();
+		goals = new PriorityQueue<Goal>(0, new Comparator<Goal>() {
+			// write TestCase for ordering
+			@Override
+			public int compare(Goal g1, Goal g2) {
+				if(g1.getPriority() < g2.getPriority()){
+					return -1;
+				} else if(g1.getPriority() > g2.getPriority()){
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		});
 	}
 
 	@Override
@@ -51,8 +67,8 @@ public class Blackboard implements Runnable {
 	}
 	
 	public void addGoal(Goal g){
-		if(!suspendedGoals.containsKey(g.getID())){
-			suspendedGoals.put(g.getID(), g);
+		if(!goals.contains((g.getID()))){
+			goals.add(g);
 		}
 	}
 	
@@ -77,6 +93,15 @@ public class Blackboard implements Runnable {
 			suspendedGoals.put(oldGoal.getID(), oldGoal);
 		}
 		return oldGoal;
+	}
+	
+	/**
+	 * Chooses a goal to process it one step further.
+	 * This method can be extracted to implement different scheduling algorithms (like round robin, fifo or highest prio first)
+	 * This one is a highest priority first.
+	 */
+	public void workOnGoal(){
+		
 	}
 	
 }

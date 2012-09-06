@@ -108,6 +108,7 @@ public class Goal{
 
 		@Override
 		public void update(Observable obs, Object obj) {
+			// write TestCase for update Observer
 			Belief b = (Belief)obs;
 			if(belief.getFact().equals(b.getFact())){
 				setAchieved(true);

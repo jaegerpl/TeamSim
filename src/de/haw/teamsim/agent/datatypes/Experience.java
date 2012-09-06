@@ -8,6 +8,13 @@ import java.util.List;
 
 
 /**
+ * Experiences are stored in an Experience Knowledge Base (EKB) and describe 
+ * knowledge the agent has gathered during earlier situations. Beliefs describe 
+ * the situation to which the experience matches. From the earlier situation, 
+ * the agent has stored Goals, Cues, Expectancies and Plans which he now recalls. 
+ * He can mentally simulate the plan if it will achieve the described goals, but 
+ * does not have to develop a plan.
+ * 
  * @author pascal
  *
  */
