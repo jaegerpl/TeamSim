@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
 
 /**
@@ -21,13 +22,13 @@ public class Goal{
 	
 	private static int ID = 0;
 	private Plan plan = null;
-	private List<Condition> conditions;		
+	private Set<Condition> conditions;		
 	private Integer id;
 	private float priority;
 	private boolean achieved;	
 	
 	public Goal(){
-		conditions = new LinkedList<Condition>();
+		conditions = new HashSet<Condition>();
 		this.id = ++ID;	
 		priority = 0;
 	}
