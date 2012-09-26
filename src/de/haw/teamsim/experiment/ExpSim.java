@@ -5,10 +5,11 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.BasicConfigurator;
@@ -18,18 +19,13 @@ import org.apache.log4j.Logger;
 import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;
 
-import com.hp.hpl.jena.rdf.model.Model;
-
-import de.haw.teamsim.agent.Agent;
-import de.haw.teamsim.semweb.SemanticGoalWeb;
-import de.haw.teamsim.team.Team;
-
 public class ExpSim extends SimState {
 
 	private static final long serialVersionUID = 1L;
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 
 	private List<ExpAgent> agents;		 // the agents of the simulation
+	private Map<ExpAgent, ExpAction> executableActions;
 
 	public static Logger log = Logger.getLogger(ExpSim.class);
 
@@ -39,6 +35,7 @@ public class ExpSim extends SimState {
 		log.setLevel(Level.ALL);
 		
 		agents = new LinkedList<ExpAgent>();
+		executableActions = new HashMap<ExpAgent, ExpAction>();
 	}
 
 	public void start() {
@@ -67,8 +64,11 @@ public class ExpSim extends SimState {
 		ExpAgent c = new ExpAgent();
 		
 		a.addAgents(b, c);
+		a.setSimulation(this);
 		b.addAgents(a, c);
+		b.setSimulation(this);
 		c.addAgents(a, b);
+		c.setSimulation(this);
 		
 		//Read Actions
 		StringTokenizer strtok;
@@ -90,7 +90,8 @@ public class ExpSim extends SimState {
 							int prio = new Integer(strtok.nextToken());
 							int duration = new Integer(strtok.nextToken());
 							int pred = new Integer(strtok.nextToken());
-							actions.add(new ExpAction(prio, duration, pred));
+							int succ = new Integer(strtok.nextToken());
+							actions.add(new ExpAction(prio, duration, pred, succ));
 						}							
 					}
 				}
@@ -117,8 +118,45 @@ public class ExpSim extends SimState {
 		}
 	}
 	
+	/**
+	 * Returns true, if the action has been accept for execution.
+	 * Returns false, if agent already has an action submitted for execution.
+	 * 
+	 * @param action
+	 * @param submitter
+	 * @return
+	 */
+	public boolean submitForExecution(ExpAction action, ExpAgent submitter){
+		if(!executableActions.containsValue(submitter)){
+			executableActions.put(submitter, action);
+			return true;
+		}
+		return false;
+	}
+	
 	public static void main(String[] args) {
 		doLoop(ExpSim.class, args);
 		System.exit(0);
+	}
+
+	/**
+	 * ExpSim is notified by an executed action, that it is finished and a new
+	 * action can be executed now.
+	 */
+	public void startNextRound() {
+		// randomly chose an action for execution.
+		Collections.shuffle((List<?>) executableActions);
+		ExpAction action = executableActions.get(0);
+		action.execute(this);
+		for(int i = 1; i <= executableActions.size(); i++){
+			ExpAction ac = executableActions.get(i);
+			ExpAgent owner = ac.getOwner();
+			owner.notifyActionRejected(ac);
+		}
+		
+		// one action has been chosen, so agents can submit new actions for submission now
+		for(ExpAgent a : agents){
+			a.notifyForNextSubmission();
+		}
 	}
 }
