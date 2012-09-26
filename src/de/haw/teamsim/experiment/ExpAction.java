@@ -26,6 +26,14 @@ public class ExpAction implements Steppable{
 		this.owner = null;
 	}
 
+	public void setPredecessor(int predecessor) {
+		this.predecessor = predecessor;
+	}
+
+	public void setSuccessor(int successor) {
+		this.successor = successor;
+	}
+
 	public int getID() {
 		return ID;
 	}

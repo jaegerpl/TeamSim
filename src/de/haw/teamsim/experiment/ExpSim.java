@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class ExpSim extends SimState {
 
 	private List<ExpAgent> agents;		 // the agents of the simulation
 	private Map<ExpAgent, ExpAction> executableActions;
+	private List<ExpAction> actionList;
 
 	public static Logger log = Logger.getLogger(ExpSim.class);
 
@@ -43,10 +45,51 @@ public class ExpSim extends SimState {
 		world.clear();
 
 		log.info("Init Agents");
-		initAgents("data/AgentDefinition.txt");
+//		initAgents("data/AgentDefinition.txt");
+		initAgents();
+		createActions();
 		
 		for(ExpAgent a : agents){
 			schedule.scheduleRepeating(a);
+		}
+	}
+	
+	private void createActions(){
+		int actionCount = 40;
+		int prio = 1;
+		
+		// create actions
+		for(int i = 1; i <= actionCount; i++){
+			if(prio == 5){
+				prio = 1;
+			}
+			actionList.add(new ExpAction(prio, 10, 0, 0));
+			prio++;
+		}
+		
+		// create random ordering of actions.
+		Collections.shuffle(actionList);
+		for(int i = 0; i <= actionList.size(); i++){
+			ExpAction a = actionList.get(i);
+			if(i>0){
+				a.setPredecessor(actionList.get(i-1).getID());
+			}
+			if(i<actionList.size()){
+				a.setSuccessor(actionList.get(i+1).getID());
+			}
+		}
+		
+		// Randomly split the actions over the agents
+		Collections.shuffle(actionList);
+		Iterator<ExpAction> iter = actionList.iterator();
+		int index = 0;
+		while(iter.hasNext()){
+			if(index == agents.size()-1){
+				index = 0;
+			}
+			ExpAgent agent = agents.get(index);
+			agent.addAction(iter.next());
+			index++;
 		}
 	}
 	
@@ -55,13 +98,11 @@ public class ExpSim extends SimState {
 	 * 
 	 * @param location
 	 */
-	private void initAgents(String location){
+	private void initAgents(){
 		
-		List<ExpAction> actions = new LinkedList<ExpAction>();
-		
-		ExpAgent a = new ExpAgent();
-		ExpAgent b = new ExpAgent();
-		ExpAgent c = new ExpAgent();
+		ExpAgent a = new EgoAgent();
+		ExpAgent b = new EgoAgent();
+		ExpAgent c = new EgoAgent();
 		
 		a.addAgents(b, c);
 		a.setSimulation(this);
@@ -69,6 +110,15 @@ public class ExpSim extends SimState {
 		b.setSimulation(this);
 		c.addAgents(a, b);
 		c.setSimulation(this);
+	}
+	
+	/**
+	 * Reads a list of actions from disk
+	 * @param location
+	 */
+	private void readActionsFromDisk(String location, ExpAgent a, ExpAgent b, ExpAgent c){
+		
+		List<ExpAction> actions = new LinkedList<ExpAction>();
 		
 		//Read Actions
 		StringTokenizer strtok;

@@ -13,13 +13,13 @@ import sim.engine.Steppable;
  * @author pascal
  *
  */
-public class ExpAgent implements Steppable {
+public abstract class ExpAgent implements Steppable {
 	
-	private Set<ExpAction> actions;
-	private ExpAgent agent_A;
-	private ExpAgent agent_B;
-	private boolean submit = false;
-	private ExpSim sim = null;
+	protected Set<ExpAction> actions;
+	protected ExpAgent agent_A;
+	protected ExpAgent agent_B;
+	protected boolean submit = false;
+	protected ExpSim sim = null;
 	
 	
 	public ExpAgent(){
@@ -52,15 +52,7 @@ public class ExpAgent implements Steppable {
 
 
 	@Override
-	public void step(SimState state) {
-		if(submit){
-			ExpAction action = null; // TODO get action from somewhere
-			sim.submitForExecution(action, this);
-			submit = false;
-		}
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void step(SimState state);
 
 	/**
 	 * Called when the simulation has chosen another action to be executed.
