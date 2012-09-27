@@ -3,11 +3,14 @@
  */
 package de.haw.teamsim.experiment;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import sim.engine.SimState;
 import sim.engine.Steppable;
+import sim.engine.Stoppable;
 
 /**
  * @author pascal
@@ -19,10 +22,15 @@ public abstract class ExpAgent implements Steppable {
 	protected ExpAgent agent_A;
 	protected ExpAgent agent_B;
 	protected boolean submit = false;
+	/** if agent may submit an agent */
 	protected ExpSim sim = null;
+	protected String name;
+	protected Stoppable stoppable;
 	
 	
-	public ExpAgent(){
+	public ExpAgent(String name){
+		actions = new HashSet<ExpAction>();
+		this.name = name;
 	}
 	
 	public void addAgents(ExpAgent a, ExpAgent b){
@@ -33,12 +41,14 @@ public abstract class ExpAgent implements Steppable {
 	public void addAction(ExpAction action){
 		action.setOwner(this);
 		actions.add(action);
+		System.out.println("Action with ID: "+action.getID()+" added");
 	}
 	
 	public void addActions(List<ExpAction> action){
 		for(ExpAction ac : action){
 			ac.setOwner(this);
 			actions.add(ac);
+			System.out.println("Action with ID: "+ac.getID()+" added");
 		}
 	}
 	
@@ -62,5 +72,14 @@ public abstract class ExpAgent implements Steppable {
 	public void notifyActionRejected(ExpAction ac) {
 		addAction(ac);
 	}
+	
+	public String toString(){
+		return name;
+	}
+
+	public void setStoppanble(Stoppable stop) {
+		this.stoppable = stop;
+	}
+	
 
 }

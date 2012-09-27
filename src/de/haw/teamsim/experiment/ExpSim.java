@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.BasicConfigurator;
@@ -18,6 +19,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import sim.engine.SimState;
+import sim.engine.Stoppable;
 import sim.field.continuous.Continuous2D;
 
 public class ExpSim extends SimState {
@@ -25,9 +27,10 @@ public class ExpSim extends SimState {
 	private static final long serialVersionUID = 1L;
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 
-	private List<ExpAgent> agents;		 // the agents of the simulation
-	private Map<ExpAgent, ExpAction> executableActions;
-	private List<ExpAction> actionList;
+	private List<ExpAgent> agents;		 				// the agents of the simulation
+	private List<ExpAction> actionList;					// the ordered actions
+	private boolean executing = false;					// indicates if an action is being executed
+	private int nextAgent = 0;							// the agent who may submit the next action
 
 	public static Logger log = Logger.getLogger(ExpSim.class);
 
@@ -37,7 +40,7 @@ public class ExpSim extends SimState {
 		log.setLevel(Level.ALL);
 		
 		agents = new LinkedList<ExpAgent>();
-		executableActions = new HashMap<ExpAgent, ExpAction>();
+		actionList = new LinkedList<ExpAction>();
 	}
 
 	public void start() {
@@ -50,10 +53,22 @@ public class ExpSim extends SimState {
 		createActions();
 		
 		for(ExpAgent a : agents){
-			schedule.scheduleRepeating(a);
+			Stoppable stop = schedule.scheduleRepeating(a);
+			a.setStoppanble(stop);
 		}
+		for(ExpAction a : actionList){
+			Stoppable stop = schedule.scheduleRepeating(a);
+			a.setStoppanble(stop);
+		}
+		
+		agents.get(nextAgent).notifyForNextSubmission();
+		nextAgent += 1;
+		System.out.println("Start Simulation");
 	}
 	
+	/**
+	 * Create a random order of actions and randomly spread then over all agent
+	 */
 	private void createActions(){
 		int actionCount = 40;
 		int prio = 1;
@@ -69,7 +84,7 @@ public class ExpSim extends SimState {
 		
 		// create random ordering of actions.
 		Collections.shuffle(actionList);
-		for(int i = 0; i <= actionList.size(); i++){
+		for(int i = 0; i < actionList.size()-1; i++){
 			ExpAction a = actionList.get(i);
 			if(i>0){
 				a.setPredecessor(actionList.get(i-1).getID());
@@ -78,31 +93,33 @@ public class ExpSim extends SimState {
 				a.setSuccessor(actionList.get(i+1).getID());
 			}
 		}
+		System.out.println("Actions created.");
 		
 		// Randomly split the actions over the agents
 		Collections.shuffle(actionList);
 		Iterator<ExpAction> iter = actionList.iterator();
 		int index = 0;
 		while(iter.hasNext()){
-			if(index == agents.size()-1){
+			if(index == agents.size()){
 				index = 0;
 			}
 			ExpAgent agent = agents.get(index);
 			agent.addAction(iter.next());
 			index++;
 		}
+		System.out.println("Actions added to agents.");
 	}
 	
 	/**
-	 * Reads the agents from the init file and adds them to the simulation.
+	 * Creates three agents
 	 * 
 	 * @param location
 	 */
 	private void initAgents(){
 		
-		ExpAgent a = new EgoAgent();
-		ExpAgent b = new EgoAgent();
-		ExpAgent c = new EgoAgent();
+		ExpAgent a = new EgoAgent("A");
+		ExpAgent b = new EgoAgent("B");
+		ExpAgent c = new EgoAgent("C");
 		
 		a.addAgents(b, c);
 		a.setSimulation(this);
@@ -110,6 +127,10 @@ public class ExpSim extends SimState {
 		b.setSimulation(this);
 		c.addAgents(a, b);
 		c.setSimulation(this);
+		agents.add(a);
+		agents.add(b);
+		agents.add(c);
+		System.out.println("Added agents to simulatiom list");
 	}
 	
 	/**
@@ -174,19 +195,28 @@ public class ExpSim extends SimState {
 	 * 
 	 * @param action
 	 * @param submitter
-	 * @return
+	 * @return returns true, if the right sequenced action has been submitted<br> false otherwise
 	 */
 	public boolean submitForExecution(ExpAction action, ExpAgent submitter){
-		if(!executableActions.containsValue(submitter)){
-			executableActions.put(submitter, action);
-			return true;
+		if(!executing){
+			if(!actionList.isEmpty()){			
+				if(actionList.get(0).equals(action)){
+					System.out.println("Agent: "+submitter+" submitted Action: "+action+" - it will be executed!");
+					actionList.remove(0);
+					action.execute(this);
+					executing = true;
+					return true;
+				} else {
+					System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG waiting for Action: "+actionList.get(0));
+					startNextRound();
+					return false;
+				}
+			} else {
+				System.out.println("DONE");
+			}
 		}
 		return false;
-	}
-	
-	public static void main(String[] args) {
-		doLoop(ExpSim.class, args);
-		System.exit(0);
+		
 	}
 
 	/**
@@ -194,19 +224,18 @@ public class ExpSim extends SimState {
 	 * action can be executed now.
 	 */
 	public void startNextRound() {
-		// randomly chose an action for execution.
-		Collections.shuffle((List<?>) executableActions);
-		ExpAction action = executableActions.get(0);
-		action.execute(this);
-		for(int i = 1; i <= executableActions.size(); i++){
-			ExpAction ac = executableActions.get(i);
-			ExpAgent owner = ac.getOwner();
-			owner.notifyActionRejected(ac);
+		executing = false;
+		ExpAgent agent = agents.get(nextAgent);
+		System.out.println("Notifying Agent "+agent.name+" to submit his action");
+		agent.notifyForNextSubmission();
+		nextAgent += 1;
+		if(nextAgent == agents.size()){
+			nextAgent = 0;
 		}
-		
-		// one action has been chosen, so agents can submit new actions for submission now
-		for(ExpAgent a : agents){
-			a.notifyForNextSubmission();
-		}
+	}
+
+	public static void main(String[] args) {
+		doLoop(ExpSim.class, args);
+		System.exit(0);
 	}
 }

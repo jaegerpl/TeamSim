@@ -2,6 +2,7 @@ package de.haw.teamsim.experiment;
 
 import sim.engine.SimState;
 import sim.engine.Steppable;
+import sim.engine.Stoppable;
 
 
 public class ExpAction implements Steppable{
@@ -16,6 +17,8 @@ public class ExpAction implements Steppable{
 	private boolean execute  =false;
 	private ExpSim sim;
 	private ExpAgent owner;
+
+	private Stoppable stoppable;
 	
 	public ExpAction(int prio, int duration, int pre, int succ){
 		ID = ExpActionID++;
@@ -56,6 +59,7 @@ public class ExpAction implements Steppable{
 	public void execute(ExpSim sim){
 		this.sim = sim;
 		execute = true;
+		System.out.println("Action "+ID+" set to execute");
 	}
 
 	public ExpAgent getOwner() {
@@ -65,16 +69,27 @@ public class ExpAction implements Steppable{
 	public void setOwner(ExpAgent owner) {
 		this.owner = owner;
 	}
+	
+	public String toString(){
+		return new String(new Integer(ID).toString());
+	}
 
 	@Override
 	public void step(SimState state) {
 		if(execute){
+			System.out.println("Action "+ID+" in execution");
 			duration -=1;
 		}
 		if(duration == 0){
 			execute  = false;
+			System.out.println("Action "+ID+" finshed execution");
+			stoppable.stop();
 			sim.startNextRound();
 		}
 		
+	}
+
+	public void setStoppanble(Stoppable stop) {
+		this.stoppable = stop;		
 	}
 }
