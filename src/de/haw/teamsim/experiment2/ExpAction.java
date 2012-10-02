@@ -1,4 +1,4 @@
-package de.haw.teamsim.experiment;
+package de.haw.teamsim.experiment2;
 
 import sim.engine.SimState;
 import sim.engine.Steppable;

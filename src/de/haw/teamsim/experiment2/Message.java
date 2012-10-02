@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.experiment;
+package de.haw.teamsim.experiment2;
 
 /**
  * An ACL like Message class
@@ -22,6 +22,7 @@ public class Message {
 	private int actionID;
 	private String content;
 	private String conversationID = "";
+	private ExpAgent sender;
 	
 	public int getActionID() {
 		return actionID;
@@ -61,6 +62,14 @@ public class Message {
 	
 	public void setReceiver(ExpAgent agent){
 		this.receiver = agent;
+	}
+	
+	public ExpAgent getSender(){
+		return sender;
+	}
+
+	public void setSender(ExpAgent sender) {
+		this.sender = sender;
 	}
 
 }

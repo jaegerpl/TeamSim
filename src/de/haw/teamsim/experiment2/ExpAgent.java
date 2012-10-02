@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.experiment;
+package de.haw.teamsim.experiment2;
 
 import java.util.HashSet;
 import java.util.List;
@@ -79,6 +79,7 @@ public abstract class ExpAgent implements Steppable {
 	public void setStoppanble(Stoppable stop) {
 		this.stoppable = stop;
 	}
-	
+
+	abstract public boolean receiveMsg(Message msg);	
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.experiment;
+package de.haw.teamsim.experiment2;
 
 /**
  * @author pascal

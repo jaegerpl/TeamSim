@@ -1,4 +1,4 @@
-package de.haw.teamsim.experiment;
+package de.haw.teamsim.experiment2;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -32,6 +32,9 @@ public class ExpSim extends SimState {
 	private boolean executing = false;					// indicates if an action is being executed
 	private int nextAgent = 0;							// the agent who may submit the next action
 	private boolean isFinished = false;
+	
+	private static long starttime;
+	private static long endtime;
 
 	public static Logger log = Logger.getLogger(ExpSim.class);
 
@@ -46,6 +49,7 @@ public class ExpSim extends SimState {
 
 	public void start() {
 		super.start();
+		starttime = System.currentTimeMillis();
 		world.clear();
 
 		log.info("Init Agents");
@@ -54,11 +58,11 @@ public class ExpSim extends SimState {
 		createActions();
 		
 		for(ExpAgent a : agents){
-			Stoppable stop = schedule.scheduleRepeating(a);
+			Stoppable stop = schedule.scheduleRepeating(a,1000);
 			a.setStoppanble(stop);
 		}
 		for(ExpAction a : actionList){
-			Stoppable stop = schedule.scheduleRepeating(a);
+			Stoppable stop = schedule.scheduleRepeating(a,1000);
 			a.setStoppanble(stop);
 		}
 		
@@ -70,7 +74,7 @@ public class ExpSim extends SimState {
 	 * Create a random order of actions and randomly spread then over all agent
 	 */
 	private void createActions(){
-		int actionCount = 99;
+		int actionCount = 9;
 		int prio = 1;
 		
 		// create actions
@@ -108,6 +112,7 @@ public class ExpSim extends SimState {
 			index++;
 		}
 		System.out.println("Actions added to agents.");
+		System.out.println("Action Sequence = "+actionList.toString());
 	}
 	
 	/**
@@ -117,9 +122,9 @@ public class ExpSim extends SimState {
 	 */
 	private void initAgents(){
 		
-		ExpAgent a = new EgoAgent("A");
-		ExpAgent b = new EgoAgent("B");
-		ExpAgent c = new EgoAgent("C");
+		ExpAgent a = new CollabAgent("A");
+		ExpAgent b = new CollabAgent("B");
+		ExpAgent c = new CollabAgent("C");
 		
 		a.addAgents(b, c);
 		a.setSimulation(this);
@@ -132,63 +137,7 @@ public class ExpSim extends SimState {
 		agents.add(c);
 		System.out.println("Added agents to simulatiom list");
 	}
-	
-	/**
-	 * Reads a list of actions from disk
-	 * @param location
-	 */
-	private void readActionsFromDisk(String location, ExpAgent a, ExpAgent b, ExpAgent c){
 		
-		List<ExpAction> actions = new LinkedList<ExpAction>();
-		
-		//Read Actions
-		StringTokenizer strtok;
-
-		try{
-			FileInputStream fstream = new FileInputStream(location);
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			String strLine;
-			while ((strLine = br.readLine()) != null)   {
-				strtok = new StringTokenizer(strLine);
-				System.out.println("Reading Line: "+strLine);
-				while(strtok.hasMoreTokens()){
-					String token = strtok.nextToken();
-					if(token.equals("Prio")){
-						//skip the line
-					} else {
-						while(strtok.hasMoreTokens()){
-							int prio = new Integer(strtok.nextToken());
-							int duration = new Integer(strtok.nextToken());
-							int pred = new Integer(strtok.nextToken());
-							int succ = new Integer(strtok.nextToken());
-							actions.add(new ExpAction(prio, duration, pred, succ));
-						}							
-					}
-				}
-			}
-			in.close();
-		}catch (Exception e){//Catch exception if any
-			System.err.println("Error: " + e.getMessage());
-		}
-		Collections.shuffle(actions);
-
-		agents.addAll(Arrays.asList(a,b,c));
-		int agentcount = agents.size(); 
-		int count = actions.size()/agentcount; //actions per agent
-	
-		for(ExpAgent agent : agents){
-			for(int i = 0; i< count; i++){
-				agent.addAction(actions.remove(0));
-			}
-		}
-		
-		// add the remaining actions to one agent
-		if(!actions.isEmpty()){ 
-			agents.get(0).addActions(actions);
-		}
-	}
-	
 	/**
 	 * Returns true, if the action has been accept for execution.
 	 * Returns false, if agent already has an action submitted for execution.
@@ -229,23 +178,29 @@ public class ExpSim extends SimState {
 	 */
 	public void startNextRound() {
 		executing = false;
-		if(!isFinished){
-			ExpAgent agent = agents.get(getNextAgent());
-			System.out.println("Notifying Agent "+agent.name+" to submit his action");
-			agent.notifyForNextSubmission();
-		}	
+//		if(!isFinished){
+//			ExpAgent agent = agents.get(getNextAgent());
+//			System.out.println("Notifying Agent "+agent.name+" to submit his action");
+//			agent.notifyForNextSubmission();
+//		}	
 	}
 	
-	private int getNextAgent(){
-		nextAgent += 1;
-		if(nextAgent == agents.size()){
-			nextAgent = 0;
-		}
-		return nextAgent;
+//	private int getNextAgent(){
+//		nextAgent += 1;
+//		if(nextAgent == agents.size()){
+//			nextAgent = 0;
+//		}
+//		return nextAgent;
+//	}
+	
+	public boolean isExecuting(){
+		return executing;
 	}
 
 	public static void main(String[] args) {
 		doLoop(ExpSim.class, args);
+		endtime = System.currentTimeMillis();
+		System.out.println("Duration: "+ (endtime-starttime));
 		System.exit(0);
 	}
 }

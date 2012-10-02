@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.experiment;
+package de.haw.teamsim.experiment1;
 
 import java.util.Collections;
 import java.util.Comparator;
