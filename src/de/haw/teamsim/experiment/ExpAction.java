@@ -9,7 +9,7 @@ public class ExpAction implements Steppable{
 
 	private static int ExpActionID;
 	
-	private int ID;
+	protected int ID;
 	private int priority;
 	private int duration;
 	private int predecessor;
@@ -91,5 +91,14 @@ public class ExpAction implements Steppable{
 
 	public void setStoppanble(Stoppable stop) {
 		this.stoppable = stop;		
+	}
+	
+	public boolean equals(Object o){
+		if(o instanceof ExpAction){
+			ExpAction a = (ExpAction)o;
+			return this.ID == a.getID();
+		}
+		return false;
+		
 	}
 }

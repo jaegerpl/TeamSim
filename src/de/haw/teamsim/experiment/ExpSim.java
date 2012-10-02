@@ -31,6 +31,7 @@ public class ExpSim extends SimState {
 	private List<ExpAction> actionList;					// the ordered actions
 	private boolean executing = false;					// indicates if an action is being executed
 	private int nextAgent = 0;							// the agent who may submit the next action
+	private boolean isFinished = false;
 
 	public static Logger log = Logger.getLogger(ExpSim.class);
 
@@ -61,16 +62,15 @@ public class ExpSim extends SimState {
 			a.setStoppanble(stop);
 		}
 		
-		agents.get(nextAgent).notifyForNextSubmission();
-		nextAgent += 1;
 		System.out.println("Start Simulation");
+		agents.get(nextAgent).notifyForNextSubmission();
 	}
 	
 	/**
 	 * Create a random order of actions and randomly spread then over all agent
 	 */
 	private void createActions(){
-		int actionCount = 40;
+		int actionCount = 99;
 		int prio = 1;
 		
 		// create actions
@@ -205,6 +205,9 @@ public class ExpSim extends SimState {
 					actionList.remove(0);
 					action.execute(this);
 					executing = true;
+					if(actionList.isEmpty()){
+						isFinished = true;
+					}
 					return true;
 				} else {
 					System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG waiting for Action: "+actionList.get(0));
@@ -213,6 +216,7 @@ public class ExpSim extends SimState {
 				}
 			} else {
 				System.out.println("DONE");
+				this.kill();
 			}
 		}
 		return false;
@@ -225,13 +229,19 @@ public class ExpSim extends SimState {
 	 */
 	public void startNextRound() {
 		executing = false;
-		ExpAgent agent = agents.get(nextAgent);
-		System.out.println("Notifying Agent "+agent.name+" to submit his action");
-		agent.notifyForNextSubmission();
+		if(!isFinished){
+			ExpAgent agent = agents.get(getNextAgent());
+			System.out.println("Notifying Agent "+agent.name+" to submit his action");
+			agent.notifyForNextSubmission();
+		}	
+	}
+	
+	private int getNextAgent(){
 		nextAgent += 1;
 		if(nextAgent == agents.size()){
 			nextAgent = 0;
 		}
+		return nextAgent;
 	}
 
 	public static void main(String[] args) {
