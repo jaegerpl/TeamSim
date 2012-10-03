@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import de.haw.teamsim.experiment2.sim.ExpSim;
+import de.haw.teamsim.experiment2.sim.Message;
+
 import sim.engine.SimState;
 import sim.engine.Steppable;
 import sim.engine.Stoppable;
@@ -40,14 +43,14 @@ public abstract class ExpAgent implements Steppable {
 	public void addAction(ExpAction action){
 		action.setOwner(this);
 		actions.add(action);
-		System.out.println("Action with ID: "+action.getID()+" added");
+		System.out.println("Agent "+name+": Action with ID: "+action.getID()+" added - 1");
 	}
 	
 	public void addActions(List<ExpAction> action){
 		for(ExpAction ac : action){
 			ac.setOwner(this);
 			actions.add(ac);
-			System.out.println("Action with ID: "+ac.getID()+" added");
+			System.out.println("Agent "+name+": Action with ID: "+ac.getID()+" added - 2");
 		}
 	}
 	
@@ -62,15 +65,6 @@ public abstract class ExpAgent implements Steppable {
 
 	@Override
 	public abstract void step(SimState state);
-
-	/**
-	 * Called when the simulation has chosen another action to be executed.
-	 * Take this action again into consideration for next submission.
-	 * @param ac
-	 */
-	public void notifyActionRejected(ExpAction ac) {
-		addAction(ac);
-	}
 	
 	public String toString(){
 		return name;
@@ -80,6 +74,10 @@ public abstract class ExpAgent implements Steppable {
 		this.stoppable = stop;
 	}
 
-	abstract public boolean receiveMsg(Message msg);	
+	abstract public boolean receiveMsg(Message msg);
+	
+	public String getName(){
+		return name;
+	}
 
 }

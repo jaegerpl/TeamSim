@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.haw.teamsim.experiment2;
+package de.haw.teamsim.experiment2.sim;
 
 /**
  * An ACL like Message class
@@ -16,13 +16,14 @@ public class Message {
 	public final static String plzExecute= "please execute";
 	
 	public static enum Type {INFORM, REQUEST}
+
 	
 	private Type type ;
-	private ExpAgent receiver;
+	private String receiver;
 	private int actionID;
 	private String content;
 	private String conversationID = "";
-	private ExpAgent sender;
+	private String sender;
 	
 	public int getActionID() {
 		return actionID;
@@ -52,7 +53,7 @@ public class Message {
 		return type;
 	}
 
-	public ExpAgent getReceiver() {
+	public String getReceiver() {
 		return receiver;
 	}
 
@@ -60,16 +61,20 @@ public class Message {
 		this.type = type;
 	}
 	
-	public void setReceiver(ExpAgent agent){
+	public void setReceiver(String agent){
 		this.receiver = agent;
 	}
 	
-	public ExpAgent getSender(){
+	public String getSender(){
 		return sender;
 	}
 
-	public void setSender(ExpAgent sender) {
+	public void setSender(String sender) {
 		this.sender = sender;
 	}
 
+	public String toString(){
+		return "[Sender: "+sender+", Receiver: "+receiver+", Type: "+type+", Content: "+content+", ActionID: "+actionID+"]";
+	}
+	
 }

@@ -1,18 +1,9 @@
-package de.haw.teamsim.experiment2;
+package de.haw.teamsim.experiment2.sim;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringTokenizer;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
@@ -21,6 +12,9 @@ import org.apache.log4j.Logger;
 import sim.engine.SimState;
 import sim.engine.Stoppable;
 import sim.field.continuous.Continuous2D;
+import de.haw.teamsim.experiment2.CollabAgent;
+import de.haw.teamsim.experiment2.ExpAction;
+import de.haw.teamsim.experiment2.ExpAgent;
 
 public class ExpSim extends SimState {
 
@@ -35,6 +29,14 @@ public class ExpSim extends SimState {
 	
 	private static long starttime;
 	private static long endtime;
+	
+	public MessageSystem msgSys;
+	
+	
+	public static String Agent_A;
+	public static String Agent_B;
+	public static String Agent_C;
+	public static String Team;
 
 	public static Logger log = Logger.getLogger(ExpSim.class);
 
@@ -45,6 +47,7 @@ public class ExpSim extends SimState {
 		
 		agents = new LinkedList<ExpAgent>();
 		actionList = new LinkedList<ExpAction>();
+		msgSys = new MessageSystem();
 	}
 
 	public void start() {
@@ -58,15 +61,15 @@ public class ExpSim extends SimState {
 		createActions();
 		
 		for(ExpAgent a : agents){
-			Stoppable stop = schedule.scheduleRepeating(a,1000);
+			Stoppable stop = schedule.scheduleRepeating(a);
 			a.setStoppanble(stop);
 		}
 		for(ExpAction a : actionList){
-			Stoppable stop = schedule.scheduleRepeating(a,1000);
+			Stoppable stop = schedule.scheduleRepeating(a);
 			a.setStoppanble(stop);
 		}
 		
-		System.out.println("Start Simulation");
+		System.out.println("Start Simulation\n");
 		agents.get(nextAgent).notifyForNextSubmission();
 	}
 	
@@ -112,7 +115,7 @@ public class ExpSim extends SimState {
 			index++;
 		}
 		System.out.println("Actions added to agents.");
-		System.out.println("Action Sequence = "+actionList.toString());
+		System.out.println("Action Sequence = "+actionList.toString()+"\n");
 	}
 	
 	/**
@@ -177,21 +180,8 @@ public class ExpSim extends SimState {
 	 * action can be executed now.
 	 */
 	public void startNextRound() {
-		executing = false;
-//		if(!isFinished){
-//			ExpAgent agent = agents.get(getNextAgent());
-//			System.out.println("Notifying Agent "+agent.name+" to submit his action");
-//			agent.notifyForNextSubmission();
-//		}	
+		executing = false;	
 	}
-	
-//	private int getNextAgent(){
-//		nextAgent += 1;
-//		if(nextAgent == agents.size()){
-//			nextAgent = 0;
-//		}
-//		return nextAgent;
-//	}
 	
 	public boolean isExecuting(){
 		return executing;

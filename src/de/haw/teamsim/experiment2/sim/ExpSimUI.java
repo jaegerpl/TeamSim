@@ -1,4 +1,4 @@
-package de.haw.teamsim.experiment2;
+package de.haw.teamsim.experiment2.sim;
 
 import sim.display.*;
 import sim.engine.*;

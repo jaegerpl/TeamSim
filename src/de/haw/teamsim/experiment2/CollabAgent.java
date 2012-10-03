@@ -6,6 +6,9 @@ package de.haw.teamsim.experiment2;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.haw.teamsim.experiment2.sim.Message;
+import de.haw.teamsim.experiment2.sim.MessageFactory;
+
 import sim.engine.SimState;
 
 /**
@@ -28,7 +31,7 @@ public class CollabAgent extends ExpAgent {
 	public CollabAgent(String name) {
 		super(name);
 		incomingMessages = new LinkedList<Message>();
-		msgFactory = new MessageFactory(this);
+		msgFactory = new MessageFactory(this.name);
 	}
 
 	private List<ExpAction> myActions = new LinkedList<ExpAction>();
@@ -41,6 +44,7 @@ public class CollabAgent extends ExpAgent {
 	public void step(SimState state) {
 		if(firstStep){
 			firstStep =  false;
+			System.out.println("Agent "+name+" has actions: "+actions);
 			sortActions();
 			checkOwnActions = true;
 		} else if(checkOwnActions){
@@ -48,24 +52,22 @@ public class CollabAgent extends ExpAgent {
 			hasFirstAction = check4FirstAction();			
 		} 
 		
-		hasMessages = incomingMessages.isEmpty();
+		hasMessages = !incomingMessages.isEmpty();
 		if(hasFirstAction){
 			// tell other
 			// submit for execution
 			Message msg = new Message(Message.Type.INFORM);
 			msg.setActionID(submitAction.getID());
-			msg.setReceiver(agent_A);
+			msg.setReceiver(sim.Team);
 			msg.setContent(Message.ownedBy);
-			agent_A.receiveMsg(msg);
-			msg.setReceiver(agent_B);
-			agent_B.receiveMsg(msg);
+			sim.msgSys.sendMessage(msg);
 			
 			sim.submitForExecution(submitAction, this);
 			
 			hasFirstAction =false;
 		} else {
 			if(hasMessages){
-				Message msg = incomingMessages.get(0);
+				Message msg = incomingMessages.remove(0);
 				if(msg.getType() == Message.Type.INFORM){
 					if(msg.getContent() == Message.ownedBy){
 						ExpActionTemplate actiontmp = new ExpActionTemplate(msg.getActionID());
@@ -86,52 +88,47 @@ public class CollabAgent extends ExpAgent {
 						ExpAction a = getActionWithID(msg.getActionID());
 						if(!(a instanceof ExpActionTemplate)){
 							Message out = msgFactory.informMessage(msg.getSender(), Message.ownedBy);
-							a.getOwner().receiveMsg(out);
+							out.setActionID(a.getID());
+							sim.msgSys.sendMessage(out);
 						}
 					} else if (msg.getContent() == Message.plzExecute){
 						ExpAction a = getActionWithID(msg.getActionID());
 						if(!(a instanceof ExpActionTemplate)){
 							sim.submitForExecution(a, this);
-							Message out = msgFactory.informMessage(msg.getSender(), Message.executed);
-							agent_A.receiveMsg(out);
-							agent_B.receiveMsg(out);
+							Message out = msgFactory.informMessage(sim.Team, Message.executed);
+							out.setActionID(a.getID());
+							sim.msgSys.sendMessage(out);
 						}
 					} else {
 						// error
 					}				
 				}
 			} else if(doSomenthing){
-				// react
-				// answer
-				// submit action
+				boolean submitSuccess = false;
+				if(!sim.isExecuting()){
+					ExpAction action = myActions.get(0);
+					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
+						submitSuccess = sim.submitForExecution(action, this);
+						if(submitSuccess){
+							Message out = msgFactory.informMessage(sim.Team, Message.executed);
+							out.setActionID(action.getID());
+							sim.msgSys.sendMessage(out);
+						} else {
+							Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
+							msg.setActionID(action.getID());
+							sim.msgSys.sendMessage(msg);
+						}
+					}
+				} else {
+					ExpAction action = myActions.get(0);
+					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
+						Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
+						msg.setActionID(action.getID());
+						sim.msgSys.sendMessage(msg);
+					}
+				}
 			}
 		}
-		
-		
-		if(!incomingMessages.isEmpty()){
-			
-		}
-	
-//		if(submit){
-//			ExpAction action = myActions.get(submitIndex);
-//			submitSuccess = sim.submitForExecution(action, this);
-//			if(submitSuccess){
-//				myActions.remove(action);
-//				submitIndex = 0;  // start again with highest prio action
-//			} else {
-//				submitIndex += 1;
-//				if(submitIndex == myActions.size()){
-//					submitIndex = 0;
-//				}
-//				
-//			}
-//			submit = false;
-//		}else if(myActions.isEmpty()) {
-//				stoppable.stop();
-//				System.out.println("Agent "+name+" IS DONE");
-//		} else {
-//			System.out.println("Agent "+name+" do nothing");
-//		}
 	}
 	
 	private boolean check4FirstAction() {
@@ -149,7 +146,7 @@ public class CollabAgent extends ExpAgent {
 			addActionInSequence(a);
 		}
 		System.out.println("Agent "+name+": Actions sorted according to sequence");
-		System.out.println("Agent "+name+" Sequence "+myActions.toString());
+		System.out.println("Agent "+name+" Sequence "+myActions);
 	}
 
 	private void addActionInSequence(ExpAction a) {
@@ -181,6 +178,11 @@ public class CollabAgent extends ExpAgent {
 	}
 	
 	private ExpAction getActionWithID(int id){
-		
+		for(ExpAction a : myActions){
+			if(a.getID() == id){
+				return a;
+			}
+		}
+		return null;
 	}
 }
