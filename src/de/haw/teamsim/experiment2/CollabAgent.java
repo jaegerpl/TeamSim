@@ -152,7 +152,7 @@ public class CollabAgent extends ExpAgent {
 	private void addActionInSequence(ExpAction a) {
 		if(!myActions.isEmpty()){
 			for(ExpAction b : myActions){
-				if(b.getPredecessor() ==a.getID()){
+				if(b.getPredecessor() == a.getID()){
 					int i = myActions.indexOf(b);
 					if(i == 0){ i = 1;}
 					myActions.add(i-1, a);
@@ -160,9 +160,10 @@ public class CollabAgent extends ExpAgent {
 				} else if(b.getSuccessor() == a.getID()){
 					int i = myActions.indexOf(b);
 					if(i == myActions.size()-1){
-						i = i-1;
+						myActions.add(a);
+					} else {
+						myActions.add(i+1, a);
 					}
-					myActions.add(i+1, a);
 					break;
 				} 
 			}

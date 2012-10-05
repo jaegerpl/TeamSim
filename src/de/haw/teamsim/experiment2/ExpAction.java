@@ -8,7 +8,7 @@ import sim.engine.Stoppable;
 
 public class ExpAction implements Steppable{
 
-	private static int ExpActionID;
+	private static int ExpActionID = 1;
 	
 	protected int ID;
 	private int priority;
@@ -72,7 +72,7 @@ public class ExpAction implements Steppable{
 	}
 	
 	public String toString(){
-		return new String(new Integer(ID).toString());
+		return new String("(ID: "+ID+", P: "+predecessor+", S: "+successor+")");
 	}
 
 	@Override

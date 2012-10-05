@@ -91,16 +91,16 @@ public class ExpSim extends SimState {
 		
 		// create random ordering of actions.
 		Collections.shuffle(actionList);
-		for(int i = 0; i < actionList.size()-1; i++){
+		actionList.get(0).setSuccessor(actionList.get(1).getID());
+		for(int i = 1; i < actionList.size(); i++){
 			ExpAction a = actionList.get(i);
-			if(i>0){
-				a.setPredecessor(actionList.get(i-1).getID());
-			}
-			if(i<actionList.size()){
+			a.setPredecessor(actionList.get(i-1).getID());
+			if(i<actionList.size()-1){
 				a.setSuccessor(actionList.get(i+1).getID());
 			}
 		}
 		System.out.println("Actions created.");
+		System.out.println("Action Sequence = "+actionList.toString()+"\n");
 		
 		// Randomly split the actions over the agents
 		Collections.shuffle(actionList);
@@ -115,7 +115,6 @@ public class ExpSim extends SimState {
 			index++;
 		}
 		System.out.println("Actions added to agents.");
-		System.out.println("Action Sequence = "+actionList.toString()+"\n");
 	}
 	
 	/**

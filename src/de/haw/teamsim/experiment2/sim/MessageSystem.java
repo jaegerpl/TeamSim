@@ -9,6 +9,10 @@ public class MessageSystem implements Runnable{
 	
 	private List<Message> messageBus;
 	private List<ExpAgent> agents = new LinkedList<ExpAgent>();
+	
+	public MessageSystem(){
+		messageBus = new LinkedList<Message>();
+	}
 
 	@Override
 	public void run() {
