@@ -12,9 +12,9 @@ import org.apache.log4j.Logger;
 import sim.engine.SimState;
 import sim.engine.Stoppable;
 import sim.field.continuous.Continuous2D;
-import de.haw.teamsim.experiment2.CollabAgent;
 import de.haw.teamsim.experiment2.ExpAction;
 import de.haw.teamsim.experiment2.ExpAgent;
+import de.haw.teamsim.experiment2.agent.CollabAgent;
 
 public class ExpSim extends SimState {
 
@@ -22,7 +22,8 @@ public class ExpSim extends SimState {
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 
 	private List<ExpAgent> agents;		 				// the agents of the simulation
-	private List<ExpAction> actionList;					// the ordered actions
+	private List<ExpAction> actionList;					// the created actions actions
+	private List<ExpAction> orderedActions;					// the sequenzed actions actions
 	private boolean executing = false;					// indicates if an action is being executed
 	private int nextAgent = 0;							// the agent who may submit the next action
 	private boolean isFinished = false;
@@ -47,6 +48,7 @@ public class ExpSim extends SimState {
 		
 		agents = new LinkedList<ExpAgent>();
 		actionList = new LinkedList<ExpAction>();
+		orderedActions = new LinkedList<ExpAction>();
 		msgSys = new MessageSystem();
 	}
 
@@ -91,16 +93,18 @@ public class ExpSim extends SimState {
 		
 		// create random ordering of actions.
 		Collections.shuffle(actionList);
-		actionList.get(0).setSuccessor(actionList.get(1).getID());
+		actionList.get(0).setSuccessorID(actionList.get(1).getID());
 		for(int i = 1; i < actionList.size(); i++){
 			ExpAction a = actionList.get(i);
-			a.setPredecessor(actionList.get(i-1).getID());
+			a.setPredecessorID(actionList.get(i-1).getID());
 			if(i<actionList.size()-1){
-				a.setSuccessor(actionList.get(i+1).getID());
+				a.setSuccessorID(actionList.get(i+1).getID());
 			}
 		}
+		orderedActions = new LinkedList<ExpAction>(actionList);
 		System.out.println("Actions created.");
 		System.out.println("Action Sequence = "+actionList.toString()+"\n");
+		System.out.println("Action Sequence = "+orderedActions.toString()+"\n");
 		
 		// Randomly split the actions over the agents
 		Collections.shuffle(actionList);
@@ -150,13 +154,13 @@ public class ExpSim extends SimState {
 	 */
 	public boolean submitForExecution(ExpAction action, ExpAgent submitter){
 		if(!executing){
-			if(!actionList.isEmpty()){			
-				if(actionList.get(0).equals(action)){
+			if(!orderedActions.isEmpty()){			
+				if(orderedActions.get(0).equals(action)){
 					System.out.println("Agent: "+submitter+" submitted Action: "+action+" - it will be executed!");
-					actionList.remove(0);
+					orderedActions.remove(0);
 					action.execute(this);
 					executing = true;
-					if(actionList.isEmpty()){
+					if(orderedActions.isEmpty()){
 						isFinished = true;
 					}
 					return true;
@@ -174,17 +178,17 @@ public class ExpSim extends SimState {
 		
 	}
 
-	/**
-	 * ExpSim is notified by an executed action, that it is finished and a new
-	 * action can be executed now.
-	 */
-	public void startNextRound() {
-		executing = false;	
-	}
-	
-	public boolean isExecuting(){
-		return executing;
-	}
+//	/**
+//	 * ExpSim is notified by an executed action, that it is finished and a new
+//	 * action can be executed now.
+//	 */
+//	public void startNextRound() {
+//		executing = false;	
+//	}
+//	
+//	public boolean isExecuting(){
+//		return executing;
+//	}
 
 	public static void main(String[] args) {
 		doLoop(ExpSim.class, args);

@@ -18,6 +18,7 @@ public class ExpAction implements Steppable{
 	private boolean execute  =false;
 	private ExpSim sim;
 	private ExpAgent owner;
+	private boolean finished = false;
 
 	private Stoppable stoppable;
 	
@@ -30,11 +31,11 @@ public class ExpAction implements Steppable{
 		this.owner = null;
 	}
 
-	public void setPredecessor(int predecessor) {
+	public void setPredecessorID(int predecessor) {
 		this.predecessor = predecessor;
 	}
 
-	public void setSuccessor(int successor) {
+	public void setSuccessorID(int successor) {
 		this.successor = successor;
 	}
 
@@ -50,10 +51,18 @@ public class ExpAction implements Steppable{
 		return duration;
 	}
 
-	public int getPredecessor() {
+	/**
+	 * Returns the ID of the predecessor
+	 * @return
+	 */
+	public int getPredecessorID() {
 		return predecessor;
 	}
-	public int getSuccessor() {
+	/**
+	 * Returns the ID of the successor
+	 * @return
+	 */
+	public int getSuccessorID() {
 		return successor;
 	}
 	
@@ -83,15 +92,20 @@ public class ExpAction implements Steppable{
 		}
 		if(duration == 0){
 			execute  = false;
+			finished = true;
 			System.out.println("Action "+ID+" finshed execution");
 			stoppable.stop();
-			sim.startNextRound();
+//			sim.startNextRound();
 		}
 		
 	}
 
 	public void setStoppanble(Stoppable stop) {
-		this.stoppable = stop;		
+		stoppable = stop;		
+	}
+	
+	public boolean isFinished(){
+		return finished;
 	}
 	
 	public boolean equals(Object o){
