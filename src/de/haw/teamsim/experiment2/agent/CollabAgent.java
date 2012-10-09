@@ -78,9 +78,11 @@ public class CollabAgent extends ExpAgent {
 			listen = false;
 			readInbox();	
 		} else if(check){
+			check = false;
 			if(checkAction.isFinished()){	// action is finished
 				check = false;
 				checkCount = false;
+				checkAction = null;
 			} else {
 				checkCounter = checkCounter -3; // check again in 3 steps
 			}			
@@ -132,31 +134,6 @@ public class CollabAgent extends ExpAgent {
 			}			
 		}
 	}
-
-//				stepcount = 0;
-//				boolean submitSuccess = false;
-//				if(!sim.isExecuting()){
-//					ExpAction action = memo.getFirstAction();
-//					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
-//						submitSuccess = sim.submitForExecution(action, this);
-//						if(submitSuccess){
-//							out = msgFactory.informMessage(sim.Team, Message.executed);
-//							out.setActionID(action.getID());
-//							sim.msgSys.sendMessage(out);
-//						} else {
-//							Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
-//							msg.setActionID(action.getID());
-//							sim.msgSys.sendMessage(msg);
-//						}
-//					}
-//				} else {
-//					ExpAction action = memo.getFirstAction();
-//					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
-//						Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
-//						msg.setActionID(action.getID());
-//						sim.msgSys.sendMessage(msg);
-//					}
-//				}
 	
 	private void readInbox() {
 		Message msg = incomingMessages.remove(0);

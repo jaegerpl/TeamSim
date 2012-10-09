@@ -26,7 +26,6 @@ public class ExpSim extends SimState {
 	private List<ExpAction> orderedActions;					// the sequenzed actions actions
 	private boolean executing = false;					// indicates if an action is being executed
 	private int nextAgent = 0;							// the agent who may submit the next action
-	private boolean isFinished = false;
 	
 	private static long starttime;
 	private static long endtime;
@@ -160,13 +159,9 @@ public class ExpSim extends SimState {
 					orderedActions.remove(0);
 					action.execute(this);
 					executing = true;
-					if(orderedActions.isEmpty()){
-						isFinished = true;
-					}
 					return true;
 				} else {
 					System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG waiting for Action: "+actionList.get(0));
-					startNextRound();
 					return false;
 				}
 			} else {
@@ -177,18 +172,6 @@ public class ExpSim extends SimState {
 		return false;
 		
 	}
-
-//	/**
-//	 * ExpSim is notified by an executed action, that it is finished and a new
-//	 * action can be executed now.
-//	 */
-//	public void startNextRound() {
-//		executing = false;	
-//	}
-//	
-//	public boolean isExecuting(){
-//		return executing;
-//	}
 
 	public static void main(String[] args) {
 		doLoop(ExpSim.class, args);
