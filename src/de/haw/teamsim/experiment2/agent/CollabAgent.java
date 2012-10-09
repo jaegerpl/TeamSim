@@ -23,17 +23,16 @@ public class CollabAgent extends ExpAgent {
 	private boolean firstStep = true;
 	private boolean checkOwnActions = false;
 	private boolean hasFirstAction = false;
-	private boolean hasMessages = false;
-	private boolean doSomenthing = false;
-	private int stepcount = 0;
-	private ExpAction submitAction = null;
 	private MessageFactory msgFactory;
-	private List<Message> incomingMessages;
-	enum nextStep {check, execute, add, remove, iHave};
-	boolean listen, say, check, execute;
-	Message out;
-	ExpAction action;
-	nextStep todo;
+	private List<Message> incomingMessages;				// the inbox
+	enum nextStep {check, execute, add, remove, iHave, executed};
+	boolean listen, say, check, execute;				// state variables
+	private Message out;								// the message to be send during the next step
+	private ExpAction action;							// the action to be handled during the next step
+	private ExpAction checkAction;						// long time store for action that needs to be check after stepCount steps
+	private nextStep todo;								// the next step to be taken
+	private int checkCounter = 0;						// after how many steps something should be checked
+	private boolean checkCount = false;					// if true the checkCounter will be increased each step	
 	
 	
 	public CollabAgent(String name) {
@@ -47,7 +46,14 @@ public class CollabAgent extends ExpAgent {
 	 */
 	@Override
 	public void step(SimState state) {
-		stepcount++;
+		if(checkCount){
+			checkCounter++;
+			if(checkCounter == 10){
+				check = true;
+			}
+		}
+		
+		listen = true;
 		if(firstStep){
 			firstStep =  false;
 			System.out.println("Agent "+name+" has actions: "+memo.getActions());
@@ -57,76 +63,100 @@ public class CollabAgent extends ExpAgent {
 			hasFirstAction = check4FirstAction();			
 		} 
 		
-		hasMessages = !incomingMessages.isEmpty();
 		if(hasFirstAction){
 			// tell other
 			// submit for execution
 			Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
-			msg.setActionID(submitAction.getID());
+			msg.setActionID(action.getID());
 			sim.msgSys.sendMessage(msg);
-			
-			sim.submitForExecution(submitAction, this);
-			
+			sim.submitForExecution(action, this);
 			hasFirstAction =false;
 		} 
 		
 		
 		if(listen){
 			listen = false;
-			// read Message
 			readInbox();	
 		} else if(check){
-			
-			check = false;
+			if(checkAction.isFinished()){	// action is finished
+				check = false;
+				checkCount = false;
+			} else {
+				checkCounter = checkCounter -3; // check again in 3 steps
+			}			
 		} else if (execute) {
 			execute= false;
 			switch (todo) {
 			case add:
 				addAction(action);  // check if contains already
+				action = null;
+				todo = null;
+				listen = true;
 				break;
 			case remove:
 				memo.remove(action.getID());
+				action = null;
+				todo = null;
+				listen = true;
 				break;
 			case execute:
 				sim.submitForExecution(action, this);
 				say = true;
 			default:
+				System.err.println("In Agent "+name+" in step case EXECUTE this shoudl not happen");
 				break;
 			}
-			
-			check = true;
 		} else if (say) {
-			sim.msgSys.sendMessage(out);			
-			listen = true;
-		}
-
-				stepcount = 0;
-				boolean submitSuccess = false;
-				if(!sim.isExecuting()){
-					ExpAction action = memo.getFirstAction();
-					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
-						submitSuccess = sim.submitForExecution(action, this);
-						if(submitSuccess){
-							out = msgFactory.informMessage(sim.Team, Message.executed);
-							out.setActionID(action.getID());
-							sim.msgSys.sendMessage(out);
-						} else {
-							Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
-							msg.setActionID(action.getID());
-							sim.msgSys.sendMessage(msg);
-						}
-					}
-				} else {
-					ExpAction action = memo.getFirstAction();
-					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
-						Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
-						msg.setActionID(action.getID());
-						sim.msgSys.sendMessage(msg);
-					}
-				}
-			}
+			switch (todo) {
+			case iHave:
+				sim.msgSys.sendMessage(out);
+				action = null;
+				todo = null;
+				listen = true;
+				break;
+			case execute:
+				checkAction = action;
+				checkCount = true; 
+				action = null;
+				todo = null;
+				listen = true;
+				break;
+			case executed:
+				checkAction = null;
+				todo = null;
+				
+				listen = true;
+			default:
+				System.err.println("In Agent "+name+" in step case SAY this shoudl not happen");
+				break;
+			}			
 		}
 	}
+
+//				stepcount = 0;
+//				boolean submitSuccess = false;
+//				if(!sim.isExecuting()){
+//					ExpAction action = memo.getFirstAction();
+//					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
+//						submitSuccess = sim.submitForExecution(action, this);
+//						if(submitSuccess){
+//							out = msgFactory.informMessage(sim.Team, Message.executed);
+//							out.setActionID(action.getID());
+//							sim.msgSys.sendMessage(out);
+//						} else {
+//							Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
+//							msg.setActionID(action.getID());
+//							sim.msgSys.sendMessage(msg);
+//						}
+//					}
+//				} else {
+//					ExpAction action = memo.getFirstAction();
+//					if(!(action instanceof ExpActionTemplate)){ // i.e. if it is owned by this agent
+//						Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
+//						msg.setActionID(action.getID());
+//						sim.msgSys.sendMessage(msg);
+//					}
+//				}
 	
 	private void readInbox() {
 		Message msg = incomingMessages.remove(0);
@@ -167,7 +197,7 @@ public class CollabAgent extends ExpAgent {
 	private boolean check4FirstAction() {
 		for(ExpAction a : memo.getActions()){
 			if(a.getPredecessorID() == 0){
-				submitAction = a;
+				action = a;
 				return true;
 			}
 		}
