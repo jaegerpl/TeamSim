@@ -23,9 +23,9 @@ public class ExpSim extends SimState {
 
 	private List<ExpAgent> agents;		 				// the agents of the simulation
 	private List<ExpAction> actionList;					// the created actions actions
-	private List<ExpAction> orderedActions;					// the sequenzed actions actions
-//	private boolean executing = false;					// indicates if an action is being executed
+	private List<ExpAction> orderedActions;				// the sequenzed actions actions
 	private int nextAgent = 0;							// the agent who may submit the next action
+	private ExpAction submittedAction = null;			// the action an agents submits for executing
 	
 	private static long starttime;
 	private static long endtime;
@@ -152,25 +152,26 @@ public class ExpSim extends SimState {
 	 * @return returns true, if the right sequenced action has been submitted<br> false otherwise
 	 */
 	public boolean submitForExecution(ExpAction action, ExpAgent submitter){
-		if(!executing){
-			if(!orderedActions.isEmpty()){			
-				if(orderedActions.get(0).equals(action)){
-					System.out.println("Agent: "+submitter+" submitted Action: "+action+" - it will be executed!");
-					orderedActions.remove(0);
-					action.execute(this);
-					executing = true;
-					return true;
-				} else {
-					System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG waiting for Action: "+actionList.get(0));
-					return false;
-				}
-			} else {
-				System.out.println("DONE");
-				this.kill();
+		if(submittedAction != null){
+			System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG Action "+submittedAction+" is in execution");
+			return false;
+		} else {
+			if(orderedActions.get(0).equals(action)){
+				submittedAction = action;
+				submittedAction.execute(this);
+				System.out.println("Agent: "+submitter+" submitted Action: "+action+" - it will be executed!");
+				return true;
 			}
 		}
+		System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG waiting for Action: "+orderedActions.get(0));
 		return false;
-		
+	}
+	
+	public void markAsExecuted(ExpAction action){
+		if(action.equals(submittedAction)){
+			orderedActions.remove(0);
+			submittedAction = null;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -178,5 +179,9 @@ public class ExpSim extends SimState {
 		endtime = System.currentTimeMillis();
 		System.out.println("Duration: "+ (endtime-starttime));
 		System.exit(0);
+	}
+	
+	public List<ExpAction> getOrderedAction(){
+		return orderedActions;
 	}
 }

@@ -136,38 +136,40 @@ public class CollabAgent extends ExpAgent {
 	}
 	
 	private void readInbox() {
-		Message msg = incomingMessages.remove(0);
-		if(msg.getType() == Message.Type.INFORM){
-			if(msg.getContent() == Message.ownedBy){
-				action = new ExpActionTemplate(msg.getActionID());
-				todo = nextStep.add;					
-			} else if (msg.getContent() == Message.executed){
-				action = new ExpActionTemplate(msg.getActionID());
-				todo = nextStep.remove;					
-			}
-			execute = true;
-		} else { // REQUEST
-			if(msg.getContent() == Message.whoHas){
-				ExpAction a = getActionWithID(msg.getActionID());
-				if(!(a instanceof ExpActionTemplate)){
-					action = a;
-					say = true;
-					todo = nextStep.iHave;
-					out = msgFactory.informMessage(msg.getSender(), Message.ownedBy);
-					out.setActionID(a.getID());
-					say = true;
+		if(!incomingMessages.isEmpty()){
+			Message msg = incomingMessages.remove(0);
+			if(msg.getType() == Message.Type.INFORM){
+				if(msg.getContent() == Message.ownedBy){
+					action = new ExpActionTemplate(msg.getActionID());
+					todo = nextStep.add;					
+				} else if (msg.getContent() == Message.executed){
+					action = new ExpActionTemplate(msg.getActionID());
+					todo = nextStep.remove;					
 				}
-			} else if (msg.getContent() == Message.plzExecute){
-				ExpAction a = getActionWithID(msg.getActionID());
-				if(!(a instanceof ExpActionTemplate)){
-					action = a;
-					todo = nextStep.execute;
-					
-					out = msgFactory.informMessage(sim.Team, Message.executed);
-					out.setActionID(a.getID());	
-					execute = true;
+				execute = true;
+			} else { // REQUEST
+				if(msg.getContent() == Message.whoHas){
+					ExpAction a = getActionWithID(msg.getActionID());
+					if(!(a instanceof ExpActionTemplate)){
+						action = a;
+						say = true;
+						todo = nextStep.iHave;
+						out = msgFactory.informMessage(msg.getSender(), Message.ownedBy);
+						out.setActionID(a.getID());
+						say = true;
+					}
+				} else if (msg.getContent() == Message.plzExecute){
+					ExpAction a = getActionWithID(msg.getActionID());
+					if(!(a instanceof ExpActionTemplate)){
+						action = a;
+						todo = nextStep.execute;
+						
+						out = msgFactory.informMessage(sim.Team, Message.executed);
+						out.setActionID(a.getID());	
+						execute = true;
+					}
 				}
-			}
+			}	
 		}
 	}
 	
