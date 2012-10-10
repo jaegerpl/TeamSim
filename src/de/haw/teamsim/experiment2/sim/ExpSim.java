@@ -24,7 +24,7 @@ public class ExpSim extends SimState {
 	private List<ExpAgent> agents;		 				// the agents of the simulation
 	private List<ExpAction> actionList;					// the created actions actions
 	private List<ExpAction> orderedActions;					// the sequenzed actions actions
-	private boolean executing = false;					// indicates if an action is being executed
+//	private boolean executing = false;					// indicates if an action is being executed
 	private int nextAgent = 0;							// the agent who may submit the next action
 	
 	private static long starttime;
