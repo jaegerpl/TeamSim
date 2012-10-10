@@ -8,6 +8,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.haw.teamsim.experiment2.sim.Message;
+
 import sim.engine.SimState;
 
 /**
@@ -66,6 +68,11 @@ public class EgoAgent extends ExpAgent {
 		} else {
 			System.out.println("Agent "+name+" do nothing");
 		}
+	}
+
+	@Override
+	public void receiveMsg(Message msg) {
+		// TODO Auto-generated method stub
 	}
 
 }

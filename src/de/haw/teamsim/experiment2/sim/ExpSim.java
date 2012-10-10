@@ -23,7 +23,7 @@ public class ExpSim extends SimState {
 
 	private List<ExpAgent> agents;		 				// the agents of the simulation
 	private List<ExpAction> actionList;					// the created actions actions
-	private List<ExpAction> orderedActions;				// the sequenzed actions actions
+	private List<ExpAction> orderedActions;				// the sequenced actions actions
 	private int nextAgent = 0;							// the agent who may submit the next action
 	private ExpAction submittedAction = null;			// the action an agents submits for executing
 	
@@ -32,11 +32,10 @@ public class ExpSim extends SimState {
 	
 	public MessageSystem msgSys;
 	
-	
-	public static String Agent_A;
-	public static String Agent_B;
-	public static String Agent_C;
-	public static String Team;
+	public static String Agent_A = "A";
+	public static String Agent_B = "B";
+	public static String Agent_C = "C";
+	public static String Team = "TEAM";
 
 	public static Logger log = Logger.getLogger(ExpSim.class);
 
@@ -57,9 +56,11 @@ public class ExpSim extends SimState {
 		world.clear();
 
 		log.info("Init Agents");
-//		initAgents("data/AgentDefinition.txt");
 		initAgents();
 		createActions();
+		msgSys.addAgents(agents);
+		Thread t = new Thread(msgSys);
+		t.start();
 		
 		for(ExpAgent a : agents){
 			Stoppable stop = schedule.scheduleRepeating(a);
@@ -70,7 +71,10 @@ public class ExpSim extends SimState {
 			a.setStoppanble(stop);
 		}
 		
-		System.out.println("Start Simulation\n");
+		log.info("Start Simulation\n");
+		for(ExpAgent a : agents){
+			a.setInitialized();
+		}
 		agents.get(nextAgent).notifyForNextSubmission();
 	}
 	
@@ -101,9 +105,8 @@ public class ExpSim extends SimState {
 			}
 		}
 		orderedActions = new LinkedList<ExpAction>(actionList);
-		System.out.println("Actions created.");
-		System.out.println("Action Sequence = "+actionList.toString()+"\n");
-		System.out.println("Action Sequence = "+orderedActions.toString()+"\n");
+		log.info("Actions created.");
+		log.debug("Action Sequence = "+orderedActions.toString()+"\n");
 		
 		// Randomly split the actions over the agents
 		Collections.shuffle(actionList);
@@ -117,7 +120,7 @@ public class ExpSim extends SimState {
 			agent.addAction(iter.next());
 			index++;
 		}
-		System.out.println("Actions added to agents.");
+		log.debug("Actions added to agents.");
 	}
 	
 	/**
@@ -127,9 +130,9 @@ public class ExpSim extends SimState {
 	 */
 	private void initAgents(){
 		
-		ExpAgent a = new CollabAgent("A");
-		ExpAgent b = new CollabAgent("B");
-		ExpAgent c = new CollabAgent("C");
+		ExpAgent a = new CollabAgent(Agent_A);
+		ExpAgent b = new CollabAgent(Agent_B);
+		ExpAgent c = new CollabAgent(Agent_C);
 		
 		a.addAgents(b, c);
 		a.setSimulation(this);
@@ -140,7 +143,7 @@ public class ExpSim extends SimState {
 		agents.add(a);
 		agents.add(b);
 		agents.add(c);
-		System.out.println("Added agents to simulatiom list");
+		log.debug("Added agents to simulatiom list");
 	}
 		
 	/**
@@ -153,17 +156,17 @@ public class ExpSim extends SimState {
 	 */
 	public boolean submitForExecution(ExpAction action, ExpAgent submitter){
 		if(submittedAction != null){
-			System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG Action "+submittedAction+" is in execution");
+			log.info("Agent: "+submitter+" submitted Action: "+action+" - WRONG Action "+submittedAction+" is in execution");
 			return false;
 		} else {
 			if(orderedActions.get(0).equals(action)){
 				submittedAction = action;
 				submittedAction.execute(this);
-				System.out.println("Agent: "+submitter+" submitted Action: "+action+" - it will be executed!");
+				log.info("Agent: "+submitter+" submitted Action: "+action+" - it will be executed!");
 				return true;
 			}
 		}
-		System.out.println("Agent: "+submitter+" submitted Action: "+action+" - WRONG waiting for Action: "+orderedActions.get(0));
+		log.info("Agent: "+submitter+" submitted Action: "+action+" - WRONG waiting for Action: "+orderedActions.get(0));
 		return false;
 	}
 	
@@ -177,7 +180,7 @@ public class ExpSim extends SimState {
 	public static void main(String[] args) {
 		doLoop(ExpSim.class, args);
 		endtime = System.currentTimeMillis();
-		System.out.println("Duration: "+ (endtime-starttime));
+		log.info("Duration: "+ (endtime-starttime));
 		System.exit(0);
 	}
 	

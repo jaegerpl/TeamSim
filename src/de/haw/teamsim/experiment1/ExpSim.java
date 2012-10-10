@@ -122,9 +122,9 @@ public class ExpSim extends SimState {
 	 */
 	private void initAgents(){
 		
-		ExpAgent a = new CollabAgent("A");
-		ExpAgent b = new CollabAgent("B");
-		ExpAgent c = new CollabAgent("C");
+		ExpAgent a = new EgoAgent("A");
+		ExpAgent b = new EgoAgent("B");
+		ExpAgent c = new EgoAgent("C");
 		
 		a.addAgents(b, c);
 		a.setSimulation(this);

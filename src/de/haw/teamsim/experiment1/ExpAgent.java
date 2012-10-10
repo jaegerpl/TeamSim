@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import de.haw.teamsim.experiment2.sim.Message;
+
 import sim.engine.SimState;
 import sim.engine.Steppable;
 import sim.engine.Stoppable;
@@ -80,6 +82,6 @@ public abstract class ExpAgent implements Steppable {
 		this.stoppable = stop;
 	}
 
-	abstract public boolean receiveMsg(Message msg);	
+	abstract public void receiveMsg(Message msg);	
 
 }

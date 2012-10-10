@@ -17,10 +17,11 @@ public class MessageSystem implements Runnable{
 	@Override
 	public void run() {
 		while(true){
+			//System.out.println("MessageSystem is running");
 			if(!messageBus.isEmpty()){
-				Message msg = messageBus.get(0);
+				Message msg = messageBus.remove(0);
 				String r = msg.getReceiver();
-				if(r.equalsIgnoreCase("Team")){
+				if(r.equalsIgnoreCase(ExpSim.Team)){
 					for(ExpAgent agent : agents){
 						if(!agent.getName().equalsIgnoreCase(msg.getSender())){
 							agent.receiveMsg(msg);
@@ -33,6 +34,13 @@ public class MessageSystem implements Runnable{
 						}						
 					}
 				}
+				System.out.println("MessageSystem has send: "+msg);
+			}
+			try {
+				Thread.sleep(400);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		
@@ -45,5 +53,6 @@ public class MessageSystem implements Runnable{
 
 	public void addAgents(List<ExpAgent> a){
 		this.agents = a;
+		System.out.println("MessageSystem has agents: "+agents);
 	}
 }

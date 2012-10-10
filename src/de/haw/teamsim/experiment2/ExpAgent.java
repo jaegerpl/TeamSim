@@ -26,11 +26,16 @@ public abstract class ExpAgent implements Steppable {
 	protected String name;
 	protected Stoppable stoppable;
 	protected MentalModel memo;
+	protected boolean initialized = false;
 	
 	
 	public ExpAgent(String name){
 		this.name = name;
 		memo = new MentalModel();
+	}
+	
+	public void setInitialized(){
+		initialized = true;
 	}
 	
 	public void addAgents(ExpAgent a, ExpAgent b){
@@ -41,14 +46,14 @@ public abstract class ExpAgent implements Steppable {
 	public void addAction(ExpAction action){
 		action.setOwner(this);
 		memo.addAction(action);
-		System.out.println("Agent "+name+": Action with ID: "+action.getID()+" added - 1");
+//		System.out.println("Agent "+name+": Action with ID: "+action.getID()+" added - 1");
 	}
 	
 	public void addActions(List<ExpAction> action){
 		for(ExpAction ac : action){
 			ac.setOwner(this);
 			memo.addAction(ac);
-			System.out.println("Agent "+name+": Action with ID: "+ac.getID()+" added - 2");
+//			System.out.println("Agent "+name+": Action with ID: "+ac.getID()+" added - 2");
 		}
 	}
 	
@@ -72,7 +77,7 @@ public abstract class ExpAgent implements Steppable {
 		this.stoppable = stop;
 	}
 
-	abstract public boolean receiveMsg(Message msg);
+	abstract public void receiveMsg(Message msg);
 	
 	public String getName(){
 		return name;

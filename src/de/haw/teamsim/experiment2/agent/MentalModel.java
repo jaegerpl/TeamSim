@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.haw.teamsim.experiment2.ExpAction;
+import de.haw.teamsim.experiment2.ExpActionTemplate;
 
 public class MentalModel {
 	
@@ -20,16 +21,23 @@ public class MentalModel {
 	
 	public void addAction(ExpAction a){
 		actions.put(a.getID(), a);
-		if(a.getPredecessorID()== 0){
+		if(!(a instanceof ExpActionTemplate) && a.getPredecessorID()== 0){
 			firstActionID = a.getID();	
 		}
 	}
 	
+	/**
+	 * Returns the actions in sequence as far as it is possible to sort them
+	 * @return
+	 */
 	public List<ExpAction> getActions(){
 		List<ExpAction> list = new LinkedList<ExpAction>();
+		
 		if(firstActionID == -1){
+			// if not owner of the first action, simply return the set of actions as list
 			list = new ArrayList<ExpAction>(actions.values());
 		} else {
+			// start with the first ordered actions and then simply add the rest of the set
 			ExpAction a = actions.get(firstActionID);
 			list.add(a);
 			while(a.getSuccessorID() != 0){
@@ -41,8 +49,9 @@ public class MentalModel {
 			}
 			if(list.size() < actions.size()){
 				List<ExpAction> tmp = new LinkedList<ExpAction>();
-				tmp.add(list.size()-1, null);
-				Collections.copy(tmp, list);
+				for(ExpAction c : actions.values()){
+					tmp.add(c);
+				}
 				for(ExpAction b : list){
 					tmp.remove(list.indexOf(b));
 				}
@@ -54,7 +63,15 @@ public class MentalModel {
 		return list;
 	}
 
-	public ExpAction getFirstAction() {		
+	/**
+	 * Returns the first action in sequence, if it is known by the model. Otherwise returns the first action of the model
+	 * 
+	 * @return
+	 */
+	public ExpAction getFirstAction() {	
+		if(firstActionID != -1){
+			return actions.get(firstActionID);
+		}
 		return getActions().get(0);
 	}
 
