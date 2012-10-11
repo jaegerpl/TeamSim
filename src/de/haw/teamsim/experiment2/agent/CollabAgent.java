@@ -3,6 +3,7 @@
  */
 package de.haw.teamsim.experiment2.agent;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CollabAgent extends ExpAgent {
 	private boolean hasFirstAction = false;
 	private MessageFactory msgFactory;
 	private List<Message> incomingMessages;				// the inbox
-	enum nextStep {check, execute, add, remove, iHave, executed, inform};
+	enum nextStep {check, execute, add, remove, iHave, inform};
 	boolean listen, say, check, execute;				// state variables
 	private Message out;								// the message to be send during the next step
 	private ExpAction action;							// the action to be handled during the next step
@@ -33,12 +34,14 @@ public class CollabAgent extends ExpAgent {
 	private int checkCounter = 0;						// after how many steps something should be checked
 	private boolean checkCount = false;					// if true the checkCounter will be increased each step
 	private boolean output = false;
+	private List<ExpAction> communicatedActions;
 	
 	
 	public CollabAgent(String name) {
 		super(name);
 		incomingMessages = new LinkedList<Message>();
 		msgFactory = new MessageFactory(this.name);
+		communicatedActions = new ArrayList<ExpAction>();
 	}
 	
 	/* (non-Javadoc)
@@ -47,21 +50,21 @@ public class CollabAgent extends ExpAgent {
 	@Override
 	public void step(SimState state) {
 		
-		if(output){
-		System.out.println("Agent "+name+"\n"
-				+"firststep = "+firstStep+"\n"
-				+"hasFirstActon = "+hasFirstAction+"\n"
-				+"listen = "+listen+"\n"
-				+"say = "+say+"\n"
-				+"check = "+check+"\n"
-				+"execute = "+execute+"\n"
-				+"action = "+action+"\n"
-				+"checkAction = "+checkAction+"\n"
-				+"todo = "+todo+"\n"
-				+"checkCount = "+checkCount+"\n"
-				+"checkCounter = "+checkCounter+"\n"
-				+"===================");
-		}
+//		if(output){
+//		System.out.println("Agent "+name+"\n"
+//				+"firststep = "+firstStep+"\n"
+//				+"hasFirstActon = "+hasFirstAction+"\n"
+//				+"listen = "+listen+"\n"
+//				+"say = "+say+"\n"
+//				+"check = "+check+"\n"
+//				+"execute = "+execute+"\n"
+//				+"action = "+action+"\n"
+//				+"checkAction = "+checkAction+"\n"
+//				+"todo = "+todo+"\n"
+//				+"checkCount = "+checkCount+"\n"
+//				+"checkCounter = "+checkCounter+"\n"
+//				+"===================");
+//		}
 		
 		
 		if(initialized){
@@ -85,6 +88,7 @@ public class CollabAgent extends ExpAgent {
 				Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
 				msg.setActionID(action.getID());
 				sim.msgSys.sendMessage(msg);
+				communicatedActions.add(action);
 				hasFirstAction =false;
 				listen = false;
 				todo = nextStep.execute;
@@ -92,70 +96,11 @@ public class CollabAgent extends ExpAgent {
 			} 
 			
 			if(check){
-				check = false;
-				if(checkAction.isFinished()){	// action is finished
-					check = false;
-					checkCount = false;
-					checkAction = null;
-					checkCounter = 0;
-				} else {
-					checkCounter = checkCounter -3; // check again in 3 steps
-				}			
+				check();			
 			} else if (execute) {
-				execute= false;
-				switch (todo) {
-				case add:
-					addAction(action);  // check if contains already
-					action = null;
-					todo = null;
-					listen = true;
-					break;
-				case remove:
-					memo.remove(action.getID());
-					action = null;
-					todo = null;
-					listen = true;
-					break;
-				case execute:
-					sim.submitForExecution(action, this);
-					say = true;
-					break;
-				default:
-					System.err.println("In Agent "+name+" in step case EXECUTE this shoudl not happen");
-					break;
-				}
+				execute();
 			} else if (say) {
-				say = false;
-				switch (todo) {
-				case iHave:
-					sim.msgSys.sendMessage(out);
-					action = null;
-					todo = null;
-					listen = true;
-					break;
-				case execute:
-					checkAction = action;
-					checkCount = true; 
-					action = null;
-					todo = null;
-					listen = true;
-					break;
-				case executed:
-					checkAction = null;
-					todo = null;
-					listen = true;
-					break;
-				case inform:
-					// pick an action and tell others, that you have it
-					System.out.println("Agent "+name+" needs to say something");
-					say = false;
-					todo = null;
-					listen = true;
-					break;
-				default:
-					System.err.println("In Agent "+name+" in step case SAY this shoudl not happen");
-					break;
-				}			
+				say();
 			} else if(listen){
 				listen = false;
 				readInbox();	
@@ -163,6 +108,117 @@ public class CollabAgent extends ExpAgent {
 		}
 	}
 	
+	private void say() {
+		say = false;
+		switch (todo) {
+		case iHave:
+			sim.msgSys.sendMessage(out);
+			action = null;
+			todo = null;
+			listen = true;
+			break;
+		case execute:
+			checkAction = action;
+			Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
+			msg.setActionID(action.getID());
+			sim.msgSys.sendMessage(msg);
+			communicatedActions.add(action);
+			checkCount = true; 
+			action = null;
+			todo = null;
+			listen = true;
+			break;
+		case inform:
+			// pick an action and tell others, that you have it
+			for(ExpAction a : memo.getActions()){
+				if(!(a instanceof ExpActionTemplate)){
+					if(!communicatedActions.contains(a)){
+						Message msg2 = msgFactory.informMessage(sim.Team, Message.ownedBy);
+						msg2.setActionID(a.getID());
+						sim.msgSys.sendMessage(msg2);
+						communicatedActions.add(a);
+						System.out.println("Agent "+name+" needs to say something");
+					}
+					break;
+				}
+			}
+			
+			say = false;
+			todo = null;
+			listen = true;
+			break;
+		default:
+			System.err.println("In Agent "+name+" in step case SAY this shoudl not happen");
+			break;
+		}			
+	}
+
+	private void check() {
+		if(checkAction.isFinished()){	// action is finished
+			boolean jumpBack = true;
+			check = false;
+			sim.markAsExecuted(checkAction);
+			Message msg = msgFactory.informMessage(sim.Team, Message.executed);
+			msg.setActionID(checkAction.getID());
+			sim.msgSys.sendMessage(msg);
+			// check if I have next Action
+			for(ExpAction a : memo.getActions()){
+				if(!(a instanceof ExpActionTemplate) && a.getPredecessorID() == checkAction.getID()){
+					action = a;
+					execute = true;
+					todo = nextStep.execute;
+					jumpBack = false;
+					break;
+				}
+			}
+			if(jumpBack){
+				checkCount = false;
+				checkAction = null;
+				checkCounter = 0;
+			}
+		} else {
+			checkCounter = checkCounter -3; // check again in 3 steps
+		}
+	}
+
+	private void execute() {
+		execute= false;
+		switch (todo) {
+		case add:
+			addAction(action);  // check if contains already
+			action = null;
+			todo = null;
+			listen = true;
+			break;
+		case remove:
+			boolean jumpBack = true;
+			memo.remove(action.getID());
+			// check if I have next action
+			for(ExpAction a : memo.getActions()){
+				if(a.getPredecessorID() == action.getID()){
+					action = a;
+					execute = true;
+					todo = nextStep.execute;
+					jumpBack = false;
+					break;
+				}
+			}
+			if(jumpBack){
+				action = null;
+				todo = null;
+				listen = true;
+				break;
+			}
+		case execute:
+			sim.submitForExecution(action, this);
+			say = true;
+			break;
+		default:
+			System.err.println("In Agent "+name+" in step case EXECUTE this shoudl not happen");
+			break;
+		}
+	}
+
 	private void readInbox() {
 		if(!incomingMessages.isEmpty()){
 			Message msg = incomingMessages.remove(0);
@@ -191,9 +247,6 @@ public class CollabAgent extends ExpAgent {
 					if(!(a instanceof ExpActionTemplate)){
 						action = a;
 						todo = nextStep.execute;
-						
-						out = msgFactory.informMessage(sim.Team, Message.executed);
-						out.setActionID(a.getID());	
 						execute = true;
 					}
 				}
@@ -216,7 +269,7 @@ public class CollabAgent extends ExpAgent {
 
 	public void receiveMsg(Message msg){
 		incomingMessages.add(msg);
-		System.out.println("Agent "+name+" message received");
+//		System.out.println("Agent "+name+" message received");
 	}
 	
 	private ExpAction getActionWithID(int id){

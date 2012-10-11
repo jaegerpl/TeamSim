@@ -105,7 +105,6 @@ public class ExpSim extends SimState {
 			}
 		}
 		orderedActions = new LinkedList<ExpAction>(actionList);
-		log.info("Actions created.");
 		log.debug("Action Sequence = "+orderedActions.toString()+"\n");
 		
 		// Randomly split the actions over the agents

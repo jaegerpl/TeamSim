@@ -53,7 +53,7 @@ public class MentalModel {
 					tmp.add(c);
 				}
 				for(ExpAction b : list){
-					tmp.remove(list.indexOf(b));
+					tmp.remove(tmp.indexOf(b));
 				}
 				for(ExpAction c : tmp){
 					list.add(c);

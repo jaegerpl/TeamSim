@@ -48,11 +48,11 @@ public class MessageSystem implements Runnable{
 	
 	public void sendMessage(Message msg){
 		messageBus.add(msg);
-		System.out.println("MessageSystem received: "+msg);
+//		System.out.println("MessageSystem received: "+msg);
 	}
 
 	public void addAgents(List<ExpAgent> a){
 		this.agents = a;
-		System.out.println("MessageSystem has agents: "+agents);
+//		System.out.println("MessageSystem has agents: "+agents);
 	}
 }

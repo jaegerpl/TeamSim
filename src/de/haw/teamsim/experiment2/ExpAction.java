@@ -81,13 +81,13 @@ public class ExpAction implements Steppable{
 	}
 	
 	public String toString(){
-		return new String("(ID: "+ID+", P: "+predecessor+", S: "+successor+")");
+		return new String("(ID: "+ID+", P: "+predecessor+", S: "+successor+")\n");
 	}
 
 	@Override
 	public void step(SimState state) {
 		if(execute){
-			System.out.println("Action "+ID+" in execution");
+//			System.out.println("Action "+ID+" in execution");
 			duration -=1;
 		}
 		if(duration == 0){
