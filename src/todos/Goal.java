@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import de.haw.teamsim.agent.Belief;
+import de.haw.teamsim.agent.datatypes.Belief;
+import de.haw.teamsim.agent.datatypes.Plan;
 
 
 /**

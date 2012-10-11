@@ -86,14 +86,14 @@ public class Blackboard implements Runnable {
 	 * @param dropOldGoal true to drop the old goal, false suspendes the old goal
 	 * @return the old active goal
 	 */
-	public Goal setActiveGoal(Goal g, Boolean dropOldGoal){
-		Goal oldGoal = activeGoal;
-		activeGoal = g;
-		if(!dropOldGoal){
-			suspendedGoals.put(oldGoal.getID(), oldGoal);
-		}
-		return oldGoal;
-	}
+//	public Goal setActiveGoal(Goal g, Boolean dropOldGoal){
+//		Goal oldGoal = activeGoal; 
+//		activeGoal = g;
+//		if(!dropOldGoal){
+//			suspendedGoals.put(oldGoal.getID(), oldGoal);
+//		}
+//		return oldGoal;
+//	}
 	
 	/**
 	 * Chooses a goal to process it one step further.
