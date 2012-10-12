@@ -270,4 +270,50 @@ public class CollabAgent extends ExpAgent {
 		}
 		return null;
 	}
+
+	public ExpAction getAction() {
+		return action;
+	}
+
+	public void setAction(ExpAction action) {
+		this.action = action;
+	}
+
+	public boolean isHasFirstAction() {
+		return hasFirstAction;
+	}
+
+	public boolean isListen() {
+		return listen;
+	}
+
+	public boolean isSay() {
+		return say;
+	}
+
+	public boolean isCheck() {
+		return check;
+	}
+
+	public boolean isExecute() {
+		return execute;
+	}
+
+	public ExpAction getCheckAction() {
+		return checkAction;
+	}
+
+	public nextStep getTodo() {
+		return todo;
+	}
+
+	public int getCheckCounter() {
+		return checkCounter;
+	}
+
+	public boolean isCheckCount() {
+		return checkCount;
+	}
+	
+	
 }

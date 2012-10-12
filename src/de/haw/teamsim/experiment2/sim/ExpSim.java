@@ -206,5 +206,9 @@ public class ExpSim extends SimState {
 		this.actionsAmount = actionsAmount;
 	}
 	
+	public List<ExpAgent> getAgents(){
+		return agents;
+	}
+	
 
 }
