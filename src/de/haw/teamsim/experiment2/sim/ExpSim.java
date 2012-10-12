@@ -82,7 +82,7 @@ public class ExpSim extends SimState {
 	 * Create a random order of actions and randomly spread then over all agent
 	 */
 	private void createActions(){
-		int actionCount = 9;
+		int actionCount = 6;
 		int prio = 1;
 		
 		// create actions
@@ -173,6 +173,12 @@ public class ExpSim extends SimState {
 		if(action.equals(submittedAction)){
 			orderedActions.remove(0);
 			submittedAction = null;
+			if(orderedActions.isEmpty()){
+				for(ExpAgent agent : agents){
+					agent.stopStepping();
+				}
+				System.out.println("ENDE=ENDE=ENDE=ENDE");
+			}
 		}
 	}
 

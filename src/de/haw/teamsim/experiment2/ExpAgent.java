@@ -82,5 +82,10 @@ public abstract class ExpAgent implements Steppable {
 	public String getName(){
 		return name;
 	}
+	
+	public void stopStepping(){
+		stoppable.stop();
+		System.out.println("Agent "+name+" has stopped");
+	}
 
 }

@@ -33,7 +33,6 @@ public class CollabAgent extends ExpAgent {
 	private nextStep todo;								// the next step to be taken
 	private int checkCounter = 0;						// after how many steps something should be checked
 	private boolean checkCount = false;					// if true the checkCounter will be increased each step
-	private boolean output = false;
 	private List<ExpAction> communicatedActions;
 	
 	
@@ -77,23 +76,9 @@ public class CollabAgent extends ExpAgent {
 			if(firstStep){
 				firstStep =  false;
 				System.out.println("Agent "+name+" has actions: "+memo.getActions());
-				hasFirstAction = check4FirstAction();
 				listen = true;
-			} 
-			
-			if(hasFirstAction){
-				output = true;
-				// tell other
-				// submit for execution
-				Message msg = msgFactory.informMessage(sim.Team, Message.ownedBy);
-				msg.setActionID(action.getID());
-				sim.msgSys.sendMessage(msg);
-				communicatedActions.add(action);
-				hasFirstAction =false;
-				listen = false;
-				todo = nextStep.execute;
-				execute = true;
-			} 
+				check4FirstAction(); // sets listen = false if first action is found here and triggers its execution
+			}  
 			
 			if(check){
 				check();			
@@ -138,8 +123,9 @@ public class CollabAgent extends ExpAgent {
 						sim.msgSys.sendMessage(msg2);
 						communicatedActions.add(a);
 						System.out.println("Agent "+name+" needs to say something");
+						break;
 					}
-					break;
+					
 				}
 			}
 			
@@ -165,6 +151,7 @@ public class CollabAgent extends ExpAgent {
 			for(ExpAction a : memo.getActions()){
 				if(!(a instanceof ExpActionTemplate) && a.getPredecessorID() == checkAction.getID()){
 					action = a;
+					checkAction = null;
 					execute = true;
 					todo = nextStep.execute;
 					jumpBack = false;
@@ -257,14 +244,17 @@ public class CollabAgent extends ExpAgent {
 		}
 	}
 	
-	private boolean check4FirstAction() {
+	private void check4FirstAction() {
 		for(ExpAction a : memo.getActions()){
 			if(a.getPredecessorID() == 0){
 				action = a;
-				return true;
+				hasFirstAction =false;
+				listen = false;
+				todo = nextStep.execute;
+				execute = true;
 			}
 		}
-		return false;
+
 	}
 
 	public void receiveMsg(Message msg){
