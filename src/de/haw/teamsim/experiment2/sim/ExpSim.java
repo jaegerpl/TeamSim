@@ -20,6 +20,7 @@ public class ExpSim extends SimState {
 
 	private static final long serialVersionUID = 1L;
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
+	private int actionsAmount = 0;
 
 	private List<ExpAgent> agents;		 				// the agents of the simulation
 	private List<ExpAction> actionList;					// the created actions actions
@@ -192,4 +193,18 @@ public class ExpSim extends SimState {
 	public List<ExpAction> getOrderedAction(){
 		return orderedActions;
 	}
+	
+	public Integer getCurrentExecutingAction(){
+		return submittedAction.getID();
+	}
+
+	public int getActionsAmount() {
+		return actionsAmount;
+	}
+
+	public void setActionsAmount(int actionsAmount) {
+		this.actionsAmount = actionsAmount;
+	}
+	
+
 }
