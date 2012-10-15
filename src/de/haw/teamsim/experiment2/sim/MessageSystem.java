@@ -1,14 +1,18 @@
 package de.haw.teamsim.experiment2.sim;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import sim.util.Bag;
+
 import de.haw.teamsim.experiment2.ExpAgent;
+import de.haw.teamsim.experiment2.agent.CollabAgent;
 
 public class MessageSystem implements Runnable{
 	
 	private List<Message> messageBus;
-	private List<ExpAgent> agents = new LinkedList<ExpAgent>();
+	private List<CollabAgent> agents = new LinkedList<CollabAgent>();
 	
 	public MessageSystem(){
 		messageBus = new LinkedList<Message>();
@@ -51,8 +55,11 @@ public class MessageSystem implements Runnable{
 //		System.out.println("MessageSystem received: "+msg);
 	}
 
-	public void addAgents(List<ExpAgent> a){
-		this.agents = a;
+	public void addAgents(Bag bag){
+		Iterator<CollabAgent> it = bag.iterator();
+		while(it.hasNext()){
+			agents.add(it.next());
+		}
 //		System.out.println("MessageSystem has agents: "+agents);
 	}
 }

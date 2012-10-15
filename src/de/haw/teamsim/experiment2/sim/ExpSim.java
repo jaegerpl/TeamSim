@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 import sim.engine.SimState;
 import sim.engine.Stoppable;
 import sim.field.continuous.Continuous2D;
+import sim.field.grid.SparseGrid2D;
+import sim.portrayal.grid.SparseGridPortrayal2D;
+import sim.util.Int2D;
 import de.haw.teamsim.experiment2.ExpAction;
 import de.haw.teamsim.experiment2.ExpAgent;
 import de.haw.teamsim.experiment2.agent.CollabAgent;
@@ -22,7 +25,7 @@ public class ExpSim extends SimState {
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 	private int actionsAmount = 5;
 
-	private List<ExpAgent> agents;		 				// the agents of the simulation
+	private SparseGrid2D agents;		 				// the agents of the simulation
 	private List<ExpAction> actionList;					// the created actions actions
 	private List<ExpAction> orderedActions;				// the sequenced actions actions
 	private int nextAgent = 0;							// the agent who may submit the next action
@@ -45,7 +48,7 @@ public class ExpSim extends SimState {
 		BasicConfigurator.configure();
 		log.setLevel(Level.ALL);
 		
-		agents = new LinkedList<ExpAgent>();
+		agents = new SparseGrid2D(10,10);
 		actionList = new LinkedList<ExpAction>();
 		orderedActions = new LinkedList<ExpAction>();
 		msgSys = new MessageSystem();
@@ -59,24 +62,28 @@ public class ExpSim extends SimState {
 		log.info("Init Agents");
 		initAgents();
 		createActions();
-		msgSys.addAgents(agents);
+		msgSys.addAgents(agents.getAllObjects());
 		Thread t = new Thread(msgSys);
 		t.start();
 		
-		for(ExpAgent a : agents){
-			Stoppable stop = schedule.scheduleRepeating(a);
-			a.setStoppanble(stop);
+		Iterator<CollabAgent> it = agents.iterator();
+		while(it.hasNext()){
+			CollabAgent agent = it.next();
+			Stoppable stop = schedule.scheduleRepeating(agent);
+			agent.setStoppanble(stop);
 		}
+		
 		for(ExpAction a : actionList){
 			Stoppable stop = schedule.scheduleRepeating(a);
 			a.setStoppanble(stop);
 		}
 		
 		log.info("Start Simulation\n");
-		for(ExpAgent a : agents){
-			a.setInitialized();
+		Iterator<CollabAgent> it2 = agents.iterator();
+		while(it2.hasNext()){
+			it2.next().setInitialized();
 		}
-		agents.get(nextAgent).notifyForNextSubmission();
+		((ExpAgent) agents.getAllObjects().get(nextAgent)).notifyForNextSubmission();
 	}
 	
 	/**
@@ -116,7 +123,7 @@ public class ExpSim extends SimState {
 			if(index == agents.size()){
 				index = 0;
 			}
-			ExpAgent agent = agents.get(index);
+			ExpAgent agent = (ExpAgent) agents.getAllObjects().get(index);
 			agent.addAction(iter.next());
 			index++;
 		}
@@ -130,9 +137,9 @@ public class ExpSim extends SimState {
 	 */
 	private void initAgents(){
 		
-		ExpAgent a = new CollabAgent(Agent_A);
-		ExpAgent b = new CollabAgent(Agent_B);
-		ExpAgent c = new CollabAgent(Agent_C);
+		CollabAgent a = new CollabAgent(Agent_A,1,1);
+		CollabAgent b = new CollabAgent(Agent_B,2,1);
+		CollabAgent c = new CollabAgent(Agent_C,3,1);
 		
 		a.addAgents(b, c);
 		a.setSimulation(this);
@@ -140,9 +147,9 @@ public class ExpSim extends SimState {
 		b.setSimulation(this);
 		c.addAgents(a, b);
 		c.setSimulation(this);
-		agents.add(a);
-		agents.add(b);
-		agents.add(c);
+		agents.setObjectLocation(a, new Int2D(a.getXDir(), a.getYDir()));
+		agents.setObjectLocation(b, new Int2D(b.getXDir(), b.getYDir()));
+		agents.setObjectLocation(c, new Int2D(c.getXDir(), c.getYDir()));
 		log.debug("Added agents to simulatiom list");
 	}
 		
@@ -175,9 +182,10 @@ public class ExpSim extends SimState {
 			orderedActions.remove(0);
 			submittedAction = null;
 			if(orderedActions.isEmpty()){
-				for(ExpAgent agent : agents){
-					agent.stopStepping();
-				}
+				Iterator<CollabAgent> it = agents.iterator();
+				while(it.hasNext()){
+					it.next().stopStepping();
+				}				
 				System.out.println("ENDE=ENDE=ENDE=ENDE");
 			}
 		}
@@ -195,6 +203,9 @@ public class ExpSim extends SimState {
 	}
 	
 	public Integer getCurrentExecutingAction(){
+		if( submittedAction == null){
+			return -1;
+		}
 		return submittedAction.getID();
 	}
 
@@ -206,7 +217,7 @@ public class ExpSim extends SimState {
 		this.actionsAmount = actionsAmount;
 	}
 	
-	public List<ExpAgent> getAgents(){
+	public SparseGrid2D getAgents(){
 		return agents;
 	}
 	

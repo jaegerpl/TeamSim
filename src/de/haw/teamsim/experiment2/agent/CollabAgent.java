@@ -14,6 +14,9 @@ import de.haw.teamsim.experiment2.sim.Message;
 import de.haw.teamsim.experiment2.sim.MessageFactory;
 
 import sim.engine.SimState;
+import sim.util.CollectionProperties;
+import sim.util.Properties;
+import sim.util.SimpleProperties;
 
 /**
  * @author pascal
@@ -35,12 +38,25 @@ public class CollabAgent extends ExpAgent {
 	private boolean checkCount = false;					// if true the checkCounter will be increased each step
 	private List<ExpAction> communicatedActions;
 	
+	private int xDir;
+	private int yDir;
 	
-	public CollabAgent(String name) {
+	
+	public CollabAgent(String name, int x, int y) {
 		super(name);
+		xDir = x;
+		yDir = y;
 		incomingMessages = new LinkedList<Message>();
 		msgFactory = new MessageFactory(this.name);
 		communicatedActions = new ArrayList<ExpAction>();
+	}
+	
+	public int  getXDir(){
+		return xDir;
+	}
+	
+	public int  getYDir(){
+		return yDir;
 	}
 	
 	/* (non-Javadoc)
@@ -48,6 +64,7 @@ public class CollabAgent extends ExpAgent {
 	 */
 	@Override
 	public void step(SimState state) {
+		
 		
 //		if(output){
 //		System.out.println("Agent "+name+"\n"
@@ -67,6 +84,7 @@ public class CollabAgent extends ExpAgent {
 		
 		
 		if(initialized){
+			System.out.println("say something");
 			if(checkCount){
 				checkCounter++;
 				if(checkCounter == 10){
@@ -314,6 +332,11 @@ public class CollabAgent extends ExpAgent {
 	public boolean isCheckCount() {
 		return checkCount;
 	}
+	
+//	public Properties getProperties(){
+//		Properties p1 = new CollectionProperties(this);
+//		return p1;
+//	}
 	
 	
 }
