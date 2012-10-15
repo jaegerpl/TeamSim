@@ -20,7 +20,7 @@ public class ExpSim extends SimState {
 
 	private static final long serialVersionUID = 1L;
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
-	private int actionsAmount = 0;
+	private int actionsAmount = 5;
 
 	private List<ExpAgent> agents;		 				// the agents of the simulation
 	private List<ExpAction> actionList;					// the created actions actions
@@ -83,7 +83,7 @@ public class ExpSim extends SimState {
 	 * Create a random order of actions and randomly spread then over all agent
 	 */
 	private void createActions(){
-		int actionCount = 6;
+		int actionCount = actionsAmount;
 		int prio = 1;
 		
 		// create actions
