@@ -41,6 +41,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import de.haw.teamsim.jade.behaviours.MeetingInitiationBehavior;
+import de.haw.teamsim.jade.behaviours.MeetingResponseBehavior;
 
 /**
    This example shows how to implement the initiator role in 
@@ -52,15 +53,29 @@ import de.haw.teamsim.jade.behaviours.MeetingInitiationBehavior;
  */
 public class MyJAdeAgent extends Agent {
 	private int nResponders;
-	private Agent myAgent;
+	int behaviourChoice = 0;
 	
-	public MyJAdeAgent(Agent owner){
-		myAgent = owner; // the agent performing the behaviour
+	public MyJAdeAgent(){
+		Object[] args = getArguments();
+		if (args != null && args.length > 0) {
+			behaviourChoice = (Integer) args[0];
+		}
 	}
 	
 	protected void setup() {
-	  	// get names of agents present at the container
-	  	AID[] agents = findPresentAgents();
+		if(behaviourChoice == 0){
+			addMeetingInitiantionBehaviour();
+		} else {
+			addMeetingResponseBehaviour();
+		}
+	} 
+	
+	/**
+	 * Creates a message starting the MeetingInitiationProtocol and adds the 
+	 * <code>MeetingInitiationBehaviour</code> to the agent's behaviours.
+	 */
+	private void addMeetingInitiantionBehaviour(){
+		AID[] agents = findPresentAgents();
 	  	if (agents != null && agents.length > 0) {
 	  		nResponders = agents.length;
 	  		System.out.println("Requesting dummy-action to "+nResponders+" responders.");
@@ -72,13 +87,7 @@ public class MyJAdeAgent extends Agent {
 //	  			msg.addReceiver(agents[i], AID.ISLOCALNAME);
 	  		}
 			msg.setProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST);
-			
-//			// We want to receive a reply in 10 secs
-//			msg.setReplyByDate(new Date(System.currentTimeMillis() + 10000));
-			
-			// sender requests the attention of receiver, i.e. the following messages 
-			// of sender are the only thing the receiver will deal with
-			msg.setContent("attention"); 
+			msg.setContent("meeting"); 
 			
 			addBehaviour(MeetingInitiationBehavior.createBehaviour(this, msg, nResponders) );
 //			myAgent.send(msg);
@@ -86,32 +95,56 @@ public class MyJAdeAgent extends Agent {
 	  	else {
 	  		System.out.println("No responder specified.");
 	  	}
-	} 
+	}
+	
+	private void addMeetingResponseBehaviour(){
+		AID[] agents = findPresentAgents();
+	  	if (agents != null && agents.length > 0) {
+	  		nResponders = agents.length;
+	  		System.out.println("Requesting dummy-action to "+nResponders+" responders.");
+	  		
+	  		// Fill the REQUEST message
+	  		MessageTemplate template = MessageTemplate.and(
+	  		  		MessageTemplate.MatchProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST),
+	  		  		MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+	  		  						    MessageTemplate.MatchContent("meeting")));
+			
+			addBehaviour(MeetingResponseBehavior.createBehaviour(this, template) );
+	  	}
+	  	else {
+	  		System.out.println("No responder specified.");
+	  	}
+	}
   
-  private AID[] findPresentAgents(){
-	  
-//	  AMSAgentDescription [] agents = null;
-//    	try {
-//          SearchConstraints c = new SearchConstraints();
-//          c.setMaxResults (new Long(-1));
-//			agents = AMSService.search( this, new AMSAgentDescription (), c );
-//		}
-//		catch (Exception e) {
-//          System.out.println( "Problem searching AMS: " + e );
-//          e.printStackTrace();
-//		}
-//		
-//		for (int i=0; i<agents.length;i++){
-//			AID agentID = agents[i].getName(); }
-
-	  
+  /**
+   * Returns an array with all agents that registered the service "presence" with the DF
+   * @return
+   */
+	private AID[] findPresentAgents(){
+		
+	  /**
+	   * AMSAgentDescription [] agents = null;
+	   *	try {
+       *   SearchConstraints c = new SearchConstraints();
+       *   c.setMaxResults (new Long(-1));
+       *	agents = AMSService.search( this, new AMSAgentDescription (), c );
+       *	}
+       *	catch (Exception e) {
+       *   System.out.println( "Problem searching AMS: " + e );
+       *   e.printStackTrace();
+       *	}
+       *
+       *	for (int i=0; i<agents.length;i++){
+       *		AID agentID = agents[i].getName(); }
+	   */
+	  	  
 	  AID[] presentAgents = null;
 	  DFAgentDescription template = new DFAgentDescription();
 	  ServiceDescription sd = new ServiceDescription();
 	  sd.setType("presence");
 	  template.addServices(sd);
 	  try {
-		  DFAgentDescription[] result = DFService.search(myAgent, template);
+		  DFAgentDescription[] result = DFService.search(this, template);
 		  presentAgents = new AID[result.length];
 		  for (int i = 0; i < result.length; ++i) {
 			  presentAgents[i] = result[i].getName();
@@ -121,7 +154,7 @@ public class MyJAdeAgent extends Agent {
 		  fe.printStackTrace();
 	  }
 	  return presentAgents;
-  }
+	}
 }
 
 
