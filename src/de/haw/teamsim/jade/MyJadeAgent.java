@@ -25,21 +25,15 @@ package de.haw.teamsim.jade;
  * **************************************************************
  */
 
-import jade.core.Agent;
 import jade.core.AID;
-import jade.core.behaviours.*;
-import jade.lang.acl.ACLMessage;
-import jade.proto.AchieveREInitiator;
-import jade.lang.acl.MessageTemplate;
+import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-
-import java.util.Date;
-import java.util.Vector;
-
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 import de.haw.teamsim.jade.behaviours.MeetingInitiationBehavior;
 import de.haw.teamsim.jade.behaviours.MeetingResponseBehavior;
 
@@ -53,16 +47,20 @@ import de.haw.teamsim.jade.behaviours.MeetingResponseBehavior;
  */
 public class MyJadeAgent extends Agent {
 	private int nResponders;
-	int behaviourChoice = 0;
+	static int behaviourChoice = -1;
 	
 	public MyJadeAgent(){
-		Object[] args = getArguments();
-		if (args != null && args.length > 0) {
-			behaviourChoice = (Integer) args[0];
-		}
+		
 	}
 	
 	protected void setup() {
+		Object[] args = getArguments();
+		if (args != null && args.length > 0) {
+//			behaviourChoice = (Integer) args[0];
+			behaviourChoice++;
+			System.out.println("behaviourchoice ist "+behaviourChoice);
+		}
+		
 		// Register the book-selling service in the yellow pages
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
@@ -76,10 +74,12 @@ public class MyJadeAgent extends Agent {
 			fe.printStackTrace();
 		}
 		
-		if(behaviourChoice == 0){
+		if(behaviourChoice == 1){
 			addMeetingInitiantionBehaviour();
-		} else {
+		} else if(behaviourChoice == 0) {
 			addMeetingResponseBehaviour();
+		} else {
+			System.out.println("wrong behaviourChoice = "+behaviourChoice);
 		}
 	} 
 	
@@ -91,7 +91,7 @@ public class MyJadeAgent extends Agent {
 		AID[] agents = findPresentAgents();
 	  	if (agents != null && agents.length > 0) {
 	  		nResponders = agents.length;
-	  		System.out.println("Requesting dummy-action to "+nResponders+" responders.");
+	  		System.out.println("Requesting initiation to "+nResponders+" responders.");
 	  		
 	  		// Fill the REQUEST message
 	  		ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
@@ -111,22 +111,13 @@ public class MyJadeAgent extends Agent {
 	}
 	
 	private void addMeetingResponseBehaviour(){
-		AID[] agents = findPresentAgents();
-	  	if (agents != null && agents.length > 0) {
-	  		nResponders = agents.length;
-	  		System.out.println("Requesting dummy-action to "+nResponders+" responders.");
-	  		
-	  		// Fill the REQUEST message
-	  		MessageTemplate template = MessageTemplate.and(
-	  		  		MessageTemplate.MatchProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST),
-	  		  		MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-	  		  						    MessageTemplate.MatchContent("meeting")));
-			
-			addBehaviour(MeetingResponseBehavior.createBehaviour(this, template) );
-	  	}
-	  	else {
-	  		System.out.println("No responder specified.");
-	  	}
+  		// Fill the REQUEST message
+  		MessageTemplate template = MessageTemplate.and(
+  		  		MessageTemplate.MatchProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST),
+  		  		MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+  		  						    MessageTemplate.MatchContent("meeting")));
+		
+		addBehaviour(MeetingResponseBehavior.createBehaviour(this, template) );
 	}
   
   /**
