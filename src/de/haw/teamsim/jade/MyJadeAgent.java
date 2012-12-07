@@ -51,11 +51,11 @@ import de.haw.teamsim.jade.behaviours.MeetingResponseBehavior;
    names must be specified as arguments).
    @author Giovanni Caire - TILAB
  */
-public class MyJAdeAgent extends Agent {
+public class MyJadeAgent extends Agent {
 	private int nResponders;
 	int behaviourChoice = 0;
 	
-	public MyJAdeAgent(){
+	public MyJadeAgent(){
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
 			behaviourChoice = (Integer) args[0];
