@@ -63,6 +63,19 @@ public class MyJadeAgent extends Agent {
 	}
 	
 	protected void setup() {
+		// Register the book-selling service in the yellow pages
+		DFAgentDescription dfd = new DFAgentDescription();
+		dfd.setName(getAID());
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("presence");
+		sd.setName("presence");
+		dfd.addServices(sd);
+		try {
+			DFService.register(this, dfd);
+		} catch (FIPAException fe) {
+			fe.printStackTrace();
+		}
+		
 		if(behaviourChoice == 0){
 			addMeetingInitiantionBehaviour();
 		} else {
@@ -155,6 +168,18 @@ public class MyJadeAgent extends Agent {
 	  }
 	  return presentAgents;
 	}
+	
+	protected void takeDown() {
+		// Deregister from the yellow pages
+		try {
+			DFService.deregister(this);
+		} catch (FIPAException fe) {
+			fe.printStackTrace();
+		}
+
+		// Printout a dismissal message
+		System.out.println("Agentt "+getAID().getName()+" terminating.");
+		}
 }
 
 
