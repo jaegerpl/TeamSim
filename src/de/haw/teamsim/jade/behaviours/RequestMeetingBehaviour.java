@@ -6,7 +6,7 @@ import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
 import jade.proto.AchieveREInitiator;
 
-public class MeetingInitiationBehavior {
+public class RequestMeetingBehaviour {
 	
 	private static int nResponders = 0;
 	
@@ -16,10 +16,10 @@ public class MeetingInitiationBehavior {
 		return new AchieveREInitiator(a, msg){
 
 			protected void handleInform(ACLMessage inform) {
-				System.out.println("Agent "+inform.getSender().getName()+" successfully performed the requested action");
+				System.out.println("Agent "+inform.getSender().getName()+" successfully joined the meeting");
 			}
 			protected void handleRefuse(ACLMessage refuse) {
-				System.out.println("Agent "+refuse.getSender().getName()+" refused to perform the requested action");
+				System.out.println("Agent "+refuse.getSender().getName()+" refused to to join the meeting");
 				nResponders--;
 			}
 			protected void handleFailure(ACLMessage failure) {
@@ -33,9 +33,11 @@ public class MeetingInitiationBehavior {
 				}
 			}
 			protected void handleAllResultNotifications(Vector notifications) {
-				if (notifications.size() < nResponders) {
+				if (notifications.size() >= nResponders*0.9) {
 					// Some responder didn't reply within the specified timeout
 					System.out.println("Timeout expired: missing "+(nResponders - notifications.size())+" responses");
+				} else {
+					// skip meeting?
 				}
 			}
 		};

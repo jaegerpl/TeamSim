@@ -1,14 +1,18 @@
 package de.haw.teamsim.jade.behaviours;
 
+import jade.core.AID;
 import jade.core.Agent;
+import jade.core.ServiceException;
+import jade.core.messaging.TopicManagementHelper;
 import jade.domain.FIPAAgentManagement.FailureException;
 import jade.domain.FIPAAgentManagement.NotUnderstoodException;
 import jade.domain.FIPAAgentManagement.RefuseException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.lang.acl.UnreadableException;
 import jade.proto.AchieveREResponder;
 
-public class MeetingResponseBehavior {
+public class MeetingParticipationBehaviour {
 	private static Agent agent;
 	
 	public static AchieveREResponder createBehaviour(Agent a, MessageTemplate template) {
@@ -26,8 +30,7 @@ public class MeetingResponseBehavior {
 					ACLMessage agree = request.createReply();
 					agree.setPerformative(ACLMessage.AGREE);
 					return agree;
-				}
-				else {
+				} else {
 					// We refuse to perform the action
 					System.out.println("Agent "+agent.getLocalName()+": Refuse");
 					throw new RefuseException("check-failed");
@@ -35,13 +38,12 @@ public class MeetingResponseBehavior {
 			}
 			
 			protected ACLMessage prepareResultNotification(ACLMessage request, ACLMessage response) throws FailureException {
-				if (performAction()) {
+				if (performAction(request)) {
 					System.out.println("Agent "+agent.getLocalName()+": Action successfully performed");
 					ACLMessage inform = request.createReply();
 					inform.setPerformative(ACLMessage.INFORM);
 					return inform;
-				}
-				else {
+				} else {
 					System.out.println("Agent "+agent.getLocalName()+": Action failed");
 					throw new FailureException("unexpected-error");
 				}	
@@ -55,8 +57,22 @@ public class MeetingResponseBehavior {
 	  return (Math.random() > 0.2);
   }
   
-  private static boolean performAction() {
-  	// Simulate action execution by generating a random number
-  	return (Math.random() > 0.2);
+  private static boolean performAction(ACLMessage request) {
+  	// connect to the meeting topic
+	  AID topic;
+	  try {
+		Object obj = request.getContentObject();
+		if(obj instanceof AID){
+			topic = (AID)obj;
+			TopicManagementHelper topicHelper = (TopicManagementHelper)agent.getHelper(TopicManagementHelper.SERVICE_NAME);
+			topicHelper.register(topic);
+			return true;
+		}
+	} catch (UnreadableException e) {
+		System.out.println("Could not read ContentObject "+e);
+	} catch (ServiceException e) {
+		e.printStackTrace();
+	}
+	return false;
   }
 }

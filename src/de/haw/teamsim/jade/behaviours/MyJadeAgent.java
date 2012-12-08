@@ -1,4 +1,4 @@
-package de.haw.teamsim.jade;
+package de.haw.teamsim.jade.behaviours;
 
 /**
  * ***************************************************************
@@ -25,8 +25,12 @@ package de.haw.teamsim.jade;
  * **************************************************************
  */
 
+import java.io.IOException;
+
 import jade.core.AID;
 import jade.core.Agent;
+import jade.core.ServiceException;
+import jade.core.messaging.TopicManagementHelper;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPANames;
@@ -34,8 +38,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import de.haw.teamsim.jade.behaviours.MeetingInitiationBehavior;
-import de.haw.teamsim.jade.behaviours.MeetingResponseBehavior;
 
 /**
    This example shows how to implement the initiator role in 
@@ -56,12 +58,11 @@ public class MyJadeAgent extends Agent {
 	protected void setup() {
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
-//			behaviourChoice = (Integer) args[0];
-			behaviourChoice++;
+			behaviourChoice = (Integer)args[0];
 			System.out.println("behaviourchoice ist "+behaviourChoice);
 		}
 		
-		// Register the book-selling service in the yellow pages
+		// Register a presence service to indicate the participation in the team
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
@@ -88,6 +89,17 @@ public class MyJadeAgent extends Agent {
 	 * <code>MeetingInitiationBehaviour</code> to the agent's behaviours.
 	 */
 	private void addMeetingInitiantionBehaviour(){
+		AID topic =null;
+		String topicname = "Statusmeeting";
+		// create meeting Topic
+		TopicManagementHelper topicHelper;
+		try {
+			topicHelper = (TopicManagementHelper) getHelper(TopicManagementHelper.SERVICE_NAME);
+			topic = topicHelper.createTopic(topicname);
+		} catch (ServiceException e) {
+			System.out.println("Topic creation of Topic "+topicname+" failed. "+e);
+		}
+		
 		AID[] agents = findPresentAgents();
 	  	if (agents != null && agents.length > 0) {
 	  		nResponders = agents.length;
@@ -97,19 +109,25 @@ public class MyJadeAgent extends Agent {
 	  		ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
 	  		for (int i = 0; i < agents.length; ++i) {
 	  			msg.addReceiver(agents[i]);
-//	  			msg.addReceiver(agents[i], AID.ISLOCALNAME);
 	  		}
 			msg.setProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST);
 			msg.setContent("meeting"); 
+			try {
+				msg.setContentObject(topic);
+			} catch (IOException e) {
+				System.out.println("Adding ContentObject to Message failed "+ e);
+			}
 			
-			addBehaviour(MeetingInitiationBehavior.createBehaviour(this, msg, nResponders) );
-//			myAgent.send(msg);
+			addBehaviour(RequestMeetingBehaviour.createBehaviour(this, msg, nResponders) );
 	  	}
 	  	else {
 	  		System.out.println("No responder specified.");
 	  	}
 	}
 	
+	/**
+	 * adds a MeetingRepsonseBehaviour to the agent's list of behaviours.
+	 */
 	private void addMeetingResponseBehaviour(){
   		// Fill the REQUEST message
   		MessageTemplate template = MessageTemplate.and(
@@ -117,7 +135,7 @@ public class MyJadeAgent extends Agent {
   		  		MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
   		  						    MessageTemplate.MatchContent("meeting")));
 		
-		addBehaviour(MeetingResponseBehavior.createBehaviour(this, template) );
+		addBehaviour(RequestMeetingResponseBehaviour.createBehaviour(this, template) );
 	}
   
   /**
