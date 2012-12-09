@@ -58,7 +58,7 @@ public class MyJadeAgent extends Agent {
 	protected void setup() {
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
-			behaviourChoice = (Integer)args[0];
+			behaviourChoice = new Integer((String)args[0]);
 			System.out.println("behaviourchoice ist "+behaviourChoice);
 		}
 		
@@ -111,12 +111,7 @@ public class MyJadeAgent extends Agent {
 	  			msg.addReceiver(agents[i]);
 	  		}
 			msg.setProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST);
-			msg.setContent("meeting"); 
-			try {
-				msg.setContentObject(topic);
-			} catch (IOException e) {
-				System.out.println("Adding ContentObject to Message failed "+ e);
-			}
+			msg.setContent("meeting");
 			
 			addBehaviour(RequestMeetingBehaviour.createBehaviour(this, msg, nResponders) );
 	  	}

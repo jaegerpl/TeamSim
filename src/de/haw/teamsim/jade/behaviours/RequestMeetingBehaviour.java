@@ -9,9 +9,11 @@ import jade.proto.AchieveREInitiator;
 public class RequestMeetingBehaviour {
 	
 	private static int nResponders = 0;
+	private static Agent agent;
 	
 	public static AchieveREInitiator createBehaviour(Agent a, ACLMessage msg, int responders) {
-
+		
+		agent = a;
 		nResponders = responders;
 		return new AchieveREInitiator(a, msg){
 
@@ -34,8 +36,7 @@ public class RequestMeetingBehaviour {
 			}
 			protected void handleAllResultNotifications(Vector notifications) {
 				if (notifications.size() >= nResponders*0.9) {
-					// Some responder didn't reply within the specified timeout
-					System.out.println("Timeout expired: missing "+(nResponders - notifications.size())+" responses");
+					agent.addBehaviour(null);
 				} else {
 					// skip meeting?
 				}
