@@ -36,6 +36,7 @@ public class RequestMeetingBehaviour {
 			}
 			protected void handleAllResultNotifications(Vector notifications) {
 				if (notifications.size() >= nResponders*0.9) {
+					System.out.println("Enough Meetingparticipants joined, Now we can ...");
 					agent.addBehaviour(null);
 				} else {
 					// skip meeting?

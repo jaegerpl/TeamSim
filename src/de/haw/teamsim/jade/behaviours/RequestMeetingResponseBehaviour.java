@@ -1,5 +1,6 @@
 package de.haw.teamsim.jade.behaviours;
 
+import de.haw.teamsim.jade.MyJadeAgent;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.ServiceException;
@@ -21,11 +22,8 @@ public class RequestMeetingResponseBehaviour {
 		return new AchieveREResponder(agent, template) {
 			
 			protected ACLMessage prepareResponse(ACLMessage request) throws NotUnderstoodException, RefuseException {
-				System.out.println("Agent "+agent.getLocalName()+": REQUEST received from "+request.getSender().getName()+". Action is "+request.getContent());
+				System.out.println("Agent "+agent.getLocalName()+": REQUEST received from "+request.getSender().getName());
 				if (checkAction()) {
-					// We agree to perform the action. Note that in the FIPA-Request
-					// protocol the AGREE message is optional. Return null if you
-					// don't want to send it.
 					System.out.println("Agent "+agent.getLocalName()+": Agree");
 					ACLMessage agree = request.createReply();
 					agree.setPerformative(ACLMessage.AGREE);
@@ -39,8 +37,6 @@ public class RequestMeetingResponseBehaviour {
 			
 			protected ACLMessage prepareResultNotification(ACLMessage request, ACLMessage response) throws FailureException {
 				if (performAction(request)) {
-					
-					System.out.println("Agent "+agent.getLocalName()+": Action successfully performed");
 					ACLMessage inform = request.createReply();
 					inform.setPerformative(ACLMessage.INFORM);
 					return inform;

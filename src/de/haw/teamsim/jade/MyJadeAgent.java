@@ -1,4 +1,4 @@
-package de.haw.teamsim.jade.behaviours;
+package de.haw.teamsim.jade;
 
 /**
  * ***************************************************************
@@ -26,6 +26,10 @@ package de.haw.teamsim.jade.behaviours;
  */
 
 import java.io.IOException;
+import java.util.List;
+
+import de.haw.teamsim.jade.behaviours.RequestMeetingBehaviour;
+import de.haw.teamsim.jade.behaviours.RequestMeetingResponseBehaviour;
 
 import jade.core.AID;
 import jade.core.Agent;
@@ -38,6 +42,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import java.util.LinkedList;
 
 /**
    This example shows how to implement the initiator role in 
@@ -59,17 +64,16 @@ public class MyJadeAgent extends Agent {
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
 			behaviourChoice = new Integer((String)args[0]);
-			System.out.println("behaviourchoice ist "+behaviourChoice);
 		}
 		
 		// Register a presence service to indicate the participation in the team
-		DFAgentDescription dfd = new DFAgentDescription();
-		dfd.setName(getAID());
-		ServiceDescription sd = new ServiceDescription();
-		sd.setType("presence");
-		sd.setName("presence");
-		dfd.addServices(sd);
 		try {
+			DFAgentDescription dfd = new DFAgentDescription();
+			dfd.setName(getAID());
+			ServiceDescription sd = new ServiceDescription();
+			sd.setType("presence");
+			sd.setName("presence");
+			dfd.addServices(sd);
 			DFService.register(this, dfd);
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
@@ -90,7 +94,9 @@ public class MyJadeAgent extends Agent {
 	 */
 	private void addMeetingInitiantionBehaviour(){
 		AID topic =null;
+		ACLMessage msg = null;
 		String topicname = "Statusmeeting";
+		
 		// create meeting Topic
 		TopicManagementHelper topicHelper;
 		try {
@@ -100,22 +106,25 @@ public class MyJadeAgent extends Agent {
 			System.out.println("Topic creation of Topic "+topicname+" failed. "+e);
 		}
 		
+		// Create the REQUEST message
+		try {
+	  		msg = new ACLMessage(ACLMessage.REQUEST);
+	  		msg.setProtocol(MyNames.InteractionProtocols.STATUSMEETING);
+			msg.setContentObject(topic);
+		} catch (IOException e) {
+			System.out.println("Adding topic as ContentObject failed: "+e);
+		}
+		
+		// Adding receivers
 		AID[] agents = findPresentAgents();
-	  	if (agents != null && agents.length > 0) {
+	  	if (agents != null && agents.length > 0) {	  		
 	  		nResponders = agents.length;
-	  		System.out.println("Requesting initiation to "+nResponders+" responders.");
-	  		
-	  		// Fill the REQUEST message
-	  		ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
+	  		System.out.println("Requesting initiation to "+nResponders+" responders.");		
 	  		for (int i = 0; i < agents.length; ++i) {
 	  			msg.addReceiver(agents[i]);
 	  		}
-			msg.setProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST);
-			msg.setContent("meeting");
-			
 			addBehaviour(RequestMeetingBehaviour.createBehaviour(this, msg, nResponders) );
-	  	}
-	  	else {
+	  	} else {
 	  		System.out.println("No responder specified.");
 	  	}
 	}
@@ -126,9 +135,8 @@ public class MyJadeAgent extends Agent {
 	private void addMeetingResponseBehaviour(){
   		// Fill the REQUEST message
   		MessageTemplate template = MessageTemplate.and(
-  		  		MessageTemplate.MatchProtocol(FIPANames.InteractionProtocol.FIPA_REQUEST),
-  		  		MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-  		  						    MessageTemplate.MatchContent("meeting")));
+  		  		MessageTemplate.MatchProtocol(MyNames.InteractionProtocols.STATUSMEETING),
+  		  		MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
 		
 		addBehaviour(RequestMeetingResponseBehaviour.createBehaviour(this, template) );
 	}
@@ -155,22 +163,24 @@ public class MyJadeAgent extends Agent {
        *		AID agentID = agents[i].getName(); }
 	   */
 	  	  
-	  AID[] presentAgents = null;
+	  List<AID> presentAgents = new LinkedList<AID>();
 	  DFAgentDescription template = new DFAgentDescription();
 	  ServiceDescription sd = new ServiceDescription();
 	  sd.setType("presence");
 	  template.addServices(sd);
 	  try {
 		  DFAgentDescription[] result = DFService.search(this, template);
-		  presentAgents = new AID[result.length];
 		  for (int i = 0; i < result.length; ++i) {
-			  presentAgents[i] = result[i].getName();
+			  AID agent = result[i].getName();
+			  if(!agent.equals(getAID())){
+				  presentAgents.add(agent);
+			  }			  
 		  }
 	  }
 	  catch (FIPAException fe) {
 		  fe.printStackTrace();
 	  }
-	  return presentAgents;
+	  return (AID[])presentAgents.toArray();
 	}
 	
 	protected void takeDown() {
